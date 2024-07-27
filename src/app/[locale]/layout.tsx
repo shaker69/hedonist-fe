@@ -20,6 +20,7 @@ export default async function LocaleLayout({children, params: {locale}}: Props) 
     <html lang={locale} className={inter.className}>
       <head>
         <title>Hedonist</title>
+        <link rel="icon" href="/favicon.svg" sizes="any" />
       </head>
       <body className="flex flex-col min-h-svh">
         <NextIntlClientProvider locale={locale} messages={messages}>
