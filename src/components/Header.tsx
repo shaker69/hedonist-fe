@@ -15,11 +15,6 @@ export default function Header() {
           src={logo}
           alt={translation('logoAlt')}
         />
-
-        <section className="flex flex-col items-end text-xs gap-2">
-          <span>9:00 - 21:00</span>
-          <span>{translation('address')}</span>
-        </section>
       </ContentHolder>
     </header>
   );
