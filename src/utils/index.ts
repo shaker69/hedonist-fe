@@ -1,0 +1,1 @@
+export { getNormalizedMenu } from './getNormalizedMenu';

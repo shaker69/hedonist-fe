@@ -1,0 +1,26 @@
+{
+  "Header": {
+    "logoAlt": "ჰედონისტი",
+    "address": "ბათუმი, ვახტანგ გორგასლის 26"
+  },
+  "Index": {
+    "title": "სახლში",
+    "loggedIn": "შესული, როგორც {username}",
+    "loggedOut": "თქვენ გასული ხართ.",
+    "login": "Შესვლა",
+    "logout": "გასვლა"
+  },
+  "Login": {
+    "title": "Შესვლა",
+    "username": "მომხმარებლის სახელი",
+    "password": "პაროლი",
+    "submit": "იარე",
+    "error": "{error, select, CredentialsSignin {არასწორი სახელი ან პაროლი} other {Უცნობი შეცდომა}}"
+  },
+  "LocaleSwitcher": {
+    "switchLocale": "გადართვა {locale, select, ka {ქართული} en {English} ru {Русский} other {უცნობი}}"
+  },
+  "Dashboard": {
+    "title": "Dashboard"
+  }
+}

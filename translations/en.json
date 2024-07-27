@@ -1,0 +1,26 @@
+{
+  "Header": {
+    "logoAlt": "Hedonist",
+    "address": "Batumi, Vakhtang Gorgasali 26"
+  },
+  "Index": {
+    "title": "Home",
+    "loggedIn": "Logged in as {username}",
+    "loggedOut": "You are logged out.",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "Login": {
+    "title": "Login",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Login",
+    "error": "{error, select, CredentialsSignin {Invalid username or password} other {Unknown error}}"
+  },
+  "LocaleSwitcher": {
+    "switchLocale": "Switch to {locale, select, ka {ქართული} en {English} ru {Русский} other {Неизвестный}}"
+  },
+  "Dashboard": {
+    "title": "Dashboard"
+  }
+}

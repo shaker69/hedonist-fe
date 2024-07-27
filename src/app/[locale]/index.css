@@ -1,0 +1,23 @@
+/* LEGACY: remove after CSS Anchor positioning will be supported on required browsers */
+.chips {
+  right: -4.25rem;
+  bottom: 0.1rem;
+}
+
+.category-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+}
+
+@supports (anchor-name: --category-anchor) {
+  .category {
+    anchor-name: --category-anchor;
+  }
+  
+  .chips {
+    position-anchor: --category-anchor;
+    left: calc(anchor(right) - 0.65rem);
+    bottom: anchor(bottom);
+  }
+}
+

@@ -1,0 +1,26 @@
+{
+  "Header": {
+    "logoAlt": "Гедонист",
+    "address": "Батуми, Вахтанга Горгасали 26"
+  },
+  "Index": {
+    "title": "Главная",
+    "loggedIn": "Выполнен вход как {username}",
+    "loggedOut": "Неавторизирован.",
+    "login": "Войти",
+    "logout": "Выйти"
+  },
+  "Login": {
+    "title": "Авторизация",
+    "username": "Имя пользователя",
+    "password": "Password",
+    "submit": "Войти",
+    "error": "{error, select, CredentialsSignin {Неверное имя пользователя или пароль} other {Что-то пошло не так...}}"
+  },
+  "LocaleSwitcher": {
+    "switchLocale": "{locale, select, ka {ქართული} en {English} ru {Русский} other {Неизвестный}}"
+  },
+  "Dashboard": {
+    "title": "Dashboard"
+  }
+}
