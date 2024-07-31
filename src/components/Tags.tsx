@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
 import Button from "./Button";
 import ContentHolder from "./ContentHolder";
 
@@ -10,8 +11,19 @@ interface Props {
   className?: string;
 }
 
+/* TODO: keep on DB */
+const tagsMock = [
+  { id: '0', name: '🤤' },
+  { id: '1', name: 'food' },
+  { id: '2', name: 'coffee' },
+  { id: '3', name: 'tea' },
+  { id: '4', name: 'cacao' },
+  { id: '5', name: 'promo' },
+];
+
 export default function Tags({ className }: Props) {
   const stickyRef = useRef(null);
+  const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
     const element = stickyRef.current;
@@ -38,12 +50,15 @@ export default function Tags({ className }: Props) {
       className={`tags-wrapper flex bg-color-secondary ${className}`.trim()}
     >
       <ContentHolder className="flex gap-2 tags-container">
-        <Button label="🤤"/>
-        <Button label="food" />
-        <Button label="coffee" />
-        <Button label="tea" />
-        <Button label="cacao" />
-        <Button label="other" />
+        {tagsMock.map(({ id, name }) => (
+          <Button
+            key={id}
+            active={active === id}
+            label={name}
+            onClick={() => setActive(id)}
+            className="transition-colors"
+          />
+        ))}
       </ContentHolder>
     </section>
   );
