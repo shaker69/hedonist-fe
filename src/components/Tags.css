@@ -2,7 +2,7 @@
   padding-top: 2rem;
   padding-bottom: 1.25rem;
   border-radius: 2rem 2rem 0 0;
-  transition: border-radius 0.3s, padding-top 0.2s;
+  transition: border-radius 0.1s, padding-top 0.1s;
 }
 
 .tags-wrapper.active {
