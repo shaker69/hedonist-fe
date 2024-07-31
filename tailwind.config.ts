@@ -18,7 +18,11 @@ const config: Config = {
       },
       borderRadius: {
         "sm": "2rem"
-      }
+      },
+      borderColor: {
+        "color-primary": "rgb(var(--color-primary-rgb), <alpha-value>)",
+        "color-secondary": "rgb(var(--color-secondary-rgb), <alpha-value>)",
+      },
     },
   },
   plugins: [],

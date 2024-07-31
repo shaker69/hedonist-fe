@@ -1,0 +1,16 @@
+.tags-wrapper {
+  padding-top: 2rem;
+  padding-bottom: 1.25rem;
+  border-radius: 2rem 2rem 0 0;
+}
+
+.tags-wrapper.active {
+  padding-top: 1.25rem;
+  border-radius: 0;
+}
+
+.tags-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
