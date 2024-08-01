@@ -1,6 +1,9 @@
 {
+  "common": {
+    "redirectToLoginConfirmMessage": "Redirect to the login page?",
+    "logoAlt": "Hedonist"
+  },
   "Header": {
-    "logoAlt": "Hedonist",
     "address": "Batumi, Vakhtang Gorgasali 26"
   },
   "Index": {

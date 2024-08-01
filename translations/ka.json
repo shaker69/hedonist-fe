@@ -1,6 +1,9 @@
 {
+  "common": {
+    "redirectToLoginConfirmMessage": "Redirect to the login page? (Ka)",
+    "logoAlt": "ჰედონისტი"
+  },
   "Header": {
-    "logoAlt": "ჰედონისტი",
     "address": "ბათუმი, ვახტანგ გორგასლის 26"
   },
   "Index": {

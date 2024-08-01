@@ -1,6 +1,9 @@
 {
+  "common": {
+    "redirectToLoginConfirmMessage": "Перейти на страницу авторизации?",
+    "logoAlt": "Гедонист"
+  },
   "Header": {
-    "logoAlt": "Гедонист",
     "address": "Батуми, Вахтанга Горгасали 26"
   },
   "Index": {
