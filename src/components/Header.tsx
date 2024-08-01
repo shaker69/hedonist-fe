@@ -19,7 +19,7 @@ export default function Header() {
           alt={translation('logoAlt')}
         />
 
-        <section className="flex gap-2">
+        <section className="flex gap-2 items-center">
           <LayoutSwitcher />
           <LocaleSwitcher />
         </section>

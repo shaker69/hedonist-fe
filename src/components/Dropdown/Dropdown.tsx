@@ -2,6 +2,7 @@ import { ReactNode, useMemo, useState } from 'react';
 
 import ChevronUpIcon from '../../../public/icon-chevron-up.svg';
 import ChevronDownIcon from '../../../public/icon-chevron-down.svg';
+import Button from '../Button';
 
 interface Props {
   className?: string;
@@ -44,16 +45,16 @@ export default function Dropdown({
 
   return (
     <div className={`relative inline-block text-left z-[9999] ${className}`}>
-      <button
+      <Button
         onClick={toggleDropdown}
-        className="inline-flex leading-4 justify-between items-center px-4 py-2 text-sm font-medium text-color-primary bg-color-secondary border rounded-xs shadow-sm hover:bg-gray-50 focus:outline-none"
+        className="inline-flex w-full leading-4 justify-between items-center px-4 py-2 text-sm font-medium text-color-primary bg-color-secondary rounded-xs shadow-sm hover:bg-gray-50 focus:outline-none"
       >
         {selectedOptionLabel}
         {isOpen ? <ChevronUpIcon width="16" height="16" /> : <ChevronDownIcon width="16" height="16" />}
-      </button>
+      </Button>
 
       {isOpen && (
-        <div className="absolute right-0 z-10 mt-1 origin-top-right bg-white border rounded-xs shadow-lg">
+        <div className="absolute right-0 z-10 mt-1 origin-top-right bg-white rounded-xs shadow-lg">
           <div className="py-1">
             {options.map((option) => (formatOption || defaultOptionFormatter)(option))}
           </div>

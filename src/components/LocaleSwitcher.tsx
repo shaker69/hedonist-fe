@@ -22,7 +22,7 @@ export default function LocaleSwitcher() {
         key={option.value}
         href={pathname}
         locale={option.value}
-        className="block w-full px-6 py-2 text-sm text-color-primary"
+        className="block w-[4.4rem] pl-4 py-2 text-sm text-color-primary"
       >
         {labelsMap[option.value]}
       </Link>
@@ -41,6 +41,7 @@ export default function LocaleSwitcher() {
       options={options}
       formatOption={formatOption}
       initialSelected={locale}
+      className="w-[4.5rem]"
     />
   )
 }

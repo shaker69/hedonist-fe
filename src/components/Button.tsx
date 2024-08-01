@@ -14,7 +14,7 @@ export default function Button ({
 }: Props) {
   return (
     <button
-      className={`${className}`}
+      className={`h-fit ${className}`}
       {...props}
     >
       {label ?? children}
