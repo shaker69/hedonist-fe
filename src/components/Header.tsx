@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
-import logo from '../../public/logo.svg';
 import ContentHolder from './ContentHolder';
+import LayoutSwitcher from './LayoutSwitcher';
+
+import logo from '../../public/logo.svg?url';
 
 export default function Header() {
   const translation = useTranslations('Header');
@@ -15,6 +17,10 @@ export default function Header() {
           src={logo}
           alt={translation('logoAlt')}
         />
+
+        <section>
+          <LayoutSwitcher />
+        </section>
       </ContentHolder>
     </header>
   );

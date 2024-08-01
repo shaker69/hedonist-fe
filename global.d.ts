@@ -3,6 +3,17 @@ import en from './translations/en.json';
 type Messages = typeof en;
 
 declare global {
+  declare module '*.svg' {
+    import { FC, SVGProps } from 'react'
+    const content: FC<SVGProps<SVGElement>>
+    export default content
+  }
+  
+  declare module '*.svg?url' {
+    const content: any
+    export default content
+  }
+
   // Use type safe message keys with `next-intl`
   interface IntlMessages extends Messages {}
 

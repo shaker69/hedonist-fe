@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useTranslations, useFormatter } from 'next-intl';
 
-import imagePlaceholder from '../../public/image-placeholder.svg';
+import imagePlaceholder from '../../public/image-placeholder.svg?url';
 import emoji from '../../public/emoji.png';
 
 interface Props {

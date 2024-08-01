@@ -3,8 +3,8 @@ import { useTranslations } from 'next-intl';
 
 import ContentHolder from './ContentHolder';
 
-import instagram from '../../public/instagram.svg';
-import logo2 from '../../public/logo-2.svg';
+import instagram from '../../public/instagram.svg?url';
+import logo2 from '../../public/logo-2.svg?url';
 
 /* TODO: keep on DB */
 const socialLinks = [

@@ -13,7 +13,7 @@ import {
   Tags,
 } from '@app/components';
 
-import chips from '../../../public/chips.svg';
+import chips from '../../../public/chips.svg?url';
 import './index.css';
 
 type Props = {
