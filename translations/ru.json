@@ -7,11 +7,7 @@
     "address": "Батуми, Вахтанга Горгасали 26"
   },
   "Index": {
-    "title": "Главная",
-    "loggedIn": "Выполнен вход как {username}",
-    "loggedOut": "Неавторизирован.",
-    "login": "Войти",
-    "logout": "Выйти"
+    "title": "Главная"
   },
   "Login": {
     "title": "Авторизация",
@@ -24,6 +20,10 @@
     "switchLocale": "{locale, select, ka {ქართული} en {English} ru {Русский} other {Неизвестный}}"
   },
   "Dashboard": {
-    "title": "Dashboard"
+    "title": "Dashboard",
+    "loggedIn": "Выполнен вход как {username}",
+    "loggedOut": "Неавторизирован.",
+    "login": "Войти",
+    "logout": "Выйти"
   }
 }

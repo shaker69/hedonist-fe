@@ -1,16 +1,21 @@
-import { ReactNode } from 'react';
-
-import Header from './Header';
+import { ElementType, Fragment, ReactNode } from 'react';
 
 type Props = {
   children?: ReactNode;
+  className?: string;
+  component?: ElementType;
 };
 
-export default function PageLayout({ children }: Props) {
+export default function PageLayout({
+  children,
+  className,
+  component,
+}: Props) {
+  const Wrapper = component || Fragment;
+
   return (
-    <>
-      <Header />
+    <Wrapper className={className}>
       {children}
-    </>
+    </Wrapper>
   );
 }

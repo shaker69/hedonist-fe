@@ -1,14 +1,12 @@
 'use client'
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { Session } from 'next-auth';
-import { signOut } from 'next-auth/react';
-import { useLocale, useTranslations } from 'next-intl';
 
 import {
   ContentHolder,
   Footer,
+  Header,
   MenuItem,
   PageLayout,
   Rune,
@@ -28,16 +26,11 @@ type Props = {
 
 export default function Index({ session, menu }: Props) {
   const { isGrid } = useViewContext();
-  // TODO: an example - remove later
-  // const translation = useTranslations('Index');
-  // const locale = useLocale();
-
-  // function onLogoutClick() {
-  //   signOut();
-  // }
 
   return (
     <PageLayout>
+      <Header withLayoutSwitcher />
+
       <div className="h-8 w-full bg-red bg-color-secondary rounded-t-[2rem]" />
 
       <Tags className="px-4 sticky -top-[1px] z-[999]" />
@@ -78,6 +71,7 @@ export default function Index({ session, menu }: Props) {
                   <>
                     <MenuItem
                       key={item.id}
+                      id={item.id}
                       className={`menu-item-${itemIndx} z-10 ${isGrid && itemIndx === items.length - 1 && items.length % 2 !== 0 ? 'lastItem' : ''}`}
                       name={item.name}
                       pictureSrc={item.pictureURL}
@@ -102,26 +96,7 @@ export default function Index({ session, menu }: Props) {
           ))}
         </ContentHolder>
       </main>
-      {/* TODO: remove this part of code */}
-      {/* {session ? (
-        <>
-          <p>{translation('loggedIn', {username: session.user?.name})}</p>
-          <p>
-            <Link href={locale + '/secret'}>{translation('secret')}</Link>
-          </p>
-          <button onClick={onLogoutClick} type="button">
-            {translation('logout')}
-          </button>
-        </>
-      ) : (
-        <>
-          <p>{translation('loggedOut')}</p>
-          <Link href={locale + '/login'}>{translation('login')}</Link>
-        </>
-      )} */}
-
       <Footer />
-
       <ScrollToTopButton />
     </PageLayout>
   );

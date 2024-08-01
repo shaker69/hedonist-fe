@@ -10,7 +10,11 @@ import LocaleSwitcher from './LocaleSwitcher';
 
 import logo from '../../public/logo.svg?url';
 
-export default function Header() {
+interface Props {
+  withLayoutSwitcher?: boolean;
+}
+
+export default function Header({ withLayoutSwitcher = false }: Props) {
   const router = useRouter();
   const translation = useTranslations('common');
 
@@ -48,7 +52,7 @@ export default function Header() {
         </Button>
 
         <section className="flex gap-2 items-center">
-          <LayoutSwitcher />
+          {withLayoutSwitcher && <LayoutSwitcher />}
           <LocaleSwitcher />
         </section>
       </ContentHolder>

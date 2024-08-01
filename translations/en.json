@@ -7,11 +7,7 @@
     "address": "Batumi, Vakhtang Gorgasali 26"
   },
   "Index": {
-    "title": "Home",
-    "loggedIn": "Logged in as {username}",
-    "loggedOut": "You are logged out.",
-    "login": "Login",
-    "logout": "Logout"
+    "title": "Home"
   },
   "Login": {
     "title": "Login",
@@ -24,6 +20,10 @@
     "switchLocale": "Switch to {locale, select, ka {ქართული} en {English} ru {Русский} other {Неизвестный}}"
   },
   "Dashboard": {
-    "title": "Dashboard"
+    "title": "Dashboard",
+    "loggedIn": "Logged in as {username}",
+    "loggedOut": "You are logged out.",
+    "login": "Login",
+    "logout": "Logout"
   }
 }

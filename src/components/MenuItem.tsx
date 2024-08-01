@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import { useTranslations, useFormatter } from 'next-intl';
 
+import { useRouter } from '@app/navigation';
 import imagePlaceholder from '../../public/image-placeholder.svg?url';
 import emoji from '../../public/emoji.png';
 
 interface Props {
+  id: string,
   name: string,
   className?: string,
   pictureSrc?: string,
@@ -19,6 +21,7 @@ interface Props {
 export default function MenuItem({
   className = '',
   name,
+  id,
   ingredients,
   pictureSrc,
   objectPosition,
@@ -29,13 +32,17 @@ export default function MenuItem({
 }: Props) {
   const ingredientsString = ingredients?.join(', ');
   const format = useFormatter();
+  const router = useRouter();
 
   const objectPosisionClass = objectPosition
     ? `object-[${objectPosition[0]}px]`
     : '';
 
   return (
-    <figure className={`${className} h-60 max-w-sm relative bg-slate-600 rounded-2xl`}>
+    <figure
+      className={`${className} h-60 max-w-sm relative bg-slate-600 rounded-2xl`}
+      onClick={() => router.push(`/menu-item/${id}`)}
+    >
       <Image
         className={`max-h-full rounded-2xl ${objectPosisionClass}`}
         // priority

@@ -7,11 +7,7 @@
     "address": "ბათუმი, ვახტანგ გორგასლის 26"
   },
   "Index": {
-    "title": "სახლში",
-    "loggedIn": "შესული, როგორც {username}",
-    "loggedOut": "თქვენ გასული ხართ.",
-    "login": "Შესვლა",
-    "logout": "გასვლა"
+    "title": "სახლში"
   },
   "Login": {
     "title": "Შესვლა",
@@ -24,6 +20,10 @@
     "switchLocale": "გადართვა {locale, select, ka {ქართული} en {English} ru {Русский} other {უცნობი}}"
   },
   "Dashboard": {
-    "title": "Dashboard"
+    "title": "Dashboard",
+    "loggedIn": "შესული, როგორც {username}",
+    "loggedOut": "თქვენ გასული ხართ.",
+    "login": "Შესვლა",
+    "logout": "გასვლა"
   }
 }
