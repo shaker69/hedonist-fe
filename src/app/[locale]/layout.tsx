@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ReactNode } from 'react';
+import { ViewContextProvider } from '@app/contexts';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -24,7 +25,9 @@ export default async function LocaleLayout({children, params: {locale}}: Props) 
       </head>
       <body className="flex flex-col min-h-svh">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          <ViewContextProvider>
+            {children}
+          </ViewContextProvider>
         </NextIntlClientProvider>
       </body>
     </html>

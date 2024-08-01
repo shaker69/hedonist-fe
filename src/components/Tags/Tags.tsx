@@ -50,15 +50,21 @@ export default function Tags({ className }: Props) {
       className={`tags-wrapper flex bg-color-secondary ${className}`.trim()}
     >
       <ContentHolder className="flex gap-2 tags-container">
-        {tagsMock.map(({ id, name }) => (
+        {tagsMock.map(({ id, name }) => {
+          const isActive = active === id;
+          const textColorClass = isActive ? 'secondary' : 'primary';
+          const bgColorClass = isActive ? 'primary' : 'secondary';
+          const btnClass = `transition-colors border rounded-full border-black py-2 px-4 bg-color-${bgColorClass} text-color-${textColorClass}`;
+
+          return (
           <Button
             key={id}
-            active={active === id}
+            active={isActive}
             label={name}
             onClick={() => setActive(id)}
-            className="transition-colors"
+            className={btnClass}
           />
-        ))}
+        )})}
       </ContentHolder>
     </section>
   );

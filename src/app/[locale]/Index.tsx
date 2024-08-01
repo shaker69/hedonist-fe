@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Session } from 'next-auth';
@@ -13,6 +15,7 @@ import {
   ScrollToTopButton,
   Tags,
 } from '@app/components';
+import { useViewContext } from '@app/contexts';
 
 import chips from '../../../public/chips.svg?url';
 import './index.css';
@@ -24,6 +27,7 @@ type Props = {
 };
 
 export default function Index({ session, menu }: Props) {
+  const { isGrid } = useViewContext();
   // TODO: an example - remove later
   // const translation = useTranslations('Index');
   // const locale = useLocale();
@@ -36,7 +40,7 @@ export default function Index({ session, menu }: Props) {
     <PageLayout>
       <Tags className="px-4 sticky -top-[1px] z-[999]" />
 
-      <main className="flex-auto flex justify-center bg-color-secondary px-4 py-8 text-color-primary overflow-hidden z-20 pb-20">
+      <main className="flex-auto flex justify-center bg-color-secondary px-4 py-8 pb-20 text-color-primary overflow-hidden z-20">
         <ContentHolder className="flex flex-col gap-10">
           {menu.map(({ id, name, isAllDay, items, description }: Menu, catIndx: number) => (
             <ul
@@ -67,12 +71,12 @@ export default function Index({ session, menu }: Props) {
                   />
                 )}
               </hgroup>
-              <div className="category-items gap-5 z-10">
+              <div className={`category-items gap-5 z-10`.concat(isGrid ? ' isGrid' : '')}>
                 {items.map((item: any, itemIndx: number, arr) => (
                   <>
                     <MenuItem
                       key={item.id}
-                      className={`menu-item-${itemIndx} z-10`}
+                      className={`menu-item-${itemIndx} z-10 ${isGrid && itemIndx === items.length - 1 && items.length % 2 !== 0 ? 'lastItem' : ''}`}
                       name={item.name}
                       pictureSrc={item.pictureURL}
                       objectPosition={item.objectPosition}
