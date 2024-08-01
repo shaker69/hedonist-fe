@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import en from './translations/en.json';
 
 type Messages = typeof en;
@@ -63,5 +65,10 @@ declare global {
       sub?: string,
       ingredients: (string | undefined)[],
     }[]
+  }
+
+  interface DropdownOption<T = any> {
+    label: string;
+    value: T;
   }
 }

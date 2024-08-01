@@ -19,6 +19,8 @@ export default function LayoutSwitcher() {
       >
         <ViewAgendaIcon
           className="icon fill-blue-500"
+          height="14"
+          width="14"
         />
       </Button>
       <Button
@@ -27,6 +29,8 @@ export default function LayoutSwitcher() {
       >
         <ViewCozyIcon
           className="icon fill-blue-500"
+          height="14"
+          width="14"
         />
       </Button>
     </div>

@@ -5,6 +5,7 @@ import ContentHolder from './ContentHolder';
 import LayoutSwitcher from './LayoutSwitcher/LayoutSwitcher';
 
 import logo from '../../public/logo.svg?url';
+import LocaleSwitcher from './LocaleSwitcher';
 
 export default function Header() {
   const translation = useTranslations('Header');
@@ -18,8 +19,9 @@ export default function Header() {
           alt={translation('logoAlt')}
         />
 
-        <section>
+        <section className="flex gap-2">
           <LayoutSwitcher />
+          <LocaleSwitcher />
         </section>
       </ContentHolder>
     </header>

@@ -1,22 +1,46 @@
 import { useLocale, useTranslations } from 'next-intl';
+import { useCallback, useMemo } from 'react';
 
 import { Link, locales, usePathname } from '../navigation';
+import { Dropdown } from './Dropdown';
+
+/* TODO: right now translations are not required */
+const labelsMap = {
+  en: 'En',
+  ka: 'Ka',
+  ru: 'Ru',
+}
 
 export default function LocaleSwitcher() {
   const t = useTranslations('LocaleSwitcher');
   const locale = useLocale();
   const pathname = usePathname();
 
-  return locales.filter((l) => l !== locale).map((l) => {
+  const formatOption = useCallback((option: DropdownOption<Locale>) => {
     return (
       <Link
-        key={l}
+        key={option.value}
         href={pathname}
-        locale={l}
+        locale={option.value}
+        className="block w-full px-6 py-2 text-sm text-color-primary"
       >
-        {t('switchLocale', { locale: l })}
+        {labelsMap[option.value]}
       </Link>
     );
-  })
+  }, [pathname]);
 
+  const options = useMemo(() => {
+    return locales.map((l) => ({
+      label: labelsMap[l],
+      value: l,
+    }));
+  }, []);
+
+  return (
+    <Dropdown
+      options={options}
+      formatOption={formatOption}
+      initialSelected={locale}
+    />
+  )
 }
