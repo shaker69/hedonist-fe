@@ -9,8 +9,6 @@ import Button from '../Button';
 export default function LayoutSwitcher() {
   const { isGrid, toggleView } = useViewContext();
 
-  console.log('isGrid', isGrid);
-
   const btnClass = 'rounded-full p-[0.44rem] m-[0.125rem]';
 
   return (
