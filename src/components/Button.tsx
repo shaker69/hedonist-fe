@@ -1,8 +1,8 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 interface Props extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   active?: boolean;
-  label: string;
+  label: React.ReactNode;
 }
 
 export default function Button ({

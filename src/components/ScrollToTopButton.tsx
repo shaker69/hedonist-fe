@@ -8,7 +8,7 @@ const ScrollToTopButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
+    if (window.scrollY > 300) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
@@ -30,7 +30,7 @@ const ScrollToTopButton: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-8 right-3 z-[999]">
+    <div className="fixed bottom-8 right-3 z-[9999]">
       {isVisible && (
         <button
           onClick={scrollToTop}
