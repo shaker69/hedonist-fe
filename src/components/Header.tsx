@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 import ContentHolder from './ContentHolder';
-import LayoutSwitcher from './LayoutSwitcher';
+import LayoutSwitcher from './LayoutSwitcher/LayoutSwitcher';
 
 import logo from '../../public/logo.svg?url';
 

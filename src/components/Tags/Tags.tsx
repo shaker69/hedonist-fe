@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import Button from "./Button";
-import ContentHolder from "./ContentHolder";
+import Button from "../Button";
+import ContentHolder from "../ContentHolder";
 
 import './Tags.css';
 

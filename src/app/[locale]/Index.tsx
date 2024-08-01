@@ -10,6 +10,7 @@ import {
   MenuItem,
   PageLayout,
   Rune,
+  ScrollToTopButton,
   Tags,
 } from '@app/components';
 
@@ -114,6 +115,8 @@ export default function Index({ session, menu }: Props) {
       )} */}
 
       <Footer />
+
+      <ScrollToTopButton />
     </PageLayout>
   );
 }
