@@ -34,6 +34,7 @@ export default function LoginPage({}: Props) {
       redirect: false
     }).then((result) => {
       if (result?.error) {
+        message.config({ top: 630 });
         message.error(t('error', { error: result.error }));
       } else {
         router.push(callbackUrl || `/${locale}`);
@@ -54,7 +55,10 @@ export default function LoginPage({}: Props) {
 
       <Logo />
 
-      <div className="m-8 flex justify-center">
+      <div
+        id="form-wrapper"
+        className="m-8 flex justify-center"
+      >
         <Form
           action="/api/auth/callback/credentials"
           method="post"
