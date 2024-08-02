@@ -2,8 +2,8 @@
 
 import { useViewContext } from '@app/contexts';
 
-import ViewAgendaIcon from '../../../public/icon-view-agenda.svg';
-import ViewCozyIcon from '../../../public/icon-view-cozy.svg';
+import ViewAgendaIcon from '@public/icon-view-agenda.svg';
+import ViewCozyIcon from '@public/icon-view-cozy.svg';
 import Button from '../Button';
 
 export default function LayoutSwitcher() {

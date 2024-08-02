@@ -2,8 +2,10 @@ import Image from 'next/image';
 import { useTranslations, useFormatter } from 'next-intl';
 
 import { useRouter } from '@app/navigation';
-import imagePlaceholder from '../../public/image-placeholder.svg?url';
-import emoji from '../../public/emoji.png';
+import { formatCurrency } from '@app/utils';
+
+import imagePlaceholder from '@public/image-placeholder.svg?url';
+import emoji from '@public/emoji.png';
 
 interface Props {
   id: string,
@@ -68,7 +70,7 @@ export default function MenuItem({
           <h3 className="font-medium text-sm/[17px]">{name}</h3>
           {!!ingredientsString?.length && <p className="text-xxs/[0.75rem] text-color-text-secondary">{ingredientsString}</p>}
           {!!subTitle?.length && <p className="text-xxs/[0.75rem] text-color-text-secondary">{subTitle}</p>}
-          <p className="font-medium text-sm/[17px]">{format.number(price, { style: 'currency', currency }).replace('GEL', '₾')}</p>
+          <p className="font-medium text-sm/[17px]">{formatCurrency(format, price, currency)}</p>
         </section>
       </figcaption>
     </figure>

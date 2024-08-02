@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { CSSProperties } from 'react';
 
-import rune1 from '../../public/runes/1.svg?url';
-import rune2 from '../../public/runes/2.svg?url';
-import rune3 from '../../public/runes/3.svg?url';
-import rune4 from '../../public/runes/4.svg?url';
-import rune5 from '../../public/runes/5.svg?url';
-import rune6 from '../../public/runes/6.svg?url';
+import rune1 from '@public/runes/1.svg?url';
+import rune2 from '@public/runes/2.svg?url';
+import rune3 from '@public/runes/3.svg?url';
+import rune4 from '@public/runes/4.svg?url';
+import rune5 from '@public/runes/5.svg?url';
+import rune6 from '@public/runes/6.svg?url';
 
 const runes = {
   category: [

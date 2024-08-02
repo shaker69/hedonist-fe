@@ -8,7 +8,7 @@ import ContentHolder from './ContentHolder';
 import { LayoutSwitcher } from './LayoutSwitcher';
 import LocaleSwitcher from './LocaleSwitcher';
 
-import logo from '../../public/logo.svg?url';
+import logo from '@public/logo.svg?url';
 
 interface Props {
   withLayoutSwitcher?: boolean;

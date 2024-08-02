@@ -1,7 +1,7 @@
 import { ReactNode, useMemo, useState } from 'react';
 
-import ChevronUpIcon from '../../../public/icon-chevron-up.svg';
-import ChevronDownIcon from '../../../public/icon-chevron-down.svg';
+import ChevronUpIcon from '@public/icon-chevron-up.svg';
+import ChevronDownIcon from '@public/icon-chevron-down.svg';
 import Button from '../Button';
 
 interface Props {

@@ -7,6 +7,11 @@ export const menuItems: MenuItem[] = [
     ingredientIds: ['ing-1', 'ing-2', 'ing-3', 'ing-4'],
     pictureURL: `${BASE_URL}/Full_english.jpg`,
     objectPosition: [100, 100],
+    sub: {
+      en: 'sausage, mushrooms, bacon, eggs',
+      ru: 'sausage, mushrooms, bacon, eggs',
+      ka: 'sausage, mushrooms, bacon, eggs',
+    },
     name: {
       en: 'Full english',
       ru: 'Full english',
@@ -14,11 +19,11 @@ export const menuItems: MenuItem[] = [
     },
     price: 24,
     currency: 'GEL',
-    weight: null,
+    weight: 330,
     description: {
-      en: '',
-      ru: '',
-      ka: '',
+      en: 'It is a traditional feast for the senses that has warmed hearts and homes for generations. A plate featuring crispy bacon, premium sausages, perfectly fried eggs, golden hashbrowns, and tenderly sautéed mushrooms.',
+      ru: 'Это традиционный праздник чувств, который согревал сердца и дома на протяжении нескольких поколений. Тарелка с хрустящим беконом, колбасками премиум-класса, идеальной яичницей, золотистыми оладьями и нежно обжаренными грибами.',
+      ka: 'ეს არის გრძნობების ტრადიციული დღესასწაული, რომელიც თაობების განმავლობაში ათბობს გულებსა და სახლებს. თეფშზე გამოსახულია ხრაშუნა ბეკონი, პრემიუმ ძეხვეული, იდეალურად შემწვარი კვერცხი, ოქროსფერი ჰეშბრაუნი და ნაზად შემწვარი სოკო.',
     },
     rating: 0,
     hit: false,
@@ -244,9 +249,9 @@ export const menuItems: MenuItem[] = [
       ka: 'Rustic cheese cake',
     },
     sub: {
-      en: 'goes with berry jam / sour cream / salty caramel', // нужно уточнить тут
-      ru: 'goes with berry jam / sour cream / salty caramel', // нужно уточнить тут
-      ka: 'goes with berry jam / sour cream / salty caramel', // нужно уточнить тут
+      en: 'goes with berry jam / sour cream / salty caramel',
+      ru: 'goes with berry jam / sour cream / salty caramel',
+      ka: 'goes with berry jam / sour cream / salty caramel',
     },
     price: 11,
     currency: 'GEL',

@@ -7,7 +7,7 @@ import { Dropdown } from './Dropdown';
 /* TODO: right now translations are not required */
 const labelsMap = {
   en: 'En',
-  ka: 'Ka',
+  ka: 'Ge',
   ru: 'Ru',
 }
 

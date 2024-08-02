@@ -12,9 +12,7 @@ interface Props {
 export default async function MenuItemPage({ params }: Props) {
   const menuItem = await getMenuItem(params.id);
 
-  console.log('menuItem', menuItem);
-
   return (
-    <MenuItemView />
+    <MenuItemView menuItem={menuItem} />
   );
 }

@@ -15,7 +15,8 @@ import {
 } from '@app/components';
 import { useViewContext } from '@app/contexts';
 
-import chips from '../../../public/chips.svg?url';
+import chips from '@public/chips.svg?url';
+
 import './index.css';
 
 type Props = {
