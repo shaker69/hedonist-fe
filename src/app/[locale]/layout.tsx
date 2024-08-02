@@ -1,7 +1,10 @@
+import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { ConfigProvider } from 'antd';
 import { Inter } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ReactNode } from 'react';
+
 import { ViewContextProvider } from '@app/contexts';
 
 const inter = Inter({
@@ -25,9 +28,24 @@ export default async function LocaleLayout({children, params: {locale}}: Props) 
       </head>
       <body className="flex flex-col min-h-svh">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <ViewContextProvider>
-            {children}
-          </ViewContextProvider>
+          <AntdRegistry>
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimary: "#191919",
+                  colorInfo: "#191919",
+                  colorError: "#ed7f7f",
+                  colorWarning: "#f4cd6a",
+                  wireframe: true,
+                  colorSuccess: "#dffa5a"
+                },
+              }}
+            >
+              <ViewContextProvider>
+                {children}
+              </ViewContextProvider>
+            </ConfigProvider>
+          </AntdRegistry>
         </NextIntlClientProvider>
       </body>
     </html>

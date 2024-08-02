@@ -11,7 +11,11 @@ const labelsMap = {
   ru: 'Ru',
 }
 
-export default function LocaleSwitcher() {
+interface Props {
+  className?: string;
+}
+
+export default function LocaleSwitcher({ className }: Props) {
   const t = useTranslations('LocaleSwitcher');
   const locale = useLocale();
   const pathname = usePathname();
@@ -41,7 +45,7 @@ export default function LocaleSwitcher() {
       options={options}
       formatOption={formatOption}
       initialSelected={locale}
-      className="w-[4.5rem]"
+      className={`w-[4.5rem]`.concat(className ? ` ${className}` : '')}
     />
   )
 }

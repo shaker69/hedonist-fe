@@ -14,7 +14,11 @@
     "username": "Имя пользователя",
     "password": "Password",
     "submit": "Войти",
-    "error": "{error, select, CredentialsSignin {Неверное имя пользователя или пароль} other {Что-то пошло не так...}}"
+    "error": "{error, select, CredentialsSignin {Неверное имя пользователя или пароль} other {Что-то пошло не так...}}",
+    "validation": {
+      "usernameRequred": "Please input your username!",
+      "passwordRequred": "Please input your password!"
+    }
   },
   "LocaleSwitcher": {
     "switchLocale": "{locale, select, ka {ქართული} en {English} ru {Русский} other {Неизвестный}}"

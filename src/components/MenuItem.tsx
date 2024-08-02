@@ -1,12 +1,12 @@
 import Image from 'next/image';
-import { useTranslations, useFormatter } from 'next-intl';
+import { useFormatter } from 'next-intl';
+import { useCallback } from 'react';
 
 import { useRouter } from '@app/navigation';
 import { formatCurrency } from '@app/utils';
 
 import imagePlaceholder from '@public/image-placeholder.svg?url';
 import emoji from '@public/emoji.png';
-import { useCallback } from 'react';
 
 interface Props {
   id: string,
@@ -33,7 +33,7 @@ export default function MenuItem({
   currency = 'GEL',
   isHit,
 }: Props) {
-  const ingredientsString = ingredients?.join(', ');
+  // const ingredientsString = ingredients?.join(', ');
   const format = useFormatter();
   const router = useRouter();
 
@@ -46,7 +46,7 @@ export default function MenuItem({
   return (
     <figure
       className={`${className} h-60 max-w-sm relative bg-slate-600 rounded-2xl`}
-      onClick={openMenuItemDetails}
+      // onClick={openMenuItemDetails}
       onKeyUp={(e) => {
         e.preventDefault();
         ['Enter', ' '].includes(e.key) && openMenuItemDetails()
@@ -76,7 +76,8 @@ export default function MenuItem({
           )}
 
           <h3 className="font-medium text-sm/[17px]">{name}</h3>
-          {!!ingredientsString?.length && <p className="text-xxs/[0.75rem] text-color-text-secondary">{ingredientsString}</p>}
+          {/* TODO: requirements says that ingredients stored in subtitle, but... just for future */}
+          {/* {!!ingredientsString?.length && <p className="text-xxs/[0.75rem] text-color-text-secondary">{ingredientsString}</p>} */}
           {!!subTitle?.length && <p className="text-xxs/[0.75rem] text-color-text-secondary">{subTitle}</p>}
           <p className="font-medium text-sm/[17px]">{formatCurrency(format, price, currency)}</p>
         </section>

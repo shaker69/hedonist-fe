@@ -14,7 +14,11 @@
     "username": "მომხმარებლის სახელი",
     "password": "პაროლი",
     "submit": "იარე",
-    "error": "{error, select, CredentialsSignin {არასწორი სახელი ან პაროლი} other {Უცნობი შეცდომა}}"
+    "error": "{error, select, CredentialsSignin {არასწორი სახელი ან პაროლი} other {Უცნობი შეცდომა}}",
+    "validation": {
+      "usernameRequred": "Please input your username!",
+      "passwordRequred": "Please input your password!"
+    }
   },
   "LocaleSwitcher": {
     "switchLocale": "გადართვა {locale, select, ka {ქართული} en {English} ru {Русский} other {უცნობი}}"

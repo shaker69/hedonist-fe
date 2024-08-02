@@ -14,7 +14,11 @@
     "username": "Username",
     "password": "Password",
     "submit": "Login",
-    "error": "{error, select, CredentialsSignin {Invalid username or password} other {Unknown error}}"
+    "error": "{error, select, CredentialsSignin {Invalid username or password} other {Unknown error}}",
+    "validation": {
+      "usernameRequred": "Please input your username!",
+      "passwordRequred": "Please input your password!"
+    }
   },
   "LocaleSwitcher": {
     "switchLocale": "Switch to {locale, select, ka {ქართული} en {English} ru {Русский} other {Неизвестный}}"
