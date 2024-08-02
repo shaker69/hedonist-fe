@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { Session } from 'next-auth';
+import { useLocale } from 'next-intl';
 
 import {
   ContentHolder,
@@ -15,7 +16,9 @@ import {
 } from '@app/components';
 import { useViewContext } from '@app/contexts';
 
-import chips from '@public/chips.svg?url';
+import chipsEn from '@public/all-day-en.svg';
+import chipsRu from '@public/all-day-ru.svg';
+import chipsKa from '@public/all-day-ka.svg';
 
 import './index.css';
 
@@ -25,8 +28,17 @@ type Props = {
   menu: any;
 };
 
+const chipsMap = {
+  en: chipsEn,
+  ru: chipsRu,
+  ka: chipsKa,
+}
+
 export default function Index({ session, menu }: Props) {
   const { isGrid } = useViewContext();
+  const locale = useLocale() as Locale;
+
+  const Chips = chipsMap[locale] || chipsEn;
 
   return (
     <PageLayout>
@@ -49,11 +61,7 @@ export default function Index({ session, menu }: Props) {
                     <h2 className={`category category-${catIndx} inline-block uppercase font-bold text-xl leading-6`}>{name}</h2>
             
                     {isAllDay && (
-                      <Image
-                        className="chips absolute"
-                        src={chips}
-                        alt={name}
-                      />
+                      <Chips className="chips absolute" />
                     )}
                   </div>
                 </div>
