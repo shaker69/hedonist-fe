@@ -61,7 +61,7 @@ export default function Index({ session, menu }: Props) {
                     <h2 className={`category category-${catIndx} inline-block uppercase font-bold text-xl leading-6`}>{name}</h2>
             
                     {isAllDay && (
-                      <Chips className="chips absolute" />
+                      <Chips className={`chips absolute ${locale}`} />
                     )}
                   </div>
                 </div>

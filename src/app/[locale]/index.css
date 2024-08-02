@@ -4,6 +4,15 @@
   bottom: 0.1rem;
 }
 
+.chips.ru {
+  right: -6.15rem;
+}
+
+.chips.ka {
+  right: -7.35rem;
+  bottom: -0.1rem;
+}
+
 .category-items {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
