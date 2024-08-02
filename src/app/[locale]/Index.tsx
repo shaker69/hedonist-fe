@@ -34,9 +34,9 @@ export default function Index({ session, menu }: Props) {
 
       <div className="h-8 w-full bg-red bg-color-secondary rounded-t-[2rem]" />
 
-      <Tags className="px-4 sticky -top-[1px] z-[999]" />
+      <Tags className="sticky -top-[1px] z-[999]" />
 
-      <main className="flex-auto flex justify-center bg-color-secondary px-4 py-8 pb-20 text-color-primary overflow-hidden z-20">
+      <main className="flex-auto flex justify-center bg-color-secondary py-8 pb-20 text-color-primary overflow-hidden z-20">
         <ContentHolder className="flex flex-col gap-10">
           {menu.map(({ id, name, isAllDay, items, description }: Menu, catIndx: number) => (
             <ul

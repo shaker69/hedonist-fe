@@ -36,7 +36,7 @@ export default function Header({ withLayoutSwitcher = false }: Props) {
   }, []);
 
   return (
-    <header className="p-4 flex justify-center items-center">
+    <header className="py-4 flex justify-center items-center">
       <ContentHolder className="flex justify-between items-center">
         <Button
           onMouseDown={startHold}

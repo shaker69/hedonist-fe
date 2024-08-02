@@ -6,6 +6,7 @@ import { formatCurrency } from '@app/utils';
 
 import imagePlaceholder from '@public/image-placeholder.svg?url';
 import emoji from '@public/emoji.png';
+import { useCallback } from 'react';
 
 interface Props {
   id: string,
@@ -40,10 +41,17 @@ export default function MenuItem({
     ? `object-[${objectPosition[0]}px]`
     : '';
 
+  const openMenuItemDetails = useCallback(() => router.push(`/menu-item/${id}`), [id, router])
+
   return (
     <figure
       className={`${className} h-60 max-w-sm relative bg-slate-600 rounded-2xl`}
-      onClick={() => router.push(`/menu-item/${id}`)}
+      onClick={openMenuItemDetails}
+      onKeyUp={(e) => {
+        e.preventDefault();
+        ['Enter', ' '].includes(e.key) && openMenuItemDetails()
+      }}
+      tabIndex={1}
     >
       <Image
         className={`max-h-full rounded-2xl ${objectPosisionClass}`}
