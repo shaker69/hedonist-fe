@@ -20,7 +20,7 @@ export default function LocaleSwitcher({ className }: Props) {
   const locale = useLocale();
   const pathname = usePathname();
 
-  const formatOption = useCallback((option: DropdownOption<Locale>) => {
+  const formatOption = useCallback((option: DropdownOption) => {
     return (
       <Link
         key={option.value}
@@ -28,7 +28,7 @@ export default function LocaleSwitcher({ className }: Props) {
         locale={option.value}
         className="block w-[4.4rem] pl-4 py-2 text-sm text-color-primary"
       >
-        {labelsMap[option.value]}
+        {labelsMap[option.value as Locale]}
       </Link>
     );
   }, [pathname]);
