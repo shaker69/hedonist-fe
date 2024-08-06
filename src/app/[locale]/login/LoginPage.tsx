@@ -37,7 +37,7 @@ export default function LoginPage({}: Props) {
         message.config({ top: 630 });
         message.error(t('error', { error: result.error }));
       } else {
-        router.push(callbackUrl || `/${locale}`);
+        router.push(callbackUrl || `/`);
       }
     });
   };
