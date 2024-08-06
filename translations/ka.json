@@ -11,7 +11,7 @@
   },
   "Login": {
     "title": "Შესვლა",
-    "username": "მომხმარებლის სახელი",
+    "username": "მომხმარებელი",
     "password": "პაროლი",
     "submit": "იარე",
     "error": "{error, select, CredentialsSignin {არასწორი სახელი ან პაროლი} other {Უცნობი შეცდომა}}",
