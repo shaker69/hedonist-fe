@@ -24,10 +24,17 @@
     "switchLocale": "{locale, select, ka {ქართული} en {English} ru {Русский} other {Неизвестный}}"
   },
   "Dashboard": {
+    "appTitle": "Hedonist",
+    "sidebar": {
+      "about": "О нас",
+      "tags": "Теги",
+      "categories": "Категории",
+      "menuItems": "Позиции"
+    },
     "title": "Dashboard",
     "loggedIn": "Выполнен вход как {username}",
     "loggedOut": "Неавторизирован.",
     "login": "Войти",
-    "logout": "Выйти"
+    "logout": "Выход"
   }
 }

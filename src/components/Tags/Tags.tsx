@@ -1,7 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useRef } from "react";
 
+import { usePathname, useRouter } from "@app/navigation";
 import Button from "../Button";
 import ContentHolder from "../ContentHolder";
 
@@ -23,7 +25,10 @@ const tagsMock = [
 
 export default function Tags({ className }: Props) {
   const stickyRef = useRef(null);
-  const [active, setActive] = useState<string | null>(null);
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const element = stickyRef.current;
@@ -44,6 +49,13 @@ export default function Tags({ className }: Props) {
     };
   }, []);
 
+  const onSelectedChange = useCallback((selected: string) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+
+    newSearchParams.set('filter', selected);
+    router.push(`${pathname}?${newSearchParams}`);
+  }, [pathname, router, searchParams]);
+
   return (
     <section
       ref={stickyRef}
@@ -51,7 +63,7 @@ export default function Tags({ className }: Props) {
     >
       <ContentHolder className="flex gap-2 tags-container">
         {tagsMock.map(({ id, name }) => {
-          const isActive = active === id;
+          const isActive = searchParams.get('filter') === id;
           const textColorClass = isActive ? 'secondary' : 'primary';
           const bgColorClass = isActive ? 'primary' : 'secondary';
           const btnClass = `transition-colors border rounded-full border-black py-2 px-4 bg-color-${bgColorClass} text-color-${textColorClass}`;
@@ -61,7 +73,7 @@ export default function Tags({ className }: Props) {
             key={id}
             active={isActive}
             label={name}
-            onClick={() => setActive(id)}
+            onClick={() => onSelectedChange(id)}
             className={btnClass}
           />
         )})}

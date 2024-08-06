@@ -14,7 +14,7 @@ export default function Button ({
 }: Props) {
   return (
     <button
-      className={`h-fit ${className}`}
+      className={`h-fit active:scale-95 ${className ? className : ''}`}
       {...props}
     >
       {label ?? children}

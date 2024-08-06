@@ -24,6 +24,13 @@
     "switchLocale": "გადართვა {locale, select, ka {ქართული} en {English} ru {Русский} other {უცნობი}}"
   },
   "Dashboard": {
+    "appTitle": "Hedonist",
+    "sidebar": {
+      "about": "About us",
+      "tags": "Tags",
+      "categories": "Categories",
+      "menuItems": "Menu positions"
+    },
     "title": "Dashboard",
     "loggedIn": "შესული, როგორც {username}",
     "loggedOut": "თქვენ გასული ხართ.",
