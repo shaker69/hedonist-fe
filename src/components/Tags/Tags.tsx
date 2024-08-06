@@ -23,6 +23,8 @@ const tagsMock = [
   { id: '5', name: 'promo' },
 ];
 
+const TAG_FILTER = 'filter';
+
 export default function Tags({ className }: Props) {
   const stickyRef = useRef(null);
 
@@ -50,9 +52,15 @@ export default function Tags({ className }: Props) {
   }, []);
 
   const onSelectedChange = useCallback((selected: string) => {
+    const currentSelected = searchParams.get(TAG_FILTER);
     const newSearchParams = new URLSearchParams(searchParams);
 
-    newSearchParams.set('filter', selected);
+    if (currentSelected === selected) {
+      newSearchParams.delete(TAG_FILTER);
+    } else {
+      newSearchParams.set(TAG_FILTER, selected);
+    }
+
     router.push(`${pathname}?${newSearchParams}`);
   }, [pathname, router, searchParams]);
 
@@ -69,14 +77,15 @@ export default function Tags({ className }: Props) {
           const btnClass = `transition-colors border rounded-full border-black py-2 px-4 bg-color-${bgColorClass} text-color-${textColorClass}`;
 
           return (
-          <Button
-            key={id}
-            active={isActive}
-            label={name}
-            onClick={() => onSelectedChange(id)}
-            className={btnClass}
-          />
-        )})}
+            <Button
+              key={id}
+              active={isActive}
+              label={name}
+              onClick={() => onSelectedChange(id)}
+              className={btnClass}
+            />
+          )
+        })}
       </ContentHolder>
     </section>
   );
