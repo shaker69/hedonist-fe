@@ -62,7 +62,7 @@ export default function LoginPage({}: Props) {
         <Form
           action="/api/auth/callback/credentials"
           method="post"
-          name="basic"
+          name="login"
           labelCol={{ span: 11 }}
           wrapperCol={{ span: 13 }}
           onFinish={onFinish}

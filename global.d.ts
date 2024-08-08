@@ -22,9 +22,7 @@ declare global {
   type Locale = 'en' | 'ru' | 'ka';
 
   interface Translations {
-    en: string;
-    ru: string;
-    ka: string;
+    [l: string]: string;
   }
 
   interface Category {
@@ -32,6 +30,8 @@ declare global {
     name: Translations;
     description?: Translations;
     isAllDay?: boolean;
+    icon?: any;
+    tags: Translations[];
   }
 
   interface Ingredient {
@@ -65,6 +65,11 @@ declare global {
       sub?: string,
       ingredients: (string | undefined)[],
     }[]
+  }
+
+  interface Tag {
+    id: string;
+    name: Translations;
   }
 
   interface DropdownOption<T = any> {

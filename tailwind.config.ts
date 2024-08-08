@@ -15,6 +15,7 @@ const config: Config = {
         "color-secondary": "rgb(var(--color-secondary-rgb), <alpha-value>)",
         "color-alternative": "#eff1f3",
         "color-text-secondary": "rgba(148, 148, 148, <alpha-value>)",
+        "color-link": "rgba(24, 144, 255, <alpha-value>)"
       },
       borderRadius: {
         "xs": "0.75rem",

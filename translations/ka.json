@@ -1,7 +1,34 @@
 {
   "common": {
     "redirectToLoginConfirmMessage": "Redirect to the login page? (Ka)",
-    "logoAlt": "ჰედონისტი"
+    "logoAlt": "ჰედონისტი",
+    "locale": {
+      "en": "En",
+      "ru": "Ru",
+      "ka": "Ge"
+    },
+    "name": "Name",
+    "action": "Action",
+    "icon": "Icon",
+    "confirmation": "Are you sure?",
+    "description": "Description",
+    "button": {
+      "save": "Save",
+      "edit": "Edit",
+      "delete": "Delete",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "ok": "Ok"
+    }
+  },
+  "form": {
+    "validation": {
+      "required": "Please fill the field"
+    },
+    "action": {
+      "submit": "Submit",
+      "cancel": "Cancel"
+    }
   },
   "Header": {
     "address": "ბათუმი, ვახტანგ გორგასლის 26"
@@ -25,11 +52,22 @@
   },
   "Dashboard": {
     "appTitle": "Hedonist",
-    "sidebar": {
-      "about": "About us",
-      "tags": "Tags",
-      "categories": "Categories",
-      "menuItems": "Menu positions"
+    "section": {
+      "about": {
+        "title": "About us",
+        "workingHours": "Working hours",
+        "address": "Address",
+        "instagram": "Instagram"
+      },
+      "tags": {
+        "title": "Tags"
+      },
+      "categories": {
+        "title": "Categories"
+      },
+      "menuItems": {
+        "title": "Menu positions"
+      }
     },
     "title": "Dashboard",
     "loggedIn": "შესული, როგორც {username}",
