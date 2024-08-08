@@ -2,8 +2,6 @@ import { tags } from "./tags";
 
 const BASE_URL = `https://${process.env.S3_URL || 'hedonist-media.s3.eu-west-1.amazonaws.com'}/menu`;
 
-console.log('process.env.S3_URL', process.env);
-
 export const menuItems: MenuItem[] = [
   {
     id: 'item-1',
@@ -31,7 +29,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: false,
-    tags: [tags[2].id],
+    tags: [tags[2].TagId],
   },
   {
     id: 'item-2',

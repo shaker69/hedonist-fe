@@ -1,39 +1,39 @@
 export const tags: Tag[] = [
   {
-    id: '1',
-    name: {
+    TagId: '1',
+    Name: {
       en: '',
       ru: '',
       ka: '',
     },
   },
   {
-    id: '2',
-    name: {
+    TagId: '2',
+    Name: {
       en: 'food',
       ru: 'food',
       ka: 'food',
     },
   },
   {
-    id: '3',
-    name: {
+    TagId: '3',
+    Name: {
       en: 'coffee',
       ru: 'coffee',
       ka: 'coffee',
     },
   },
   {
-    id: '4',
-    name: {
+    TagId: '4',
+    Name: {
       en: 'tea',
       ru: 'tea',
       ka: 'tea',
     },
   },
   {
-    id: '5',
-    name: {
+    TagId: '5',
+    Name: {
       en: 'cacao',
       ru: 'cacao',
       ka: 'cacao',

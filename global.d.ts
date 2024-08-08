@@ -69,8 +69,8 @@ declare global {
   }
 
   interface Tag {
-    id: string;
-    name: Translations;
+    TagId: string;
+    Name: Translations;
   }
 
   interface DropdownOption<T = any> {

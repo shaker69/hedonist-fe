@@ -76,6 +76,20 @@
       },
       "configs": {
         "title": "Настройки"
+      },
+      "message": {
+        "create": {
+          "success": "{entity} успешно создан(а)",
+          "error": "{entity} не был создан"
+        },
+        "update": {
+          "success": "{entity} успешно обновлен(а)",
+          "error": "{entity} не был обновлён"
+        },
+        "delete": {
+          "success": "{entity} успешно удален(а)",
+          "error": "{entity} не был удалён"
+        }
       }
     },
     "title": "Dashboard",

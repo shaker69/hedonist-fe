@@ -76,6 +76,20 @@
       },
       "configs": {
         "title": "Configs"
+      },
+      "message": {
+        "create": {
+          "success": "{entity} was successfully created",
+          "error": "{entity} creation failed"
+        },
+        "update": {
+          "success": "{entity} was successfully updated",
+          "error": "{entity} update failed"
+        },
+        "delete": {
+          "success": "{entity} was successfully deleted",
+          "error": "{entity} deletion failed"
+        }
       }
     },
     "title": "Dashboard",
