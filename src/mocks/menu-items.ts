@@ -1,4 +1,8 @@
-const BASE_URL = `https://${process.env.S3_URL}/menu`;
+import { tags } from "./tags";
+
+const BASE_URL = `https://${process.env.S3_URL || 'hedonist-media.s3.eu-west-1.amazonaws.com'}/menu`;
+
+console.log('process.env.S3_URL', process.env);
 
 export const menuItems: MenuItem[] = [
   {
@@ -27,6 +31,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: false,
+    tags: [tags[2].id],
   },
   {
     id: 'item-2',
@@ -53,6 +58,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: false,
+    tags: []
   },
   {
     id: 'item-3',
@@ -79,6 +85,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: true,
+    tags: []
   },
   {
     id: 'item-4',
@@ -105,6 +112,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: true,
+    tags: []
   },
   {
     id: 'item-5',
@@ -131,6 +139,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: false,
+    tags: []
   },
   {
     id: 'item-6',
@@ -157,6 +166,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: false,
+    tags: []
   },
   {
     id: 'item-7',
@@ -183,6 +193,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: false,
+    tags: []
   },
   {
     id: 'item-8',
@@ -209,6 +220,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: false,
+    tags: []
   },
   {
     id: 'item-9',
@@ -235,11 +247,12 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: false,
+    tags: []
   },
   {
     id: 'item-10',
     categoryIds: ['cat-3'],
-    ingredientIds: ['ing-2', 'ing-26', 'ing-27', 'ing-28', ],
+    ingredientIds: ['ing-2', 'ing-26', 'ing-27', 'ing-28',],
     pictureURL: `${BASE_URL}/Truffle.jpg`,
     name: {
       en: 'Truffle',
@@ -261,6 +274,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: false,
+    tags: []
   },
   {
     id: 'item-11',
@@ -287,6 +301,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: false,
+    tags: []
   },
   {
     id: 'item-12',
@@ -313,6 +328,7 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: true,
+    tags: []
   },
   {
     id: 'item-13',
@@ -333,5 +349,6 @@ export const menuItems: MenuItem[] = [
     },
     rating: 0,
     hit: true,
+    tags: []
   },
 ]

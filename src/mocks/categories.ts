@@ -9,7 +9,7 @@ export const categories: Category[] = [
         ka: 'საუზმე',
       },
     isAllDay: true,
-    tags: [tags[0].name, tags[1].name]
+    tags: [tags[3].id, tags[1].id]
   },
   {
     id: 'cat-2',
@@ -23,7 +23,7 @@ export const categories: Category[] = [
       ru: 'подается с невероятно мягким и невероятно воздушным японским молочным хлебом',
       ka: 'მიირთვით უაღრესად რბილი და წარმოუდგენლად ფუმფულა იაპონური რძის პურით',
     },
-    tags: [tags[4].name],
+    tags: [tags[4].id],
   },
   {
     id: 'cat-3',
@@ -46,6 +46,6 @@ export const categories: Category[] = [
       ru: 'Выпечка',
       ka: 'საცხობი',
     },
-    tags: [tags[3].name],
+    tags: [tags[3].id],
   },
 ]

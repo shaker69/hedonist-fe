@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import type { TableProps } from 'antd';
-import { Form, Input, InputNumber, Popconfirm, Space, Table, Typography } from 'antd';
-import { categories } from '@app/mocks';
-import { locales } from '@app/navigation';
-import { useTranslations } from 'next-intl';
+import { Button, Form, Input, InputNumber, Popconfirm, Select, Space, Table, Tag, Typography } from 'antd';
+import { categories, tags } from '@app/mocks';
+import { defaultLocale, locales } from '@app/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface Item extends Category {
   key: string;
@@ -43,12 +43,12 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
         <Form.Item
           name={dataIndex}
           style={{ margin: 0 }}
-          // rules={[
-          //   {
-          //     required: true,
-          //     message: `Please Input ${title}!`,
-          //   },
-          // ]}
+        // rules={[
+        //   {
+        //     required: true,
+        //     message: `Please Input ${title}!`,
+        //   },
+        // ]}
         >
           {inputNode}
         </Form.Item>
@@ -62,6 +62,7 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
 const SectionCategories: React.FC = () => {
   const translation = useTranslations();
   const [form] = Form.useForm();
+  const currentLocale = useLocale();
   const [data, setData] = useState(originData);
   const [editingKey, setEditingKey] = useState('');
 
@@ -76,12 +77,26 @@ const SectionCategories: React.FC = () => {
     setEditingKey('');
   };
 
+  // const handleTagsChange = (value: string) => {
+  //   const tagIds = new Set([
+  //     ...tags.map(({ id }) => id),
+  //     ...data.flatMap((el) => el.tags),
+  //   ]);
+
+  //   const newTags = new Set(value).difference(tagIds);
+
+  //   console.log(tagIds);
+  //   console.log(value);
+  //   console.log(newTags);
+  // };
+
   const save = async (key: React.Key) => {
     try {
       const row = (await form.validateFields()) as Item;
 
       const newData = [...data];
       const index = newData.findIndex((item) => key === item.key);
+
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, {
@@ -108,6 +123,7 @@ const SectionCategories: React.FC = () => {
         title: translation(`common.locale.${locale}`),
         dataIndex: ['name', locale],
         editable: true,
+        fixed: locale === defaultLocale,
       }))
     },
     {
@@ -117,10 +133,29 @@ const SectionCategories: React.FC = () => {
     },
     {
       title: translation('Dashboard.section.tags.title'),
-      editable: true,
+      editable: false,
       dataIndex: 'tags',
-      render: (_, record) => {
-        return 'Mock'
+      render: (tagIds: string[], record: Item) => {
+        const editable = isEditing(record);
+
+        return (
+          editable ? (
+            <Form.Item
+              name="tags"
+              style={{ margin: 0 }}
+            >
+              <Select
+                mode="tags"
+                // onChange={handleTagsChange}
+                options={tags.map(({ id, name }) => ({ value: id, label: name[currentLocale] }))}
+              />
+            </Form.Item>
+          ) : (
+            tagIds
+              .map((tagId) => tags.find(({ id }) => id === tagId))
+              .map((tag) => tag && <Tag key={tag.id}>{tag.name[currentLocale]}</Tag>)
+          )
+        )
       }
     },
     {
@@ -136,32 +171,48 @@ const SectionCategories: React.FC = () => {
       title: translation('common.action'),
       dataIndex: 'operation',
       editable: false,
+      fixed: 'right' as 'right',
       render: (_: any, record: Item) => {
         const editable = isEditing(record);
+
         return editable ? (
-          <span className="text-color-link">
-            <Typography.Link onClick={() => save(record.key)} style={{ marginInlineEnd: 8 }}>
+          <Space className="text-color-link">
+            <Button
+              type='link'
+              onClick={() => save(record.key)}
+            >
               {translation('common.button.save')}
-            </Typography.Link>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>{translation('common.button.cancel')}</a>
+            </Button>
+            <Popconfirm
+              title={translation('common.confirmation')}
+              onConfirm={cancel}
+            >
+              <Button type='link'>{translation('common.button.cancel')}</Button>
             </Popconfirm>
-          </span>
+          </Space>
         ) : (
           <Space className="text-color-link">
-            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+            <Button
+              type='link'
+              disabled={editingKey !== ''}
+              onClick={() => edit(record)}
+            >
               {translation('common.button.edit')}
-            </Typography.Link>
-            <Typography.Link disabled={editingKey !== ''} onClick={console.log}>
-              {translation('common.button.delete')}
-            </Typography.Link>
+            </Button>
+            <Popconfirm
+              disabled={editingKey !== ''}
+              title={translation('common.confirmation')}
+              onConfirm={() => console.log('delete')}
+            >
+              <Button type='link'>{translation('common.button.delete')}</Button>
+            </Popconfirm>
           </Space>
         );
       },
     },
   ];
 
-  const mergedColumns: TableProps['columns'] = columns.map((col) => {
+  const mergedColumns = columns.map((col) => {
     if (!col.children) {
       return !col.editable
         ? col
@@ -176,7 +227,7 @@ const SectionCategories: React.FC = () => {
           })
         };
     }
-  
+
     return {
       ...col,
       children: col.children.map((child) => {
@@ -204,11 +255,11 @@ const SectionCategories: React.FC = () => {
             cell: EditableCell,
           },
         }}
-        // className="w-[1600px]"
+        className="w-[1800px]"
         rowKey="key"
         bordered
         virtual
-        scroll={{ x: 1800, y: 800 }}
+        scroll={{ x: 2600, y: 800 }}
         dataSource={data}
         columns={mergedColumns}
         rowClassName="editable-row"

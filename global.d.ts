@@ -31,7 +31,7 @@ declare global {
     description?: Translations;
     isAllDay?: boolean;
     icon?: any;
-    tags: Translations[];
+    tags: string[];
   }
 
   interface Ingredient {
@@ -54,6 +54,7 @@ declare global {
     weight?: number | null;
     rating?: number;
     hit?: boolean;
+    tags: string[];
   }
 
   interface Menu extends Category {

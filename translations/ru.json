@@ -12,6 +12,7 @@
     "icon": "Иконка",
     "confirmation": "Вы уверены?",
     "description": "Описание",
+    "subtitle": "Подзаголовок",
     "button": {
       "save": "Сохранить",
       "edit": "Редактировать",

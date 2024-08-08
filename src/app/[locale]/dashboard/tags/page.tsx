@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import type { TableProps } from 'antd';
-import { Form, Input, InputNumber, Popconfirm, Space, Table, Typography } from 'antd';
+import { Button, Form, Input, InputNumber, Popconfirm, Space, Table, Typography } from 'antd';
 import { tags } from '@app/mocks';
-import { locales } from '@app/navigation';
+import { defaultLocale, locales } from '@app/navigation';
 import { useTranslations } from 'next-intl';
 
 interface Item extends Tag {
@@ -104,36 +104,52 @@ const SectionTags: React.FC = () => {
     {
       title: translation('common.name'),
       editable: false,
+      width: '50%',
       children: locales.map((locale) => ({
         title: translation(`common.locale.${locale}`),
         dataIndex: ['name', locale],
-        // width: '25%',
         editable: true,
+        fixed: locale === defaultLocale ? 'left' : false, 
       }))
     },
     {
       title: translation('common.action'),
       dataIndex: 'operation',
       editable: false,
+      fixed: 'right' as 'right',
       render: (_: any, record: Item) => {
         const editable = isEditing(record);
         return editable ? (
-          <span className="text-color-link">
-            <Typography.Link onClick={() => save(record.key)} style={{ marginInlineEnd: 8 }}>
+          <Space className="text-color-link">
+            <Button
+              type='link'
+              onClick={() => save(record.key)}
+            >
               {translation('common.button.save')}
-            </Typography.Link>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>{translation('common.button.cancel')}</a>
+            </Button>
+            <Popconfirm
+              title={translation('common.confirmation')}
+              onConfirm={cancel}
+            >
+              <Button type='link'>{translation('common.button.cancel')}</Button>
             </Popconfirm>
-          </span>
+          </Space>
         ) : (
           <Space className="text-color-link">
-            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+            <Button
+              type='link'
+              disabled={editingKey !== ''}
+              onClick={() => edit(record)}
+            >
               {translation('common.button.edit')}
-            </Typography.Link>
-            <Typography.Link disabled={editingKey !== ''} onClick={console.log}>
-              {translation('common.button.delete')}
-            </Typography.Link>
+            </Button>
+            <Popconfirm
+              disabled={editingKey !== ''}
+              title={translation('common.confirmation')}
+              onConfirm={() => console.log('delete')}
+            >
+              <Button type='link'>{translation('common.button.delete')}</Button>
+            </Popconfirm>
           </Space>
         );
       },
@@ -155,7 +171,7 @@ const SectionTags: React.FC = () => {
           })
         };
     }
-  
+
     return {
       ...col,
       children: col.children.map((child) => {
@@ -183,11 +199,11 @@ const SectionTags: React.FC = () => {
             cell: EditableCell,
           },
         }}
-        className="w-[800px]"
+        className="w-[1200px]"
         rowKey="key"
         bordered
         virtual
-        scroll={{ x: 800, y: 400 }}
+        scroll={{ x: 1200, y: 400 }}
         dataSource={data}
         columns={mergedColumns}
         rowClassName="editable-row"

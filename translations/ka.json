@@ -12,6 +12,7 @@
     "icon": "Icon",
     "confirmation": "Are you sure?",
     "description": "Description",
+    "subtitle": "Subtitle",
     "button": {
       "save": "Save",
       "edit": "Edit",
