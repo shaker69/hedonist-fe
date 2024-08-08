@@ -7,6 +7,8 @@ import { tags } from '@app/mocks';
 import { defaultLocale, locales } from '@app/navigation';
 import { useTranslations } from 'next-intl';
 
+import IconPlus from '@public/icon-plus.svg';
+
 interface Item extends Tag {
   key: string;
 }
@@ -109,7 +111,7 @@ const SectionTags: React.FC = () => {
         title: translation(`common.locale.${locale}`),
         dataIndex: ['name', locale],
         editable: true,
-        fixed: locale === defaultLocale ? 'left' : false, 
+        fixed: locale === defaultLocale ? 'left' : false,
       }))
     },
     {
@@ -192,24 +194,36 @@ const SectionTags: React.FC = () => {
   });
 
   return (
-    <Form form={form} component={false}>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        className="w-[1200px]"
-        rowKey="key"
-        bordered
-        virtual
-        scroll={{ x: 1200, y: 400 }}
-        dataSource={data}
-        columns={mergedColumns}
-        rowClassName="editable-row"
-        pagination={false}
-      />
-    </Form>
+    <section className="flex flex-col gap-8 flex-auto">
+      <div className="mt-8 flex justify-between items-center">
+        <h1 className="text-semibold text-3xl">{translation('Dashboard.section.tags.title')}</h1>
+        <Button
+          type="primary"
+          icon={<IconPlus />}
+        >
+          {translation('common.entity.tag')}
+        </Button>
+      </div>
+
+      <Form form={form} component={false}>
+        <Table
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          className="dashboard-table-w"
+          rowKey="key"
+          bordered
+          virtual
+          scroll={{ y: window.innerHeight - 254, x: true }}
+          dataSource={data}
+          columns={mergedColumns}
+          rowClassName="editable-row"
+          pagination={false}
+        />
+      </Form>
+    </section>
   );
 };
 

@@ -7,6 +7,8 @@ import { categories, tags } from '@app/mocks';
 import { defaultLocale, locales } from '@app/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 
+import IconPlus from '@public/icon-plus.svg';
+
 interface Item extends Category {
   key: string;
 }
@@ -124,17 +126,14 @@ const SectionCategories: React.FC = () => {
         dataIndex: ['name', locale],
         editable: true,
         fixed: locale === defaultLocale,
+        width: 250,
       }))
-    },
-    {
-      title: translation('common.icon'),
-      editable: true,
-      dataIndex: 'icon',
     },
     {
       title: translation('Dashboard.section.tags.title'),
       editable: false,
       dataIndex: 'tags',
+      width: 250,
       render: (tagIds: string[], record: Item) => {
         const editable = isEditing(record);
 
@@ -165,6 +164,7 @@ const SectionCategories: React.FC = () => {
         title: translation(`common.locale.${locale}`),
         dataIndex: ['description', locale],
         editable: true,
+        width: 350,
       }))
     },
     {
@@ -172,6 +172,7 @@ const SectionCategories: React.FC = () => {
       dataIndex: 'operation',
       editable: false,
       fixed: 'right' as 'right',
+      width: 260,
       render: (_: any, record: Item) => {
         const editable = isEditing(record);
 
@@ -248,24 +249,37 @@ const SectionCategories: React.FC = () => {
   });
 
   return (
-    <Form form={form} component={false}>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        className="w-[1800px]"
-        rowKey="key"
-        bordered
-        virtual
-        scroll={{ x: 2600, y: 800 }}
-        dataSource={data}
-        columns={mergedColumns}
-        rowClassName="editable-row"
-        pagination={false}
-      />
-    </Form>
+    <section className="flex flex-col gap-8 flex-auto">
+      <div className="mt-8 flex justify-between items-center">
+        <h1 className="text-semibold text-3xl">{translation('Dashboard.section.categories.title')}</h1>
+        <Button
+          type="primary"
+          icon={<IconPlus />}
+        >
+          {translation('common.entity.category')}
+        </Button>
+      </div>
+
+      <Form form={form} component={false}>
+        <Table
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          className="dashboard-table-w"
+          rowKey="key"
+          bordered
+          virtual
+          scroll={{ y: window.innerHeight - 254, x: true }}
+          dataSource={data}
+          columns={mergedColumns}
+          rowClassName="editable-row"
+          pagination={false}
+        />
+      </Form>
+    </section>
+
   );
 };
 

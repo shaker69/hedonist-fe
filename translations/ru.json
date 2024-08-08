@@ -7,6 +7,11 @@
       "ru": "Ru",
       "ka": "Ge"
     },
+    "entity": {
+      "category": "Категория",
+      "tag": "Тег",
+      "menuItem": "Позиция"
+    },
     "name": "Название",
     "action": "Действие",
     "icon": "Иконка",
@@ -68,6 +73,9 @@
       },
       "menuItems": {
         "title": "Позиции"
+      },
+      "configs": {
+        "title": "Настройки"
       }
     },
     "title": "Dashboard",

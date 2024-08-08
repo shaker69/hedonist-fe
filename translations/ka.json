@@ -7,6 +7,11 @@
       "ru": "Ru",
       "ka": "Ge"
     },
+    "entity": {
+      "category": "Category",
+      "tag": "Tag",
+      "menuItem": "Menu item"
+    },
     "name": "Name",
     "action": "Action",
     "icon": "Icon",
@@ -68,6 +73,9 @@
       },
       "menuItems": {
         "title": "Menu positions"
+      },
+      "configs": {
+        "title": "Configs"
       }
     },
     "title": "Dashboard",

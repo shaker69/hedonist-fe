@@ -30,6 +30,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.dashboard-table-w {
+  width: calc(100vw - 19.5rem);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

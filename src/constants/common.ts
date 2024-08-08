@@ -3,6 +3,7 @@ export enum DashboardSections {
   tags = 'tags',
   categories = 'categories',
   menuItems = 'menuItems',
+  configs = 'configs'
 }
 
 export const aboutUsFieldNames = {

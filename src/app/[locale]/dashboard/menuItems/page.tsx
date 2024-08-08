@@ -8,6 +8,8 @@ import { defaultLocale, locales } from '@app/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 
+import IconPlus from '@public/icon-plus.svg';
+
 interface Item extends MenuItem {
   key: string;
 }
@@ -28,8 +30,8 @@ const SectionMenuItems: React.FC = () => {
 
   const columns = [
     {
-      fixed: true,
       dataIndex: 'pictureURL',
+      width: 150,
       render: (text: string, record: Item) => {
         return (
           <Image
@@ -46,7 +48,7 @@ const SectionMenuItems: React.FC = () => {
       children: locales.map((locale) => ({
         title: translation(`common.locale.${locale}`),
         dataIndex: ['name', locale],
-        // width: '25%',
+        width: 250,
         editable: true,
         fixed: locale === defaultLocale,
       }))
@@ -56,6 +58,7 @@ const SectionMenuItems: React.FC = () => {
       children: locales.map((locale) => ({
         title: translation(`common.locale.${locale}`),
         dataIndex: ['sub', locale],
+        width: 250,
       }))
     },
     {
@@ -63,15 +66,13 @@ const SectionMenuItems: React.FC = () => {
       children: locales.map((locale) => ({
         title: translation(`common.locale.${locale}`),
         dataIndex: ['description', locale],
+        width: 500,
       }))
-    },
-    {
-      title: translation('common.icon'),
-      dataIndex: 'icon',
     },
     {
       title: translation('Dashboard.section.tags.title'),
       dataIndex: 'tags',
+      width: 300,
       render: (tagIds: string[]) => {
         return tagIds
           .map((tagId) => tags.find(({ id }) => id === tagId))
@@ -81,6 +82,7 @@ const SectionMenuItems: React.FC = () => {
     {
       title: translation('common.action'),
       fixed: 'right' as 'right',
+      width: 260,
       dataIndex: 'operation',
       render: (_: any, record: Item) => {
         return (
@@ -104,19 +106,31 @@ const SectionMenuItems: React.FC = () => {
   ];
 
   return (
-    <Form form={form} component={false}>
-      <Table
-        className="w-[1600px]"
-        rowKey="key"
-        bordered
-        virtual
-        scroll={{ y: 800, x: 2200 }}
-        dataSource={originData}
-        columns={columns}
-        rowClassName="editable-row"
-        pagination={false}
-      />
-    </Form>
+    <section className="flex flex-col gap-8 flex-auto">
+      <div className="mt-8 flex justify-between items-center">
+        <h1 className="text-semibold text-3xl">{translation('Dashboard.section.menuItems.title')}</h1>
+        <Button
+          type="primary"
+          icon={<IconPlus />}
+        >
+          {translation('common.entity.menuItem')}
+        </Button>
+      </div>
+
+      <Form form={form} component={false}>
+        <Table
+          className="dashboard-table-w"
+          rowKey="key"
+          bordered
+          virtual
+          scroll={{ y: window.innerHeight - 254, x: true }}
+          dataSource={originData}
+          columns={columns}
+          rowClassName="editable-row"
+          pagination={false}
+        />
+      </Form>
+    </section>
   );
 };
 
