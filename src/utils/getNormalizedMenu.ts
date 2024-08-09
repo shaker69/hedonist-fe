@@ -20,7 +20,7 @@ export const getNormalizedMenu = async (locale: Locale) => {
   }));
 
   return categories.map((category) => {
-    const items = formattedMenuItems.filter(({ categoryIds }) => categoryIds.includes(category.id))
+    const items = formattedMenuItems.filter(({ categoryIds }) => categoryIds.includes(category.CategoryId))
 
     return {
       ...category,
