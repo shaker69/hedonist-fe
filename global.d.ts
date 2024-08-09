@@ -77,4 +77,8 @@ declare global {
     label: string;
     value: T;
   }
+
+  interface ActionOptions {
+    revalidatePaths?: string[];
+  }
 }

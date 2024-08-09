@@ -80,7 +80,7 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
 
   const onDelete = async (record: Partial<Item> & { key: React.Key }) => {
     try {
-      await deleteTag(record as Tag);
+      await deleteTag(record as Tag, { revalidatePaths: ['/tags'] });
 
       const newData = [...data];
       const index = newData.findIndex((item) => record.TagId === item.key);
@@ -133,7 +133,7 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
 
         newData.splice(index, 1, updatedItem);
 
-        await updateTag(omit(updatedItem, 'key'));
+        await updateTag(omit(updatedItem, 'key'), { revalidatePaths: ['/tags'] });
 
         message.success(translation(
           'Dashboard.section.message.update.success',

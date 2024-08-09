@@ -31,7 +31,7 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
     setConfirmLoading(true);
 
     try {
-      const result = await createTag(values);
+      const result = await createTag(values, { revalidatePaths: ['/tags'] });
       
       onConfirm(result);
       message.success(translation(

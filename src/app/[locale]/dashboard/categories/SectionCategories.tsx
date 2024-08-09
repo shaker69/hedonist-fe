@@ -91,7 +91,7 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
 
   const onDelete = async (record: Partial<Item> & { key: React.Key }) => {
     try {
-      await deleteCategory(record as Category);
+      await deleteCategory(record as Category, { revalidatePaths: ['/categories'] });
 
       const newData = [...data];
       const index = newData.findIndex((item) => record.CategoryId === item.key);
@@ -157,7 +157,9 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
 
         newData.splice(index, 1, updatedItem);
 
-        await updateCategory(omit(updatedItem, 'key'));
+        const res = await updateCategory(omit(updatedItem, 'key'), { revalidatePaths: ['/tags', '/categories'] });
+
+        console.log(res);
 
         message.success(translation(
           'Dashboard.section.message.update.success',

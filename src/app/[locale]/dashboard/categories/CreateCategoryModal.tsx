@@ -35,7 +35,7 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
     setConfirmLoading(true);
 
     try {
-      const result = await createCategory(values);
+      const result = await createCategory(values, { revalidatePaths: ['/tags', '/categories'] });
 
       onConfirm(result);
 
