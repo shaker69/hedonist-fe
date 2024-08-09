@@ -1,22 +1,14 @@
 import {
   categories,
-  // ingredients,
   menuItems,
 } from '../mocks';
 
 export const getNormalizedMenu = async (locale: Locale) => {
-  // const ingredientsMap = new Map(ingredients.map((ingredient) => [ingredient.id, ingredient]));
-  
   const formattedMenuItems = menuItems.map((menuItem) => ({
     ...menuItem,
     name: menuItem.name[locale],
     description: menuItem.description?.[locale],
     sub: menuItem.sub?.[locale],
-    // ingredients: (
-    //   menuItem.ingredientIds
-    //     .map((ingredientId) => ingredientsMap.get(ingredientId)?.name?.[locale])
-    //     .filter(Boolean)
-    // ),
   }));
 
   return categories.map((category) => {

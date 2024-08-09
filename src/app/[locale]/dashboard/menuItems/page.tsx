@@ -75,8 +75,8 @@ const SectionMenuItems: React.FC = () => {
       width: 300,
       render: (tagIds: string[]) => {
         return tagIds
-          .map((tagId) => tags.find(({ id }) => id === tagId))
-          .map((tag) => tag && <Tag key={tag.id}>{tag.name[currentLocale]}</Tag>)
+          .map((tagId) => tags.find(({ TagId }) => TagId === tagId))
+          .map((tag) => tag && <Tag key={tag.TagId}>{tag.Name[currentLocale]}</Tag>)
       }
     },
     {

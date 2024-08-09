@@ -50,9 +50,9 @@ export default function Index({ session, menu }: Props) {
 
       <main className="flex-auto flex justify-center bg-color-secondary py-8 pb-20 text-color-primary overflow-hidden z-20">
         <ContentHolder className="flex flex-col gap-10">
-          {menu.map(({ id, name, isAllDay, items, description }: Menu, catIndx: number) => (
+          {menu.map(({ CategoryId, name, isAllDay, items, description }: Menu, catIndx: number) => (
             <ul
-              key={id}
+              key={CategoryId}
               className="relative flex flex-col gap-5"
             >
                 <hgroup className="flex flex-col gap-1 z-10">
