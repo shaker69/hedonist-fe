@@ -66,7 +66,8 @@
         "instagram": "Instagram"
       },
       "tags": {
-        "title": "Теги"
+        "title": "Теги",
+        "new": "Добавление Тега"
       },
       "categories": {
         "title": "Категории"

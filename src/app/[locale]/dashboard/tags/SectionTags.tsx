@@ -6,9 +6,10 @@ import { Button, Form, Input, InputNumber, Popconfirm, Space, Table, message } f
 import { omit } from 'lodash-es';
 import { useTranslations } from 'next-intl';
 
-import { updateTag } from '@app/actions';
+import { deleteTag, updateTag } from '@app/actions';
 import { defaultLocale, locales } from '@app/navigation';
 import IconPlus from '@public/icon-plus.svg';
+import CreateTagModal from './CreateTagModal';
 
 interface Item extends Tag {
   key: string;
@@ -64,13 +65,46 @@ interface Props {
 const SectionTags: React.FC<Props> = ({ tags = [] }) => {
   const translation = useTranslations();
   const [form] = Form.useForm();
+
+  // Current state of the table
   const [data, setData] = useState(() => tags.map((tag) => ({
     ...tag,
     key: tag.TagId,
   })));
+
   const [editingKey, setEditingKey] = useState('');
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [isCreateModalOpen, setCreateModalOpen] = useState(false);
 
   const isEditing = (record: Item) => record.key === editingKey;
+
+  const onDelete = async (record: Partial<Item> & { key: React.Key }) => {
+    try {
+      await deleteTag(record as Tag);
+
+      const newData = [...data];
+      const index = newData.findIndex((item) => record.TagId === item.key);
+      
+      newData.splice(index, 1);
+      setData(newData);
+
+      message.success(translation(
+        'Dashboard.section.message.delete.success',
+        { entity: translation('common.entity.tag') },
+      ));
+    } catch (error) {
+      message.error(translation(
+        'Dashboard.section.message.delete.error',
+        { entity: translation('common.entity.tag') },
+      ));
+    }
+  }
+
+  const onCreate = (tag: Tag) => {
+    const newData = [{ key: tag.TagId, ...tag }, ...data];
+    setData(newData);
+    setCreateModalOpen(false);
+  }
 
   const edit = (record: Partial<Item> & { key: React.Key }) => {
     form.setFieldsValue({ name: '', age: '', address: '', ...record });
@@ -84,6 +118,8 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
   const save = async (key: React.Key) => {
     try {
       const row = (await form.validateFields()) as Item;
+
+      setIsUpdating(true);
 
       const newData = [...data];
       const index = newData.findIndex((item) => key === item.key);
@@ -116,6 +152,8 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
         'Dashboard.section.message.update.error',
         { entity: translation('common.entity.tag') },
       ));
+    } finally {
+      setIsUpdating(false);
     }
   };
 
@@ -144,6 +182,8 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
             <Button
               type='link'
               onClick={() => save(record.key)}
+              loading={isUpdating}
+              iconPosition="end"
             >
               {translation('common.button.save')}
             </Button>
@@ -151,7 +191,12 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
               title={translation('common.confirmation')}
               onConfirm={cancel}
             >
-              <Button type='link'>{translation('common.button.cancel')}</Button>
+              <Button
+                type='link'
+                disabled={isUpdating}
+              >
+                {translation('common.button.cancel')}
+              </Button>
             </Popconfirm>
           </Space>
         ) : (
@@ -166,7 +211,7 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
             <Popconfirm
               disabled={editingKey !== ''}
               title={translation('common.confirmation')}
-              onConfirm={() => console.log('delete')}
+              onConfirm={() => onDelete(record)}
             >
               <Button type='link'>{translation('common.button.delete')}</Button>
             </Popconfirm>
@@ -218,6 +263,7 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
         <Button
           type="primary"
           icon={<IconPlus />}
+          onClick={() => setCreateModalOpen(true)}
         >
           {translation('common.entity.tag')}
         </Button>
@@ -241,6 +287,12 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
           pagination={false}
         />
       </Form>
+
+      <CreateTagModal
+        open={isCreateModalOpen}
+        onConfirm={onCreate}
+        onCancel={() => setCreateModalOpen(false)}
+      />
     </section>
   );
 };
