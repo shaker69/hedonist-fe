@@ -2,6 +2,6 @@
 
 import httpClient from "../../utils/ky";
 
-export const getAllTags = async (): Promise<Tag[] | undefined | never> => {
+export const getAllTags = async (): Promise<Tag[] | never> => {
   return httpClient.get('tags').json();
 }

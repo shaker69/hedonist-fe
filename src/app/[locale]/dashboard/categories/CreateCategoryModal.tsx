@@ -1,26 +1,30 @@
 import React, { ReactNode, useState } from 'react';
-import { Button, Form, Input, Modal, message } from 'antd';
-import { useTranslations } from 'next-intl';
+import { Form, Input, Modal, Select, message } from 'antd';
+import { useLocale, useTranslations } from 'next-intl';
 import { useForm, Controller } from 'react-hook-form';
 import { defaultLocale, locales } from '@app/navigation';
 import { get } from 'lodash-es';
-import { createTag } from '@app/actions';
+import { createCategory } from '@app/actions';
 
 interface Props {
   open: boolean;
-  onConfirm: (tag: Tag) => void,
+  onConfirm: (category: Category) => void,
   onCancel: () => any,
+  tags: Tag[];
 }
 
-type FormValues = Pick<Tag, 'Name'>
+type FormValues = Omit<Category, 'CategoryId'>
 
-const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
+const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags }) => {
   const translation = useTranslations();
+  const currentLocale = useLocale();
   const [form] = Form.useForm();
   const { handleSubmit, control, formState, reset } = useForm<FormValues>({
     defaultValues: {
       Name: locales.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}),
-    }
+      TagIds: [],
+      Description: locales.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}),
+    },
   });
 
   const formErrors = formState.errors;
@@ -31,18 +35,19 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
     setConfirmLoading(true);
 
     try {
-      const result = await createTag(values);
-      
+      const result = await createCategory(values);
+
       onConfirm(result);
+
       message.success(translation(
         'Dashboard.section.message.create.success',
         { entity: translation('common.entity.tag') },
-      )); 
+      ));
     } catch (error) {
       message.error(translation(
         'Dashboard.section.message.create.error',
         { entity: translation('common.entity.tag') },
-      )); 
+      ));
     }
 
     setConfirmLoading(false);
@@ -60,7 +65,7 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
       layout="vertical"
     >
       <Modal
-        title={translation('Dashboard.section.tags.new')}
+        title={translation('Dashboard.section.categories.new')}
         open={open}
         onOk={handleSubmit(handleOk)}
         confirmLoading={confirmLoading}
@@ -70,17 +75,20 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
         okButtonProps={{
           disabled: !isDirty
         }}
+        classNames={{
+          body: 'flex flex-col gap-8',
+        }}
       >
-        <section
+        <fieldset
           id="address-form-section"
-          className="flex flex-col gap-2"
+          className="flex flex-col gap-4"
         >
-          <label
+          <legend
             id="tag-fields-label"
-            className="text-lg font-semibold"
+            className="text-lg font-semibold mb-4"
           >
             {translation('common.name')}
-          </label>
+          </legend>
 
           {locales.map((l) => (
             <Form.Item
@@ -97,10 +105,55 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
               />
             </Form.Item>
           ))}
-        </section>
+        </fieldset>
+
+        <label>
+          <span className="flex text-lg font-semibold mb-4">{translation(`Dashboard.section.tags.title`)}</span>
+
+          <Form.Item>
+            <Controller
+              name="TagIds"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  mode="tags"
+                  options={tags.map(({ Name, TagId }) => ({ value: TagId, label: Name[currentLocale] }))}
+                  {...field}
+                />
+              )}
+            />
+          </Form.Item>
+        </label>
+
+        <fieldset
+          id="address-form-section"
+          className="flex flex-col gap-4"
+        >
+          <legend
+            id="tag-fields-label"
+            className="text-lg font-semibold pb-4"
+          >
+            {translation('common.description')}
+          </legend>
+
+          {locales.map((l) => (
+            <Form.Item
+              key={l}
+              label={translation(`common.locale.${l}`)}
+              validateStatus={(defaultLocale === l && get(formErrors, 'Description')) ? "error" : "success"}
+              help={get(formErrors, 'Description')?.message as ReactNode}
+            >
+              <Controller
+                name={`Description.${l}`}
+                control={control}
+                render={({ field }) => <Input {...field} />}
+              />
+            </Form.Item>
+          ))}
+        </fieldset>
       </Modal>
     </Form>
   );
 };
 
-export default CreateTagModal;
+export default CreateCategoryModal;

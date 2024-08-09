@@ -70,10 +70,12 @@
         "new": "New tag"
       },
       "categories": {
-        "title": "Categories"
+        "title": "Categories",
+        "new": "New category"
       },
       "menuItems": {
-        "title": "Menu positions"
+        "title": "Menu positions",
+        "new": "New menu position"
       },
       "configs": {
         "title": "Configs"

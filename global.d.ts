@@ -26,12 +26,12 @@ declare global {
   }
 
   interface Category {
-    id: string;
-    name: Translations;
-    description?: Translations;
+    CategoryId: string;
+    Name: Translations;
+    Description?: Translations;
     isAllDay?: boolean;
-    icon?: any;
-    tags: string[];
+    Icon?: any;
+    TagIds: string[];
   }
 
   interface Ingredient {

@@ -24,8 +24,8 @@ export const getNormalizedMenu = async (locale: Locale) => {
 
     return {
       ...category,
-      name: category.name[locale],
-      description: category.description?.[locale],
+      name: category.Name[locale],
+      description: category.Description?.[locale],
       items,
     };
   });

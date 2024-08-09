@@ -2,50 +2,50 @@ import { tags } from "./tags";
 
 export const categories: Category[] = [
   {
-    id: 'cat-1',
-    name: {
+    CategoryId: 'cat-1',
+    Name: {
         en: 'Breakfast',
         ru: 'Завтрак',
         ka: 'საუზმე',
       },
     isAllDay: true,
-    tags: [tags[3].id, tags[1].id]
+    TagIds: [tags[3].TagId, tags[1].TagId]
   },
   {
-    id: 'cat-2',
-    name: {
+    CategoryId: 'cat-2',
+    Name: {
       en: 'Hokkaido Toasts',
       ru: 'Хоккайдо тосты',
       ka: 'ჰოკაიდოს სადღეგრძელოები',
     },
-    description: {
+    Description: {
       en: 'served with supremely soft and incredibly fluffy japanese milk bread',
       ru: 'подается с невероятно мягким и невероятно воздушным японским молочным хлебом',
       ka: 'მიირთვით უაღრესად რბილი და წარმოუდგენლად ფუმფულა იაპონური რძის პურით',
     },
-    tags: [tags[4].id],
+    TagIds: [tags[4].TagId],
   },
   {
-    id: 'cat-3',
-    name: {
+    CategoryId: 'cat-3',
+    Name: {
       en: 'Sandwich',
       ru: 'Сэндвич',
       ka: 'სენდვიჩი',
     },
-    description: {
+    Description: {
       en: 'served with freshly baked, signature ciabatta',
       ru: 'подается со свежеиспеченной фирменной чиабаттой',
       ka: 'მიირთვით ახლად გამომცხვარ, საფირმო ციაბატასთან ერთად',
     },
-    tags: [],
+    TagIds: [],
   },
   {
-    id: 'cat-4',
-    name: {
+    CategoryId: 'cat-4',
+    Name: {
       en: 'Bakery',
       ru: 'Выпечка',
       ka: 'საცხობი',
     },
-    tags: [tags[3].id],
+    TagIds: [tags[3].TagId],
   },
 ]
