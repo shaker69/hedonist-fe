@@ -1,7 +1,7 @@
 'use client'
 
 import { Button, Form, FormProps, Input, message, TimePicker } from "antd";
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 import { get } from 'lodash-es';
 import { useTranslations } from "next-intl";
 import { ReactNode } from "react";
@@ -10,6 +10,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { aboutUsFieldNames } from "@app/constants";
 import { defaultLocale, locales } from "@app/navigation";
 import { upsertConfigs } from "@app/actions";
+import { parseTimeRange } from "@app/utils";
 
 type FormValues = {
   Address?: {
@@ -20,8 +21,6 @@ type FormValues = {
 };
 
 const formatTimeRange = (items: [Dayjs, Dayjs]) => items.map(item => item.format()).join(';');
-
-const parseTimeRange = (rangeString: string) => rangeString.split(';').map(timeString => dayjs(timeString));
 
 interface Props {
   configs: AppConfigs;

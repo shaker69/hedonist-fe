@@ -26,6 +26,7 @@ type Props = {
   session: Session | null;
   // TODO: specify interface
   menu: any;
+  appConfigs: AppConfigs;
 };
 
 const chipsMap = {
@@ -34,7 +35,7 @@ const chipsMap = {
   ka: chipsKa,
 }
 
-export default function Index({ session, menu }: Props) {
+export default function Index({ appConfigs, session, menu }: Props) {
   const { isGrid } = useViewContext();
   const locale = useLocale() as Locale;
 
@@ -105,7 +106,7 @@ export default function Index({ session, menu }: Props) {
           ))}
         </ContentHolder>
       </main>
-      <Footer />
+      <Footer appConfigs={appConfigs} />
       <ScrollToTopButton />
     </PageLayout>
   );
