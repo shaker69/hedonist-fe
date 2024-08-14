@@ -68,9 +68,9 @@ const MenuItemImage: React.FC<Props> = ({ control }) => {
             <Upload
               listType="picture-card"
               fileList={fileList}
-              onChange={onChange}
               onPreview={onPreview}
               {...field}
+              onChange={onChange}
             >
               {fileList.length < 1 && '+ Upload'}
             </Upload>

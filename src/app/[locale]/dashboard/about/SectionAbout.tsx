@@ -56,6 +56,8 @@ export default function SectionAbout({ configs }: Props) {
       ...formValues,
     };
 
+    const actionMessageType = configs.ConfigId ? 'update' : 'create';
+
     try {
       const result = await upsertConfigs(data, { revalidatePaths: ['/configs'] });
 
@@ -63,8 +65,6 @@ export default function SectionAbout({ configs }: Props) {
         ...formValues,
         WorkingHours,
       });
-
-      const actionMessageType = configs.ConfigId ? 'update' : 'create';
 
       message.success(translation(
         `Dashboard.section.message.${actionMessageType}.success`,
