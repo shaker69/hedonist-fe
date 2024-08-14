@@ -10,7 +10,8 @@
     "entity": {
       "category": "Category",
       "tag": "Tag",
-      "menuItem": "Menu item"
+      "menuItem": "Menu item",
+      "configs": "Configs"
     },
     "name": "Name",
     "action": "Action",
@@ -71,11 +72,13 @@
       },
       "categories": {
         "title": "Categories",
-        "new": "New category"
+        "new": "New category",
+        "allDay": "All day"
       },
       "menuItems": {
         "title": "Menu positions",
-        "new": "New menu position"
+        "new": "New menu position",
+        "edit": "Edit menu position"
       },
       "configs": {
         "title": "Configs"

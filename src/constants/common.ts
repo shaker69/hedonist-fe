@@ -7,7 +7,7 @@ export enum DashboardSections {
 }
 
 export const aboutUsFieldNames = {
-  workingHours: 'workingHours',
-  address: 'address',
-  instagram: 'instagram',
+  workingHours: 'WorkingHours',
+  address: 'Address',
+  instagram: 'Instagram',
 }

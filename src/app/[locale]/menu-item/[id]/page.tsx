@@ -1,4 +1,4 @@
-import { getMenuItem } from '@app/utils';
+import { getMenuItem } from '@app/actions';
 
 import MenuItemView from './MenuItemView';
 

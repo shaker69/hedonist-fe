@@ -1,6 +1,7 @@
 'use server'
 
 import { revalidatePath } from "next/cache";
+
 import httpClient from "../../utils/ky";
 
 export const createCategory = async (category: Omit<Category, 'CategoryId'>, { revalidatePaths = [] }: ActionOptions = {}): Promise<Category> => {

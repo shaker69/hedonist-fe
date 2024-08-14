@@ -24,6 +24,7 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
       Name: locales.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}),
       TagIds: [],
       Description: locales.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}),
+      isAllDay: false,
     },
   });
 

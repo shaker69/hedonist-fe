@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import {
   Button,
+  Checkbox,
   Form,
   Input,
   InputNumber,
@@ -126,19 +127,6 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
     setEditingKey('');
   };
 
-  // const handleTagsChange = (value: string) => {
-  //   const tagIds = new Set([
-  //     ...tags.map(({ id }) => id),
-  //     ...data.flatMap((el) => el.tags),
-  //   ]);
-
-  //   const newTags = new Set(value).difference(tagIds);
-
-  //   console.log(tagIds);
-  //   console.log(value);
-  //   console.log(newTags);
-  // };
-
   const save = async (key: React.Key) => {
     try {
       const row = (await form.validateFields()) as Item;
@@ -156,6 +144,8 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
         };
 
         newData.splice(index, 1, updatedItem);
+
+        console.log('updatedItem', updatedItem);
 
         const res = await updateCategory(omit(updatedItem, 'key'), { revalidatePaths: ['/tags', '/categories'] });
 
@@ -191,14 +181,14 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
         dataIndex: ['Name', locale],
         editable: true,
         fixed: locale === defaultLocale,
-        width: 250,
+        width: 200,
       }))
     },
     {
       title: translation('Dashboard.section.tags.title'),
       editable: false,
       dataIndex: 'TagIds',
-      width: 250,
+      width: 150,
       render: (tagIds: string[], record: Item) => {
         const editable = isEditing(record);
 
@@ -231,6 +221,23 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
         editable: true,
         width: 350,
       }))
+    },
+    {
+      title: translation('Dashboard.section.categories.allDay'),
+      editable: false,
+      dataIndex: 'isAllDay',
+      width: 100,
+      render: (_: any, record: Item) => {
+        const editable = isEditing(record);
+
+        return (
+          <Form.Item name="isAllDay">
+            <Checkbox
+              disabled={!editable}
+            />
+          </Form.Item>
+        );
+      },
     },
     {
       title: translation('common.action'),
@@ -272,11 +279,15 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
               {translation('common.button.edit')}
             </Button>
             <Popconfirm
-              disabled={editingKey !== ''}
               title={translation('common.confirmation')}
               onConfirm={() => onDelete(record)}
             >
-              <Button type='link'>{translation('common.button.delete')}</Button>
+              <Button
+                type='link'
+                disabled={editingKey !== ''}
+              >
+                {translation('common.button.delete')}
+              </Button>
             </Popconfirm>
           </Space>
         );

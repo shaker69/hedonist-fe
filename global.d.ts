@@ -41,20 +41,20 @@ declare global {
   }
 
   interface MenuItem {
-    id: string;
-    name: Translations;
-    description?: Translations,
-    sub?: Translations;
-    categoryIds: string[];
-    ingredientIds?: string[];
-    pictureURL: string;
-    objectPosition?: [number, number];
-    price: number;
-    currency?: string;
-    weight?: number | null;
-    rating?: number;
-    hit?: boolean;
-    tags: string[];
+    MenuItemId: string;
+    Name: Translations;
+    Description?: Translations,
+    Subtitle?: Translations;
+    CategoryIds: string[];
+    IngredientIds?: string[];
+    PictureURL: string;
+    PictureObjectPosition?: [number | string, number | string];
+    Price: number;
+    Currency?: string;
+    Weight?: number | null;
+    Rating?: number;
+    isRecommended?: boolean;
+    TagIds: string[];
   }
 
   interface Menu extends Category {
@@ -80,5 +80,13 @@ declare global {
 
   interface ActionOptions {
     revalidatePaths?: string[];
+  }
+
+  interface AppConfigs {
+    ConfigId?: string;
+    WorkingHours?: string;
+    Address?: Translations;
+    Instagram?: string;
+    TagFilters?: string[];
   }
 }

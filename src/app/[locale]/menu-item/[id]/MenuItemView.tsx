@@ -20,7 +20,7 @@ interface Props {
 
 const formatWeight = (formatter: any, menuItem: MenuItem) => {
   const weight = formatter
-    .number(menuItem.weight, { style: 'unit', unit: 'gram' })
+    .number(menuItem.Weight, { style: 'unit', unit: 'gram' })
     .replaceAll(' ', '');
 
   return weight;
@@ -52,20 +52,20 @@ export default function MenuItemView({ menuItem }: Props) {
           <ContentHolder className="">
             <figure className="mb-4 relative h-60 w-full">
               <Image
-                src={menuItem.pictureURL}
-                alt={menuItem.name[locale]}
+                src={menuItem.PictureURL}
+                alt={menuItem.Name[locale]}
                 className="rounded-2xl"
                 fill={true}
                 objectFit="cover"
               />
             </figure>
             <div className="py-4 flex gap-2 items-end">
-              <h1 className="text-xl font-semibold">{menuItem.name[locale]}</h1>
-              {menuItem.weight && <span className="text-sm/[0.75rem] leading-7 text-color-text-secondary">{formatWeight(formatter, menuItem)}</span>}
+              <h1 className="text-xl font-semibold">{menuItem.Name[locale]}</h1>
+              {menuItem.Weight && <span className="text-sm/[0.75rem] leading-7 text-color-text-secondary">{formatWeight(formatter, menuItem)}</span>}
             </div>
-            <p className="py-4">{menuItem.description?.[locale]}</p>
-            <p className="py-4">{menuItem.sub?.[locale]}</p>
-            <h2 className="text-xl font-medium">{formatCurrency(formatter, menuItem.price, menuItem.currency)}</h2>
+            <p className="py-4">{menuItem.Description?.[locale]}</p>
+            <p className="py-4">{menuItem.Subtitle?.[locale]}</p>
+            <h2 className="text-xl font-medium">{formatCurrency(formatter, menuItem.Price, menuItem.Currency)}</h2>
           </ContentHolder>
         )}
       </main>
