@@ -81,7 +81,8 @@
         "edit": "Edit menu position"
       },
       "configs": {
-        "title": "Configs"
+        "title": "Configs",
+        "tagsFilter": "Filtering tags"
       },
       "message": {
         "create": {
