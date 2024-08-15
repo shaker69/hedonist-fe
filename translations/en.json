@@ -25,7 +25,14 @@
       "delete": "Delete",
       "submit": "Submit",
       "cancel": "Cancel",
+      "upload": "Upload",
       "ok": "Ok"
+    },
+    "unit": {
+      "gram": {
+        "short": "g",
+        "long": "gram"
+      }
     }
   },
   "form": {
@@ -78,7 +85,12 @@
       "menuItems": {
         "title": "Menu positions",
         "new": "New menu position",
-        "edit": "Edit menu position"
+        "edit": "Edit menu position",
+        "image": "Image",
+        "ingredients": "Ingredients",
+        "isRecommended": "Recommended by Hedonist",
+        "weight": "Weight",
+        "price": "Price"
       },
       "configs": {
         "title": "Configs",

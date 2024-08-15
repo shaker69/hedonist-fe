@@ -15,24 +15,12 @@ const normFile = (e: any) => {
 };
 
 interface Props {
-  control: any;
+  id: string;
+  fileList: any;
 }
 
-const MenuItemImage: React.FC<Props> = ({ control }) => {
+const MenuItemImage: React.FC<Props> = ({ id, fileList, ...rest }) => {
   const translation = useTranslations();
-
-  const [fileList, setFileList] = useState<UploadFile[]>([
-    // {
-    //   uid: '-1',
-    //   name: 'image.png',
-    //   status: 'done',
-    //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    // },
-  ]);
-
-  const onChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
 
   const onPreview = async (file: UploadFile) => {
     let src = file.url as string;
@@ -55,28 +43,17 @@ const MenuItemImage: React.FC<Props> = ({ control }) => {
       rotationSlider
       aspectSlider
     >
-      <Form.Item
-        label="Upload"
-      // valuePropName="fileList"
-      // getValueFromEvent={normFile}
+      <Upload
+        id={id}
+        accept="image/*"
+        listType="picture-card"
+        fileList={fileList}
+        onPreview={onPreview}
+        beforeUpload={() => false}
+        {...rest}
       >
-        <Controller
-          name="fileList"
-          control={control}
-          rules={{ required: { value: true, message: translation('form.validation.required') } }}
-          render={({ field }) => (
-            <Upload
-              listType="picture-card"
-              fileList={fileList}
-              onPreview={onPreview}
-              {...field}
-              onChange={onChange}
-            >
-              {fileList.length < 1 && '+ Upload'}
-            </Upload>
-          )}
-        />
-      </Form.Item>
+        {fileList.length < 1 && `+ ${translation('common.button.upload')}`}
+      </Upload>
     </ImgCrop>
   );
 };

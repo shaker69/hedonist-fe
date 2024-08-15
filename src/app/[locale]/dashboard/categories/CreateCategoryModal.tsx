@@ -1,10 +1,12 @@
-import React, { ReactNode, useState } from 'react';
-import { Form, Input, Modal, Select, message } from 'antd';
-import { useLocale, useTranslations } from 'next-intl';
-import { useForm, Controller } from 'react-hook-form';
-import { defaultLocale, locales } from '@app/navigation';
+import { Divider, Form, Input, Modal, Select, Switch, message } from 'antd';
 import { get } from 'lodash-es';
+import React, { ReactNode, useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { useLocale, useTranslations } from 'next-intl';
+
 import { createCategory } from '@app/actions';
+import { FormFieldWrapper } from '@app/components';
+import { defaultLocale, locales } from '@app/navigation';
 
 interface Props {
   open: boolean;
@@ -39,7 +41,7 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
       const result = await createCategory(values, { revalidatePaths: ['/tags', '/categories'] });
 
       onConfirm(result);
-
+      reset();
       message.success(translation(
         'Dashboard.section.message.create.success',
         { entity: translation('common.entity.tag') },
@@ -60,13 +62,9 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
   }
 
   return (
-    <Form
-      form={form}
-      component={false}
-      layout="vertical"
-    >
+    <Form form={form}>
       <Modal
-        title={translation('Dashboard.section.categories.new')}
+        title={<span className="text-xl">{translation('Dashboard.section.categories.new')}</span>}
         open={open}
         onOk={handleSubmit(handleOk)}
         confirmLoading={confirmLoading}
@@ -78,23 +76,19 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
         }}
         classNames={{
           body: 'flex flex-col gap-8',
+          content: "min-w-[480px]",
         }}
+        width="60%"
       >
-        <fieldset
-          id="address-form-section"
-          className="flex flex-col gap-4"
+        <FormFieldWrapper
+          label={translation('common.name')}
+          id="name"
         >
-          <legend
-            id="tag-fields-label"
-            className="text-lg font-semibold mb-4"
-          >
-            {translation('common.name')}
-          </legend>
-
           {locales.map((l) => (
             <Form.Item
               key={l}
-              label={translation(`common.locale.${l}`)}
+              layout='vertical'
+              label={<span className="font-semibold">{translation(`common.locale.${l}`)}</span>}
               validateStatus={(defaultLocale === l && get(formErrors, 'Name')) ? "error" : "success"}
               help={get(formErrors, 'Name')?.message as ReactNode}
             >
@@ -102,56 +96,63 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
                 name={`Name.${l}`}
                 control={control}
                 rules={{ required: { value: l === defaultLocale, message: translation('form.validation.required') } }}
-                render={({ field }) => <Input {...field} />}
+                render={({ field }) => <Input id="name" {...field} />}
               />
             </Form.Item>
           ))}
-        </fieldset>
-
-        <label>
-          <span className="flex text-lg font-semibold mb-4">{translation(`Dashboard.section.tags.title`)}</span>
-
-          <Form.Item>
-            <Controller
-              name="TagIds"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  mode="tags"
-                  options={tags.map(({ Name, TagId }) => ({ value: TagId, label: Name[currentLocale] }))}
-                  {...field}
-                />
-              )}
-            />
-          </Form.Item>
-        </label>
-
-        <fieldset
-          id="address-form-section"
-          className="flex flex-col gap-4"
+        </FormFieldWrapper>
+        <Divider />
+        <FormFieldWrapper
+          id="tags"
+          label={translation('Dashboard.section.tags.title')}
         >
-          <legend
-            id="tag-fields-label"
-            className="text-lg font-semibold pb-4"
-          >
-            {translation('common.description')}
-          </legend>
-
+          <Controller
+            name="TagIds"
+            control={control}
+            render={({ field }) => (
+              <Select
+                id="tags"
+                mode="tags"
+                options={tags.map(({ Name, TagId }) => ({ value: TagId, label: Name[currentLocale] }))}
+                {...field}
+              />
+            )}
+          />
+        </FormFieldWrapper>
+        <Divider />
+        <FormFieldWrapper
+          id="description"
+          label={translation('common.description')}
+        >
           {locales.map((l) => (
             <Form.Item
               key={l}
-              label={translation(`common.locale.${l}`)}
+              layout='vertical'
+              label={<span className="font-semibold">{translation(`common.locale.${l}`)}</span>}
               validateStatus={(defaultLocale === l && get(formErrors, 'Description')) ? "error" : "success"}
               help={get(formErrors, 'Description')?.message as ReactNode}
             >
               <Controller
                 name={`Description.${l}`}
                 control={control}
-                render={({ field }) => <Input {...field} />}
+                render={({ field }) => <Input.TextArea id="description" {...field} />}
               />
             </Form.Item>
           ))}
-        </fieldset>
+        </FormFieldWrapper>
+        <Divider />
+        <FormFieldWrapper
+          id="isAllDay"
+          label={translation('Dashboard.section.categories.allDay')}
+        >
+          <Form.Item>
+            <Controller
+              name="isAllDay"
+              control={control}
+              render={({ field }) => <Switch id="isAllDay" {...field} />}
+            />
+          </Form.Item>
+        </FormFieldWrapper>
       </Modal>
     </Form>
   );

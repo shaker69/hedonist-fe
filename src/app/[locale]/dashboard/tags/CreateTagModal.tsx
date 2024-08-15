@@ -5,6 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { defaultLocale, locales } from '@app/navigation';
 import { get } from 'lodash-es';
 import { createTag } from '@app/actions';
+import { FormFieldWrapper } from '@app/components';
 
 interface Props {
   open: boolean;
@@ -32,17 +33,18 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
 
     try {
       const result = await createTag(values, { revalidatePaths: ['/tags'] });
-      
+
       onConfirm(result);
+      reset();
       message.success(translation(
         'Dashboard.section.message.create.success',
         { entity: translation('common.entity.tag') },
-      )); 
+      ));
     } catch (error) {
       message.error(translation(
         'Dashboard.section.message.create.error',
         { entity: translation('common.entity.tag') },
-      )); 
+      ));
     }
 
     setConfirmLoading(false);
@@ -54,11 +56,7 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
   }
 
   return (
-    <Form
-      form={form}
-      component={false}
-      layout="vertical"
-    >
+    <Form form={form}>
       <Modal
         title={translation('Dashboard.section.tags.new')}
         open={open}
@@ -70,22 +68,20 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
         okButtonProps={{
           disabled: !isDirty
         }}
+        classNames={{
+          content: "min-w-[480px]",
+        }}
+        width="40%"
       >
-        <section
-          id="address-form-section"
-          className="flex flex-col gap-2"
+        <FormFieldWrapper
+          id="name"
+          label={translation('common.name')}
         >
-          <label
-            id="tag-fields-label"
-            className="text-lg font-semibold"
-          >
-            {translation('common.name')}
-          </label>
-
           {locales.map((l) => (
             <Form.Item
               key={l}
-              label={translation(`common.locale.${l}`)}
+              label={<span className="font-semibold">{translation(`common.locale.${l}`)}</span>}
+              layout="vertical"
               validateStatus={(defaultLocale === l && get(formErrors, 'Name')) ? "error" : "success"}
               help={get(formErrors, 'Name')?.message as ReactNode}
             >
@@ -93,11 +89,11 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
                 name={`Name.${l}`}
                 control={control}
                 rules={{ required: { value: l === defaultLocale, message: translation('form.validation.required') } }}
-                render={({ field }) => <Input {...field} />}
+                render={({ field }) => <Input id="name" {...field} />}
               />
             </Form.Item>
           ))}
-        </section>
+        </FormFieldWrapper>
       </Modal>
     </Form>
   );

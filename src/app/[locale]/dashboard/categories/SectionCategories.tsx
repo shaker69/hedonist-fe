@@ -10,6 +10,7 @@ import {
   Popconfirm,
   Select,
   Space,
+  Switch,
   Table,
   Tag,
   message,
@@ -230,12 +231,16 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
       render: (_: any, record: Item) => {
         const editable = isEditing(record);
 
-        return (
-          <Form.Item name="isAllDay">
-            <Checkbox
-              disabled={!editable}
-            />
-          </Form.Item>
+        return editable ? (
+          (
+            <Form.Item name="isAllDay">
+              <Switch
+                disabled={!editable}
+              />
+            </Form.Item>
+          )
+        ) : (
+          <Switch disabled checked={Boolean(record.isAllDay)} />
         );
       },
     },

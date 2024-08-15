@@ -3,6 +3,7 @@ export { default as ContentHolder } from './ContentHolder';
 export { Dropdown } from './Dropdown';
 export { EditableTable } from './EditableTable';
 export { default as Footer } from './Footer';
+export { FormFieldWrapper } from './FormFieldWrapper';
 export { default as Header } from './Header';
 export { LayoutSwitcher } from './LayoutSwitcher';
 export { default as LocaleSwitcher } from './LocaleSwitcher';
