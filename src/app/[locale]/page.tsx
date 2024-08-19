@@ -8,18 +8,21 @@ import {
 
 import auth from '../../auth';
 import Index from './Index';
+import queryString from 'query-string';
 
 type Props = {
   params: { locale: string };
-  searchParams: { filter?: string },
+  searchParams: {
+    [key: string]: string | string[];
+  },
 };
 
 export default async function IndexPage({
   params: { locale },
-  searchParams: { filter },
+  searchParams,
 }: Props) {
   const session = await getServerSession(auth);
-  const menu = await getNormalizedMenu(locale as Locale, filter);
+  const menu = await getNormalizedMenu(locale as Locale, new URLSearchParams(queryString.stringify(searchParams)));
   const appConfigs = await getConfigs().catch(() => ({}));
   const filterTags = await getAllTags();
 

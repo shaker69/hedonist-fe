@@ -22,3 +22,6 @@ export const formItemLayout = {
     sm: { span: 18 },
   },
 };
+
+export const TAG_FILTER_INDEX = 'tag';
+export const RECOMMENDED_TAG_FILTER_INDEX = 'isRecommended';

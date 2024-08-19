@@ -36,6 +36,7 @@ export default async function LocaleLayout({children, params: {locale}}: Props) 
                   colorInfo: "#191919",
                   colorError: "#ed7f7f",
                   colorWarning: "#f4cd6a",
+                  colorLink: "#1677ff",
                   wireframe: true,
                   colorSuccess: "#dffa5a"
                 },

@@ -21,7 +21,8 @@ import MenuItemModal from './MenuItemModal';
 import IconPlus from '@public/icon-plus.svg';
 import { createMenuItem, deleteMenuItem, getBase64ImageFromURL, updateMenuItem } from '@app/actions';
 import { omit } from 'lodash-es';
-import { getFileFromBase64 } from '@app/utils';
+import { getFileFromBase64, splitStringToLines } from '@app/utils';
+import { EmptyContent } from '@app/components';
 
 interface Item extends MenuItem {
   key: string;
@@ -84,7 +85,7 @@ const SectionMenuItems: React.FC<Props> = ({
       const base64image = await getBase64ImageFromURL(record.PictureURL);
       const file = getFileFromBase64(base64image, `${record.MenuItemId}.jpg`);
 
-      setItemToEdit(omit({ ...record, image: [{...file, originFileObj: file}] }, ['key']));
+      setItemToEdit(omit({ ...record, image: [{ ...file, originFileObj: file }] }, ['key']));
     } else {
       setItemToEdit(omit(record, ['key']));
     }
@@ -150,7 +151,6 @@ const SectionMenuItems: React.FC<Props> = ({
             alt={record.Name[currentLocale]}
             width={120}
             height={90}
-            unoptimized
           />
         );
       }
@@ -193,7 +193,7 @@ const SectionMenuItems: React.FC<Props> = ({
       render: (_: any, record: Item) => <Switch disabled checked={Boolean(record.isRecommended)} />,
     },
     {
-      title: translation('common.subtitle'),
+      title: translation('Dashboard.section.menuItems.ingredients'),
       children: locales.map((locale) => ({
         title: translation(`common.locale.${locale}`),
         dataIndex: ['Subtitle', locale],
@@ -215,7 +215,7 @@ const SectionMenuItems: React.FC<Props> = ({
       dataIndex: 'operation',
       render: (_: any, record: Item) => {
         return (
-          <Space className="text-color-link">
+          <Space>
             <Button
               onClick={() => {
                 edit(record);
@@ -237,34 +237,52 @@ const SectionMenuItems: React.FC<Props> = ({
   ];
 
   return (
-    <section className="flex flex-col gap-8 flex-auto">
-      <div className="mt-8 flex justify-between items-center">
-        <h1 className="text-semibold text-3xl">{translation('Dashboard.section.menuItems.title')}</h1>
-        <Button
-          type="primary"
-          icon={<IconPlus />}
-          onClick={() => create()}
-        >
-          {translation('common.entity.menuItem')}
-        </Button>
-      </div>
+    <>
+      <section className="flex flex-col gap-8 flex-auto">
+        <div className="mt-8 flex justify-between items-center">
+          <h1 className="text-semibold text-3xl">
+            {translation('Dashboard.section.menuItems.title')}
+            <span className="pl-1 text-2xl">{`(${menuItems.length})`}</span>
+          </h1>
+          <Button
+            type="primary"
+            icon={<IconPlus />}
+            onClick={() => create()}
+          >
+            {translation('common.entity.menuItem')}
+          </Button>
+        </div>
 
-      <Form form={form} component={false}>
-        <Table
-          className="dashboard-table-w"
-          rowKey="key"
-          bordered
-          virtual
-          scroll={{ y: window.innerHeight - 254, x: true }}
-          dataSource={menuItems.map((item) => ({
-            ...item,
-            key: item.MenuItemId,
-          }))}
-          columns={columns}
-          rowClassName="editable-row"
-          pagination={false}
-        />
-      </Form>
+        {
+          Boolean(menuItems.length)
+            ? (
+              <section className="flex-auto bg-white rounded-xl">
+                <Form form={form} component={false}>
+                  <Table
+                    className="dashboard-table-w"
+                    rowKey="key"
+                    bordered
+                    virtual
+                    scroll={{ y: window.innerHeight - 254, x: true }}
+                    dataSource={menuItems.map((item) => ({
+                      ...item,
+                      key: item.MenuItemId,
+                    }))}
+                    columns={columns}
+                    rowClassName="editable-row"
+                    pagination={false}
+                  />
+                </Form>
+              </section>
+            )
+            : (
+              <EmptyContent
+                label={splitStringToLines(translation('Dashboard.section.menuItems.empty'), { className: "text-center" })}
+              />
+            )
+
+        }
+      </section>
 
       {isCreateModalOpen && (
         <MenuItemModal
@@ -286,7 +304,7 @@ const SectionMenuItems: React.FC<Props> = ({
           categories={categories}
         />
       )}
-    </section>
+    </>
   );
 };
 

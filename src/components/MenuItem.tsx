@@ -47,7 +47,7 @@ export default function MenuItem({
     >
       <Image
         className={`max-h-full rounded-2xl ${objectPosisionClass}`}
-        // priority
+        priority
         src={PictureURL || imagePlaceholder}
         // width={250}
         // height={180}

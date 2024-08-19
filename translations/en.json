@@ -48,7 +48,8 @@
     "address": "Batumi, Vakhtang Gorgasali 26"
   },
   "Index": {
-    "title": "Home"
+    "title": "Home",
+    "empty": "Items not found"
   },
   "Login": {
     "title": "Login",
@@ -71,16 +72,19 @@
         "title": "About us",
         "workingHours": "Working hours",
         "address": "Address",
-        "instagram": "Instagram"
+        "instagram": "Instagram",
+        "socialNetworks": "Social networks"
       },
       "tags": {
         "title": "Tags",
-        "new": "New tag"
+        "new": "New tag",
+        "empty": "Looks like there aren't any tags here yet.\nAdd a tag to organize your menu navigation and content"
       },
       "categories": {
         "title": "Categories",
         "new": "New category",
-        "allDay": "All day"
+        "allDay": "All day",
+        "empty": "Looks like there aren't any categories here yet.\nAdd a category to organize your menu navigation and content"
       },
       "menuItems": {
         "title": "Menu positions",
@@ -90,7 +94,8 @@
         "ingredients": "Ingredients",
         "isRecommended": "Recommended by Hedonist",
         "weight": "Weight",
-        "price": "Price"
+        "price": "Price",
+        "empty": "Looks like there aren't any items here yet.\nAdd an item to organize your menu navigation and content"
       },
       "configs": {
         "title": "Configs",

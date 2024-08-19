@@ -8,6 +8,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { aboutUsFieldNames } from "@app/constants";
 import { defaultLocale, locales } from "@app/navigation";
 import { upsertConfigs } from "@app/actions";
+import { FormFieldWrapper } from "@app/components";
 
 type FormValues = {
   TagFilters: string[],
@@ -74,19 +75,23 @@ export default function SectionConfigs({ configs, tags }: Props) {
     <>
       <h1 className="text-color-primary text-3xl font-semibold my-6">{translation(`Dashboard.section.configs.title`)}</h1>
 
-      <div className="p-6 bg-white rounded-xl">
+      <div className="flex-auto flex flex-col p-6 bg-white rounded-xl">
         <Form
           onFinish={handleSubmit(onFinish)}
+          className="flex-auto flex flex-col"
         >
-          <div className="flex flex-col items-center gap-10 max-w-max">
-            <Form.Item
-              label={<span className="flex self-center text-lg font-semibold">{translation(`Dashboard.section.configs.tagsFilter`)}</span>}
-            >
+          <div className="flex-auto">
+          <FormFieldWrapper
+            id="tags"
+            label={translation(`Dashboard.section.configs.tagsFilter`)}
+          >
+            <Form.Item>
               <Controller
                 name="TagFilters"
                 control={control}
                 render={({ field }) => (
                   <Select
+                    id="tags"
                     mode="tags"
                     options={getTagsOptions(tags, currentLocale)}
                     {...field}
@@ -94,6 +99,7 @@ export default function SectionConfigs({ configs, tags }: Props) {
                 )}
               />
             </Form.Item>
+          </FormFieldWrapper>
           </div>
 
           <footer className="flex justify-end items-center">

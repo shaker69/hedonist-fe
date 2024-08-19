@@ -1,5 +1,6 @@
 export { default as Button } from './Button';
 export { default as ContentHolder } from './ContentHolder';
+export { EmptyContent } from './EmptyContent';
 export { Dropdown } from './Dropdown';
 export { EditableTable } from './EditableTable';
 export { default as Footer } from './Footer';

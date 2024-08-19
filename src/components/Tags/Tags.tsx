@@ -1,22 +1,21 @@
 'use client'
 
+import { sortBy } from "lodash-es";
+import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef } from "react";
 
+import { RECOMMENDED_TAG_FILTER_INDEX, TAG_FILTER_INDEX } from "@app/constants";
 import { locales, usePathname, useRouter } from "@app/navigation";
 import Button from "../Button";
 import ContentHolder from "../ContentHolder";
 
 import './Tags.css';
-import { useLocale } from "next-intl";
-import { sortBy } from "lodash-es";
 
 interface Props {
   className?: string;
   tags: Tag[];
 }
-
-const TAG_FILTER = 'filter';
 
 export default function Tags({ className, tags }: Props) {
   const stickyRef = useRef(null);
@@ -46,13 +45,13 @@ export default function Tags({ className, tags }: Props) {
   }, []);
 
   const onSelectedChange = useCallback((selected: string) => {
-    const currentSelected = searchParams.get(TAG_FILTER);
+    const currentSelected = searchParams.get(TAG_FILTER_INDEX);
     const newSearchParams = new URLSearchParams(searchParams);
 
     if (currentSelected === selected) {
-      newSearchParams.delete(TAG_FILTER);
+      newSearchParams.delete(TAG_FILTER_INDEX);
     } else {
-      newSearchParams.set(TAG_FILTER, selected);
+      newSearchParams.set(TAG_FILTER_INDEX, selected);
     }
 
     router.push(`${pathname}?${newSearchParams}`);
@@ -65,10 +64,10 @@ export default function Tags({ className, tags }: Props) {
     >
       <ContentHolder className="flex gap-2 tags-container">
         {[
-          { TagId: 'isRecommended', Name: locales.reduce((r, l) => ({ ...r, [l]: '🤤' }), {}) } as Tag,
+          { TagId: RECOMMENDED_TAG_FILTER_INDEX, Name: locales.reduce((r, l) => ({ ...r, [l]: '🤤' }), {}) } as Tag,
           ...sortBy(tags, 'createdAt'),
         ].map(({ TagId, Name }) => {
-          const isActive = searchParams.get('filter') === TagId;
+          const isActive = searchParams.get(TAG_FILTER_INDEX) === TagId;
           const textColorClass = isActive ? 'secondary' : 'primary';
           const bgColorClass = isActive ? 'primary' : 'secondary';
           const btnClass = `transition-colors border rounded-full border-black py-2 px-4 bg-color-${bgColorClass} text-color-${textColorClass}`;

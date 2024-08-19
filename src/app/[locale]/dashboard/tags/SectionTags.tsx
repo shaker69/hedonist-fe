@@ -9,6 +9,9 @@ import { useTranslations } from 'next-intl';
 import { deleteTag, updateTag } from '@app/actions';
 import { defaultLocale, locales } from '@app/navigation';
 import IconPlus from '@public/icon-plus.svg';
+import { EmptyContent } from '@app/components';
+import { splitStringToLines } from '@app/utils';
+
 import CreateTagModal from './CreateTagModal';
 
 interface Item extends Tag {
@@ -84,7 +87,7 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
 
       const newData = [...data];
       const index = newData.findIndex((item) => record.TagId === item.key);
-      
+
       newData.splice(index, 1);
       setData(newData);
 
@@ -257,43 +260,60 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
   });
 
   return (
-    <section className="flex flex-col gap-8 flex-auto">
-      <div className="mt-8 flex justify-between items-center">
-        <h1 className="text-semibold text-3xl">{translation('Dashboard.section.tags.title')}</h1>
-        <Button
-          type="primary"
-          icon={<IconPlus />}
-          onClick={() => setCreateModalOpen(true)}
-        >
-          {translation('common.entity.tag')}
-        </Button>
-      </div>
+    <>
+      <section className="flex flex-col gap-8 flex-auto">
+        <div className="mt-8 flex justify-between items-center">
+          <h1 className="text-semibold text-3xl">
+            {translation('Dashboard.section.tags.title')}
+            <span className="pl-1 text-2xl">{`(${data.length})`}</span>
+          </h1>
+          <Button
+            type="primary"
+            icon={<IconPlus />}
+            onClick={() => setCreateModalOpen(true)}
+          >
+            {translation('common.entity.tag')}
+          </Button>
+        </div>
 
-      <Form form={form} component={false}>
-        <Table
-          components={{
-            body: {
-              cell: EditableCell,
-            },
-          }}
-          className="dashboard-table-w"
-          rowKey="key"
-          bordered
-          virtual
-          scroll={{ y: window.innerHeight - 254, x: true }}
-          dataSource={data}
-          columns={mergedColumns}
-          rowClassName="editable-row"
-          pagination={false}
-        />
-      </Form>
+        {
+          Boolean(data.length)
+            ? (
+              <section className="flex-auto bg-white rounded-xl">
+                <Form form={form} component={false}>
+                <Table
+                  components={{
+                    body: {
+                      cell: EditableCell,
+                    },
+                  }}
+                  className="dashboard-table-w"
+                  rowKey="key"
+                  bordered
+                  virtual
+                  scroll={{ y: window.innerHeight - 254, x: true }}
+                  dataSource={data}
+                  columns={mergedColumns}
+                  rowClassName="editable-row"
+                  pagination={false}
+                />
+              </Form>
+              </section>
+            )
+            : (
+              <EmptyContent
+                label={splitStringToLines(translation('Dashboard.section.tags.empty'), { className: "text-center" })}
+              />
+            )
+        }
+      </section>
 
       <CreateTagModal
         open={isCreateModalOpen}
         onConfirm={onCreate}
         onCancel={() => setCreateModalOpen(false)}
       />
-    </section>
+    </>
   );
 };
 

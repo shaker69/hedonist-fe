@@ -22,6 +22,8 @@ import IconPlus from '@public/icon-plus.svg';
 import { deleteCategory, updateCategory } from '@app/actions';
 import { omit } from 'lodash-es';
 import CreateCategoryModal from './CreateCategoryModal';
+import { EmptyContent } from '@app/components';
+import { splitStringToLines } from '@app/utils';
 
 interface Item extends Category {
   key: string;
@@ -332,36 +334,53 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
   });
 
   return (
-    <section className="flex flex-col gap-8 flex-auto">
-      <div className="mt-8 flex justify-between items-center">
-        <h1 className="text-semibold text-3xl">{translation('Dashboard.section.categories.title')}</h1>
-        <Button
-          type="primary"
-          icon={<IconPlus />}
-          onClick={() => setCreateModalOpen(true)}
-        >
-          {translation('common.entity.category')}
-        </Button>
-      </div>
+    <>
+      <section className="flex flex-col gap-8 flex-auto">
+        <div className="mt-8 flex justify-between items-center">
+          <h1 className="text-semibold text-3xl">
+            {translation('Dashboard.section.categories.title')}
+            <span className="pl-1 text-2xl">{`(${data.length})`}</span>
+          </h1>
+          <Button
+            type="primary"
+            icon={<IconPlus />}
+            onClick={() => setCreateModalOpen(true)}
+          >
+            {translation('common.entity.category')}
+          </Button>
+        </div>
 
-      <Form form={form} component={false}>
-        <Table
-          components={{
-            body: {
-              cell: EditableCell,
-            },
-          }}
-          className="dashboard-table-w"
-          rowKey="key"
-          bordered
-          virtual
-          scroll={{ y: window.innerHeight - 254, x: true }}
-          dataSource={data}
-          columns={mergedColumns}
-          rowClassName="editable-row"
-          pagination={false}
-        />
-      </Form>
+        {
+          Boolean(data.length)
+            ? (
+              <section className="flex-auto bg-white rounded-xl">
+                <Form form={form} component={false}>
+                  <Table
+                    components={{
+                      body: {
+                        cell: EditableCell,
+                      },
+                    }}
+                    className="dashboard-table-w"
+                    rowKey="key"
+                    bordered
+                    virtual
+                    scroll={{ y: window.innerHeight - 254, x: true }}
+                    dataSource={data}
+                    columns={mergedColumns}
+                    rowClassName="editable-row"
+                    pagination={false}
+                  />
+                </Form>
+              </section>
+            )
+            : (
+              <EmptyContent
+                label={splitStringToLines(translation('Dashboard.section.categories.empty'), { className: "text-center" })}
+              />
+            )
+        }
+      </section>
 
       <CreateCategoryModal
         open={isCreateModalOpen}
@@ -369,7 +388,7 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
         onCancel={() => setCreateModalOpen(false)}
         tags={tags}
       />
-    </section>
+    </>
   );
 };
 
