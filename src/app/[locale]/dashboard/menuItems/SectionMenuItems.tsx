@@ -150,6 +150,7 @@ const SectionMenuItems: React.FC<Props> = ({
             alt={record.Name[currentLocale]}
             width={120}
             height={90}
+            unoptimized
           />
         );
       }
