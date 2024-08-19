@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
-import { Form, Upload } from 'antd';
+import React from 'react';
+import { Upload } from 'antd';
 import type { GetProp, UploadFile, UploadProps } from 'antd';
 import ImgCrop from 'antd-img-crop';
-import { Controller } from 'react-hook-form';
 import { useTranslations } from 'next-intl';
+import { UploadChangeParam } from 'antd/es/upload';
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
-const normFile = (e: any) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e?.fileList;
-};
-
 interface Props {
   id: string;
-  fileList: any;
+  fileList: UploadFile[];
+  onChange: (info: UploadChangeParam) => void;
 }
 
-const MenuItemImage: React.FC<Props> = ({ id, fileList, ...rest }) => {
+const MenuItemImage: React.FC<Props> = ({ id, fileList, onChange, ...rest }) => {
   const translation = useTranslations();
 
   const onPreview = async (file: UploadFile) => {
@@ -38,11 +32,12 @@ const MenuItemImage: React.FC<Props> = ({ id, fileList, ...rest }) => {
   };
 
   return (
-    <ImgCrop
-      aspect={1.6}
-      rotationSlider
-      aspectSlider
-    >
+    /* TODO: adjust to work with react-hook-form */
+    // <ImgCrop
+    //   aspect={1.6}
+    //   rotationSlider
+    //   aspectSlider
+    // >
       <Upload
         id={id}
         accept="image/*"
@@ -50,11 +45,13 @@ const MenuItemImage: React.FC<Props> = ({ id, fileList, ...rest }) => {
         fileList={fileList}
         onPreview={onPreview}
         beforeUpload={() => false}
+        onChange={onChange}
+        maxCount={1}
         {...rest}
       >
         {fileList.length < 1 && `+ ${translation('common.button.upload')}`}
       </Upload>
-    </ImgCrop>
+    // </ImgCrop>
   );
 };
 

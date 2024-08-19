@@ -1,10 +1,18 @@
 import React, { ReactNode, useState } from 'react';
-import { Button, Divider, Form, Input, InputNumber, Modal, Select, Switch, message } from 'antd';
+import {
+  Divider,
+  Form,
+  Input,
+  InputNumber,
+  Modal,
+  Select,
+  Switch,
+  UploadFile,
+} from 'antd';
 import { useLocale, useTranslations } from 'next-intl';
 import { useForm, Controller } from 'react-hook-form';
 import { defaultLocale, locales } from '@app/navigation';
-import { get } from 'lodash-es';
-import { createTag } from '@app/actions';
+import { get, omit } from 'lodash-es';
 import MenuItemImage from './MenuItemImage';
 import { formItemLayout } from '@app/constants';
 import { FormFieldWrapper } from '@app/components';
@@ -15,12 +23,14 @@ interface Props {
   categories: Category[],
   tags: Tag[],
   open: boolean;
-  onConfirm: (tag: Tag) => void,
+  onConfirm: (menuItem: MenuItem & { imageBase64?: string }) => Promise<boolean>,
   onCancel: () => any,
-  itemToEdit?: MenuItem & { key: React.Key } | null
+  itemToEdit?: MenuItem & { image?: UploadFile[] } | null
 }
 
-type FormValues = MenuItem & { image: string[] };
+type FormValues = MenuItem & {
+  image: UploadFile[];
+};
 
 const MenuItemModal: React.FC<Props> = ({
   open,
@@ -33,10 +43,10 @@ const MenuItemModal: React.FC<Props> = ({
   const translation = useTranslations();
   const currentLocale = useLocale();
 
-  const { handleSubmit, control, formState, reset } = useForm<FormValues>({
+  const { handleSubmit, control, formState, reset, getFieldState, getValues } = useForm<FormValues>({
     defaultValues: {
-      image: [],
-      Name: locales.reduce((acc, curr) => ({ ...acc, [curr]: '' }), {}),
+      image: itemToEdit?.image || [],
+      Name: itemToEdit?.Name || defaultTranslationsFields,
       TagIds: itemToEdit?.TagIds || [],
       CategoryIds: itemToEdit?.CategoryIds || [],
       Currency: itemToEdit?.Currency ?? 'GEL',
@@ -52,25 +62,28 @@ const MenuItemModal: React.FC<Props> = ({
   const isDirty = formState.isDirty;
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const handleOk = async (values: FormValues) => {
+  const handleOk = async ({ image, ...values }: FormValues) => {
     setConfirmLoading(true);
 
-    try {
-      // const result = await createTag(values, { revalidatePaths: ['/tags'] });
+    const { isDirty } = getFieldState('image');
 
-      // onConfirm(result);
+    const imageBase64: string | undefined = isDirty ? await new Promise((res, rej) => {
+      if (!image[0]?.originFileObj) return res(undefined);
 
-      console.log('values', values);
+      const reader = new FileReader();
+      reader.readAsDataURL(image[0].originFileObj);
+      reader.onloadend = () => res(reader.result?.toString().split(',')[1]);
+      reader.onerror = rej;
+    }) : undefined;
+
+    const success = await onConfirm(omit({
+      ...(itemToEdit || {}),
+    ...values,
+      imageBase64,
+    }, ['image']));
+
+    if (success) {
       reset();
-      message.success(translation(
-        'Dashboard.section.message.create.success',
-        { entity: translation('common.entity.menuItem') },
-      ));
-    } catch (error) {
-      message.error(translation(
-        'Dashboard.section.message.create.error',
-        { entity: translation('common.entity.menuItem') },
-      ));
     }
 
     setConfirmLoading(false);
@@ -102,22 +115,25 @@ const MenuItemModal: React.FC<Props> = ({
       >
         <FormFieldWrapper
           id="image"
-          label={translation('Dashboard.section.menuItems.image')}
+          label={(
+            <span className="flex flex-col">
+              {translation('Dashboard.section.menuItems.image')}
+              <span className="text-sm font-normal text-gray-400">.jpeg</span>
+            </span>
+          )}
         >
           <Form.Item>
             <Controller
               name="image"
               control={control}
               rules={{ required: { value: true, message: translation('form.validation.required') } }}
-              render={({ field }) => {
-                console.log(field)
-                return (
-                  <MenuItemImage
-                    id="image"
-                    fileList={field.value}
-                  />
-                );
-              }}
+              render={({ field }) => (
+                <MenuItemImage
+                  id="image"
+                  fileList={field.value}
+                  onChange={({ fileList }) => { field.onChange(fileList) }}
+                />
+              )}
             />
           </Form.Item>
         </FormFieldWrapper>
@@ -153,7 +169,7 @@ const MenuItemModal: React.FC<Props> = ({
               render={({ field }) => (
                 <Select
                   id="categories"
-                  mode="tags"
+                  mode="multiple"
                   options={categories.map(({ Name, CategoryId }) => ({ value: CategoryId, label: Name[currentLocale] }))}
                   {...field}
                 />
@@ -161,7 +177,7 @@ const MenuItemModal: React.FC<Props> = ({
             />
           </Form.Item>
         </FormFieldWrapper>
-        
+
         <Divider />
 
         <FormFieldWrapper

@@ -1,9 +1,13 @@
-import {
-  categories,
-  menuItems,
-} from '../mocks';
+'use server'
+
+import { sortBy } from "lodash-es";
+import { getAllCategories } from "./categories";
+import { getAllMenuItems } from "./menuItems";
 
 export const getNormalizedMenu = async (locale: Locale) => {
+  const menuItems = await getAllMenuItems().then(data => sortBy(data, ['updatedAt'] ));
+  const categories = await getAllCategories().then(data => sortBy(data, ['updatedAt'] ));
+
   const formattedMenuItems = menuItems.map((menuItem) => ({
     ...menuItem,
     name: menuItem.Name[locale],

@@ -80,17 +80,16 @@ export default function Index({ appConfigs, session, menu }: Props) {
                 {items.map((item: any, itemIndx: number, arr) => (
                   <>
                     <MenuItem
-                      key={item.id}
-                      id={item.id}
+                      key={item.MenuItemId}
+                      MenuItemId={item.MenuItemId}
                       className={`menu-item-${itemIndx} z-10 ${isGrid && itemIndx === items.length - 1 && items.length % 2 !== 0 ? 'lastItem' : ''}`}
                       name={item.name}
-                      pictureSrc={item.pictureURL}
-                      objectPosition={item.objectPosition}
-                      ingredients={item.ingredients}
-                      isHit={item.hit}
+                      PictureURL={item.PictureURL}
+                      PictureObjectPosition={item.PictureObjectPosition}
+                      isRecommended={item.isRecommended}
                       subTitle={item.sub}
-                      price={item.price}
-                      currency={item.currency}
+                      Price={item.Price}
+                      Currency={item.Currency}
                     />
 
                     {itemIndx === arr.length - 1 && (

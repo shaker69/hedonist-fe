@@ -1,13 +1,27 @@
 'use client'
 
-import React, { useState } from 'react';
-import { Button, Form, Popconfirm, Space, Table, Tag } from 'antd';
-import { defaultLocale, locales } from '@app/navigation';
+import {
+  Button,
+  Form,
+  message,
+  Popconfirm,
+  Space,
+  Switch,
+  Table,
+  Tag,
+} from 'antd';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
+import React, { useState } from 'react';
+
+import { defaultLocale, locales } from '@app/navigation';
+
+import MenuItemModal from './MenuItemModal';
 
 import IconPlus from '@public/icon-plus.svg';
-import MenuItemModal from './MenuItemModal';
+import { createMenuItem, deleteMenuItem, getBase64ImageFromURL, updateMenuItem } from '@app/actions';
+import { omit } from 'lodash-es';
+import { getFileFromBase64 } from '@app/utils';
 
 interface Item extends MenuItem {
   key: string;
@@ -28,28 +42,111 @@ const SectionMenuItems: React.FC<Props> = ({
   const [form] = Form.useForm();
   const currentLocale = useLocale();
 
-  const [itemToEdit, setItemToEdit] = useState<Item | null>(null);
+  const [itemToEdit, setItemToEdit] = useState<Omit<Item, 'key'> | null>(null);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
+
+  const onCloseMenuItemModal = () => {
+    setCreateModalOpen(false);
+    setEditModalOpen(false);
+    setItemToEdit(null);
+  };
 
   const create = () => {
     setItemToEdit(null);
     setCreateModalOpen(true);
   };
 
-  const edit = (record: Item) => {
-    setItemToEdit(record);
+  const onCreateMenuItem = async (values: Omit<MenuItem, 'MenuItemId'> & { imageBase64?: string }) => {
+    try {
+      const result = await createMenuItem(values, { revalidatePaths: ['/menu-items', '/tags'] });
+
+      onCloseMenuItemModal();
+
+      message.success(translation(
+        'Dashboard.section.message.create.success',
+        { entity: translation('common.entity.menuItem') },
+      ));
+
+      return true;
+    } catch (error) {
+      message.error(translation(
+        'Dashboard.section.message.create.error',
+        { entity: translation('common.entity.menuItem') },
+      ));
+
+      return false;
+    }
+  }
+
+  const edit = async (record: Item) => {
+    if (record.PictureURL) {
+      const base64image = await getBase64ImageFromURL(record.PictureURL);
+      const file = getFileFromBase64(base64image, `${record.MenuItemId}.jpg`);
+
+      setItemToEdit(omit({ ...record, image: [{...file, originFileObj: file}] }, ['key']));
+    } else {
+      setItemToEdit(omit(record, ['key']));
+    }
+
     setEditModalOpen(true);
   };
+
+  const onEditMenuItem = async (values: MenuItem & { imageBase64?: string }) => {
+    console.log(values);
+
+    try {
+      const result = await updateMenuItem(values, { revalidatePaths: ['/menu-items', '/tags'] });
+
+      onCloseMenuItemModal();
+
+      message.success(translation(
+        'Dashboard.section.message.update.success',
+        { entity: translation('common.entity.menuItem') },
+      ));
+
+      return true;
+    } catch (error) {
+      console.log(error);
+
+      message.error(translation(
+        'Dashboard.section.message.update.error',
+        { entity: translation('common.entity.menuItem') },
+      ));
+
+      return false;
+    }
+  }
+
+  const onDelete = async (record: Partial<Item> & { key: React.Key }) => {
+    try {
+      await deleteMenuItem(record as MenuItem, { revalidatePaths: ['/menu-items', '/tags'] });
+
+      message.success(translation(
+        'Dashboard.section.message.delete.success',
+        { entity: translation('common.entity.category') },
+      ));
+    } catch (error) {
+      message.error(translation(
+        'Dashboard.section.message.delete.error',
+        { entity: translation('common.entity.category') },
+      ));
+    }
+  }
 
   const columns = [
     {
       dataIndex: 'PictureURL',
+      title: translation('Dashboard.section.menuItems.image'),
       width: 150,
+      fixed: true,
       render: (text: string, record: Item) => {
+        const src = `${text}?v=${record._version || 1}`;
+
         return (
           <Image
-            src={text}
+            key={src}
+            src={src}
             alt={record.Name[currentLocale]}
             width={120}
             height={90}
@@ -64,8 +161,35 @@ const SectionMenuItems: React.FC<Props> = ({
         dataIndex: ['Name', locale],
         width: 200,
         editable: true,
-        fixed: locale === defaultLocale,
+        // fixed: locale === defaultLocale,
       }))
+    },
+    {
+      title: translation('Dashboard.section.categories.title'),
+      dataIndex: 'CategoryIds',
+      width: 150,
+      render: (categoryIds: string[]) => {
+        return categoryIds
+          .map((categoryId) => categories.find(({ CategoryId }) => CategoryId === categoryId))
+          .map((category) => category && <Tag key={category.CategoryId}>{category.Name[currentLocale]}</Tag>)
+      }
+    },
+    {
+      title: translation('Dashboard.section.tags.title'),
+      dataIndex: 'TagIds',
+      width: 150,
+      render: (tagIds: string[]) => {
+        return tagIds
+          .map((tagId) => tags.find(({ TagId }) => TagId === tagId))
+          .map((tag) => tag && <Tag key={tag.TagId}>{tag.Name[currentLocale]}</Tag>)
+      }
+    },
+    {
+      title: translation('Dashboard.section.menuItems.isRecommended'),
+      editable: false,
+      dataIndex: 'isRecommended',
+      width: 130,
+      render: (_: any, record: Item) => <Switch disabled checked={Boolean(record.isRecommended)} />,
     },
     {
       title: translation('common.subtitle'),
@@ -84,16 +208,6 @@ const SectionMenuItems: React.FC<Props> = ({
       }))
     },
     {
-      title: translation('Dashboard.section.tags.title'),
-      dataIndex: 'TagIds',
-      width: 150,
-      render: (tagIds: string[]) => {
-        return tagIds
-          .map((tagId) => tags.find(({ TagId }) => TagId === tagId))
-          .map((tag) => tag && <Tag key={tag.TagId}>{tag.Name[currentLocale]}</Tag>)
-      }
-    },
-    {
       title: translation('common.action'),
       fixed: 'right' as 'right',
       width: 260,
@@ -104,7 +218,6 @@ const SectionMenuItems: React.FC<Props> = ({
             <Button
               onClick={() => {
                 edit(record);
-                setEditModalOpen(true);
               }}
               type='link'
             >
@@ -112,7 +225,7 @@ const SectionMenuItems: React.FC<Props> = ({
             </Button>
             <Popconfirm
               title={translation('common.confirmation')}
-              onConfirm={() => console.log('delete')}
+              onConfirm={() => onDelete(record)}
             >
               <Button type='link'>{translation('common.button.delete')}</Button>
             </Popconfirm>
@@ -152,22 +265,26 @@ const SectionMenuItems: React.FC<Props> = ({
         />
       </Form>
 
-      <MenuItemModal
-        open={isCreateModalOpen}
-        onConfirm={console.log}
-        onCancel={() => setCreateModalOpen(false)}
-        tags={tags}
-        categories={categories}
-      />
+      {isCreateModalOpen && (
+        <MenuItemModal
+          open
+          onConfirm={onCreateMenuItem}
+          onCancel={onCloseMenuItemModal}
+          tags={tags}
+          categories={categories}
+        />
+      )}
 
-      <MenuItemModal
-        open={isEditModalOpen}
-        onConfirm={console.log}
-        onCancel={() => setCreateModalOpen(false)}
-        tags={tags}
-        itemToEdit={itemToEdit}
-        categories={categories}
-      />
+      {isEditModalOpen && (
+        <MenuItemModal
+          open
+          onConfirm={onEditMenuItem}
+          onCancel={onCloseMenuItemModal}
+          tags={tags}
+          itemToEdit={itemToEdit}
+          categories={categories}
+        />
+      )}
     </section>
   );
 };

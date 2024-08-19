@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth';
 
-import { getNormalizedMenu } from '@app/utils';
+import { getNormalizedMenu } from '@app/actions';
 
 import auth from '../../auth';
 import Index from './Index';

@@ -41,6 +41,7 @@ declare global {
   }
 
   interface MenuItem {
+    _version?: number;
     MenuItemId: string;
     Name: Translations;
     Description?: Translations,
