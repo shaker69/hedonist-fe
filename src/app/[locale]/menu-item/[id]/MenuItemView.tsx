@@ -31,8 +31,6 @@ export default function MenuItemView({ menuItem }: Props) {
   const locale = useLocale() as Locale;
   const formatter = useFormatter();
 
-  console.log('menuItem', menuItem);
-
   return (
     <PageLayout
       component="div"
@@ -61,7 +59,7 @@ export default function MenuItemView({ menuItem }: Props) {
             </figure>
             <div className="py-4 flex gap-2 items-end">
               <h1 className="text-xl font-semibold">{menuItem.Name[locale]}</h1>
-              {menuItem.Weight && <span className="text-sm/[0.75rem] leading-7 text-color-text-secondary">{formatWeight(formatter, menuItem)}</span>}
+              {!!menuItem.Weight && <span className="text-sm/[0.75rem] leading-7 text-color-text-secondary">{formatWeight(formatter, menuItem)}</span>}
             </div>
             <p className="py-4">{menuItem.Description?.[locale]}</p>
             <p className="py-4">{menuItem.Subtitle?.[locale]}</p>

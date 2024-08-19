@@ -38,7 +38,7 @@ export default function MenuItem({
   return (
     <figure
       className={`${className} h-60 max-w-sm relative bg-slate-600 rounded-2xl`}
-      // onClick={openMenuItemDetails}
+      onClick={openMenuItemDetails}
       onKeyUp={(e) => {
         e.preventDefault();
         ['Enter', ' '].includes(e.key) && openMenuItemDetails()
@@ -71,7 +71,7 @@ export default function MenuItem({
           {/* TODO: requirements says that ingredients stored in subtitle, but... just for future */}
           {/* {!!ingredientsString?.length && <p className="text-xxs/[0.75rem] text-color-text-secondary">{ingredientsString}</p>} */}
           {!!subTitle?.length && <p className="text-xxs/[0.75rem] text-color-text-secondary">{subTitle}</p>}
-          <p className="font-medium text-sm/[17px]">{formatCurrency(format, Price, Currency)}</p>
+          {!!Price && <p className="font-medium text-sm/[17px]">{formatCurrency(format, Price, Currency)}</p>}
         </section>
       </figcaption>
     </figure>

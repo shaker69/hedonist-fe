@@ -146,11 +146,7 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
 
         newData.splice(index, 1, updatedItem);
 
-        console.log('updatedItem', updatedItem);
-
         const res = await updateCategory(omit(updatedItem, 'key'), { revalidatePaths: ['/tags', '/categories'] });
-
-        console.log(res);
 
         message.success(translation(
           'Dashboard.section.message.update.success',

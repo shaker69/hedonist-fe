@@ -27,6 +27,7 @@ type Props = {
   // TODO: specify interface
   menu: any;
   appConfigs: AppConfigs;
+  filterTags: Tag[];
 };
 
 const chipsMap = {
@@ -35,7 +36,7 @@ const chipsMap = {
   ka: chipsKa,
 }
 
-export default function Index({ appConfigs, session, menu }: Props) {
+export default function Index({ appConfigs, session, menu, filterTags }: Props) {
   const { isGrid } = useViewContext();
   const locale = useLocale() as Locale;
 
@@ -47,7 +48,10 @@ export default function Index({ appConfigs, session, menu }: Props) {
 
       <div className="h-8 w-full bg-red bg-color-secondary rounded-t-[2rem]" />
 
-      <Tags className="sticky -top-[1px] z-[999]" />
+      <Tags
+        className="sticky -top-[1px] z-[999]"
+        tags={filterTags}
+      />
 
       <main className="flex-auto flex justify-center bg-color-secondary py-8 pb-20 text-color-primary overflow-hidden z-20">
         <ContentHolder className="flex flex-col gap-10">

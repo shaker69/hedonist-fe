@@ -3,31 +3,25 @@
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef } from "react";
 
-import { usePathname, useRouter } from "@app/navigation";
+import { locales, usePathname, useRouter } from "@app/navigation";
 import Button from "../Button";
 import ContentHolder from "../ContentHolder";
 
 import './Tags.css';
+import { useLocale } from "next-intl";
+import { sortBy } from "lodash-es";
 
 interface Props {
   className?: string;
+  tags: Tag[];
 }
-
-/* TODO: keep on DB */
-const tagsMock = [
-  { id: '0', name: '🤤' },
-  { id: '1', name: 'food' },
-  { id: '2', name: 'coffee' },
-  { id: '3', name: 'tea' },
-  { id: '4', name: 'cacao' },
-  { id: '5', name: 'promo' },
-];
 
 const TAG_FILTER = 'filter';
 
-export default function Tags({ className }: Props) {
+export default function Tags({ className, tags }: Props) {
   const stickyRef = useRef(null);
 
+  const currentLocale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -70,18 +64,22 @@ export default function Tags({ className }: Props) {
       className={`tags-wrapper flex bg-color-secondary ${className}`.trim()}
     >
       <ContentHolder className="flex gap-2 tags-container">
-        {tagsMock.map(({ id, name }) => {
-          const isActive = searchParams.get('filter') === id;
+        {[
+          { TagId: 'isRecommended', Name: locales.reduce((r, l) => ({ ...r, [l]: '🤤' }), {}) } as Tag,
+          ...sortBy(tags, 'createdAt'),
+        ].map(({ TagId, Name }) => {
+          const isActive = searchParams.get('filter') === TagId;
           const textColorClass = isActive ? 'secondary' : 'primary';
           const bgColorClass = isActive ? 'primary' : 'secondary';
           const btnClass = `transition-colors border rounded-full border-black py-2 px-4 bg-color-${bgColorClass} text-color-${textColorClass}`;
+          
 
           return (
             <Button
-              key={id}
+              key={TagId}
               active={isActive}
-              label={name}
-              onClick={() => onSelectedChange(id)}
+              label={Name[currentLocale]}
+              onClick={() => onSelectedChange(TagId)}
               className={btnClass}
             />
           )

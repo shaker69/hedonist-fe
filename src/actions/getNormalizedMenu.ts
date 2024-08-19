@@ -4,9 +4,9 @@ import { sortBy } from "lodash-es";
 import { getAllCategories } from "./categories";
 import { getAllMenuItems } from "./menuItems";
 
-export const getNormalizedMenu = async (locale: Locale) => {
-  const menuItems = await getAllMenuItems().then(data => sortBy(data, ['updatedAt'] ));
-  const categories = await getAllCategories().then(data => sortBy(data, ['updatedAt'] ));
+export const getNormalizedMenu = async (locale: Locale, filter = '') => {
+  const menuItems = await getAllMenuItems().then(data => sortBy(data, ['createdAt'] ));
+  const categories = await getAllCategories().then(data => sortBy(data, ['createdAt'] ));
 
   const formattedMenuItems = menuItems.map((menuItem) => ({
     ...menuItem,
