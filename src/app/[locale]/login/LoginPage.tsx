@@ -6,7 +6,7 @@ import { signIn } from 'next-auth/react';
 import { useLocale, useTranslations } from 'next-intl';
 
 import { LocaleSwitcher, PageLayout } from '@app/components';
-import { useRouter } from '@app/navigation';
+import { locales, useRouter } from '@app/navigation';
 
 import Logo from '@public/logo-inverted.svg';
 
@@ -22,15 +22,11 @@ interface Props {
 
 export default function LoginPage({}: Props) {
   const params = useSearchParams();
-  const locale = useLocale();
   const t = useTranslations('Login');
   const router = useRouter();
 
-  let callbackUrl = params.get('callbackUrl') as string || '/';
-
-  if (callbackUrl.startsWith(`/${locale}`)) {
-    callbackUrl = callbackUrl.replace(`/${locale}`, `/`);
-  }
+  const localePattern = new RegExp(`^/(${locales.join('|')})`);
+  const callbackUrl = params.get('callbackUrl')?.replace(localePattern, '') || '/';
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     await signIn('credentials', {
