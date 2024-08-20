@@ -26,18 +26,22 @@ export default function LoginPage({}: Props) {
   const t = useTranslations('Login');
   const router = useRouter();
 
-  const callbackUrl = params.get('callbackUrl');
+  let callbackUrl = params.get('callbackUrl') as string || '/';
+
+  if (callbackUrl.startsWith(`/${locale}`)) {
+    callbackUrl = callbackUrl.replace(`/${locale}`, `/`);
+  }
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     await signIn('credentials', {
       ...values,
-      redirect: false
+      redirect: false,
     }).then((result) => {
       if (result?.error) {
         message.config({ top: 630 });
         message.error(t('error', { error: result.error }));
       } else {
-        router.push(callbackUrl || `/`);
+        router.push(callbackUrl);
       }
     });
   };
