@@ -17,6 +17,16 @@ const nextConfig = {
       pathname: '/**',
     },],
   },
+  async redirects() {
+    return [
+      // Basic redirect
+      {
+        source: '/dashboard',
+        destination: '/dashboard/about',
+        permanent: true,
+      },
+    ]
+  },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
