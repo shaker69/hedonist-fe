@@ -46,7 +46,7 @@ export default function SectionConfigs({ configs, tags }: Props) {
       ...values,
       TagFilters: values.TagFilters?.filter((tagId) => tagId !== defaultOptionValue),
     };
-  
+
     const data = {
       ...configs,
       ...formValues,
@@ -80,45 +80,45 @@ export default function SectionConfigs({ configs, tags }: Props) {
           onFinish={handleSubmit(onFinish)}
           className="flex-auto flex flex-col"
         >
-          <div className="flex-auto">
-          <FormFieldWrapper
-            id="tags"
-            label={translation(`Dashboard.section.configs.tagsFilter`)}
-          >
-            <Form.Item>
-              <Controller
-                name="TagFilters"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    id="tags"
-                    mode="tags"
-                    options={getTagsOptions(tags, currentLocale)}
-                    {...field}
-                  />
-                )}
-              />
-            </Form.Item>
-          </FormFieldWrapper>
+          <div className="flex-auto flex">
+            <FormFieldWrapper
+              id="tags"
+              label={translation(`Dashboard.section.configs.tagsFilter`)}
+              labelLg
+            >
+              <Form.Item>
+                <Controller
+                  name="TagFilters"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      id="tags"
+                      mode="tags"
+                      options={getTagsOptions(tags, currentLocale)}
+                      {...field}
+                    />
+                  )}
+                />
+              </Form.Item>
+            </FormFieldWrapper>
+            <div className={`h-full w-60`} />
           </div>
 
           <footer className="flex justify-end items-center">
-            <Form.Item>
-              <Button
-                htmlType="reset"
-                className="mr-4"
-                disabled={!isDirty}
-              >
-                {translation('form.action.cancel')}
-              </Button>
-              <Button
-                type="primary"
-                htmlType="submit"
-                disabled={!isDirty}
-              >
-                {translation('form.action.submit')}
-              </Button>
-            </Form.Item>
+            <Button
+              htmlType="reset"
+              className="mr-4"
+              disabled={!isDirty}
+            >
+              {translation('form.action.cancel')}
+            </Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              disabled={!isDirty}
+            >
+              {translation('form.action.submit')}
+            </Button>
           </footer>
         </Form>
       </div>

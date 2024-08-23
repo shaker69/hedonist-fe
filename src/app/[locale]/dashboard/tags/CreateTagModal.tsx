@@ -61,7 +61,7 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
       component={false}
     >
       <Modal
-        title={translation('Dashboard.section.tags.new')}
+        title={<span className="text-xl">{translation('Dashboard.section.tags.new')}</span>}
         open={open}
         onOk={handleSubmit(handleOk)}
         confirmLoading={confirmLoading}

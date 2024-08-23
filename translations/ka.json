@@ -95,7 +95,12 @@
         "isRecommended": "Recommended by Hedonist",
         "weight": "Weight",
         "price": "Price",
-        "empty": "Looks like there aren't any items here yet.\nAdd an item to organize your menu navigation and content"
+        "empty": "Looks like there aren't any items here yet.\nAdd an item to organize your menu navigation and content",
+        "fieldDescription": {
+          "image": "Load .jpeg files",
+          "description": "Description is optional. Displayed on the menu item page",
+          "isRecommended": "Menu item will be marked with emoji"
+        }
       },
       "configs": {
         "title": "Configs",

@@ -189,7 +189,7 @@ const SectionMenuItems: React.FC<Props> = ({
       title: translation('Dashboard.section.menuItems.isRecommended'),
       editable: false,
       dataIndex: 'isRecommended',
-      width: 130,
+      width: 135,
       render: (_: any, record: Item) => <Switch disabled checked={Boolean(record.isRecommended)} />,
     },
     {

@@ -101,7 +101,7 @@ const MenuItemModal: React.FC<Props> = ({
       onFinish={handleSubmit(handleOk)}
     >
       <Modal
-        title={translation(`Dashboard.section.menuItems.${itemToEdit ? 'edit' : 'new'}`)}
+        title={<span className="text-xl">{translation(`Dashboard.section.menuItems.${itemToEdit ? 'edit' : 'new'}`)}</span>}
         open={open}
         onOk={handleSubmit(handleOk)}
         confirmLoading={confirmLoading}
@@ -111,17 +111,16 @@ const MenuItemModal: React.FC<Props> = ({
         okButtonProps={{
           disabled: !isDirty
         }}
+        classNames={{
+          body: "flex flex-col gap-5"
+        }}
         width="50%"
         maskClosable={false}
       >
         <FormFieldWrapper
           id="image"
-          label={(
-            <span className="flex flex-col">
-              {translation('Dashboard.section.menuItems.image')}
-              <span className="text-sm font-normal text-gray-400">.jpeg</span>
-            </span>
-          )}
+          label={translation('Dashboard.section.menuItems.image')}
+          sub={translation('Dashboard.section.menuItems.fieldDescription.image')}
         >
           <Form.Item>
             <Controller
@@ -179,8 +178,6 @@ const MenuItemModal: React.FC<Props> = ({
           </Form.Item>
         </FormFieldWrapper>
 
-        <Divider />
-
         <FormFieldWrapper
           id="name"
           label={translation('common.name')}
@@ -203,11 +200,10 @@ const MenuItemModal: React.FC<Props> = ({
           ))}
         </FormFieldWrapper>
 
-        <Divider />
-
         <FormFieldWrapper
           id="description"
           label={translation('common.description')}
+          sub={translation('Dashboard.section.menuItems.fieldDescription.description')}
         >
           {locales.map((l) => (
             <Form.Item
@@ -225,8 +221,6 @@ const MenuItemModal: React.FC<Props> = ({
             </Form.Item>
           ))}
         </FormFieldWrapper>
-
-        <Divider />
 
         <FormFieldWrapper
           id="ingredients"
@@ -252,6 +246,7 @@ const MenuItemModal: React.FC<Props> = ({
         <FormFieldWrapper
           id="isRecommended"
           label={translation('Dashboard.section.menuItems.isRecommended')}
+          sub={translation('Dashboard.section.menuItems.fieldDescription.isRecommended')}
         >
           <Form.Item>
             <Controller

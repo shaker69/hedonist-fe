@@ -104,7 +104,7 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
             </Form.Item>
           ))}
         </FormFieldWrapper>
-        <Divider />
+
         <FormFieldWrapper
           id="tags"
           label={translation('Dashboard.section.tags.title')}
@@ -122,7 +122,7 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
             )}
           />
         </FormFieldWrapper>
-        <Divider />
+
         <FormFieldWrapper
           id="description"
           label={translation('common.description')}
@@ -143,7 +143,7 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
             </Form.Item>
           ))}
         </FormFieldWrapper>
-        <Divider />
+
         <FormFieldWrapper
           id="isAllDay"
           label={translation('Dashboard.section.categories.allDay')}

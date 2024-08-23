@@ -1,6 +1,13 @@
 'use client'
 
-import { Button, Divider, Form, FormProps, Input, message, TimePicker } from "antd";
+import {
+  Button,
+  Form,
+  FormProps,
+  Input,
+  message,
+  TimePicker,
+} from "antd";
 import { Dayjs } from "dayjs";
 import { get } from 'lodash-es';
 import { useTranslations } from "next-intl";
@@ -80,83 +87,85 @@ export default function SectionAbout({ configs }: Props) {
   }
 
   return (
-    <section className="flex flex-col gap-5">
+    <section className="flex-auto flex flex-col gap-5">
       <h1 className="mt-6 text-color-primary text-3xl font-semibold">{translation(`Dashboard.section.about.title`)}</h1>
 
-      <div className="flex-auto flex flex-col p-6 bg-white rounded-xl">
+      <div className="flex-auto flex p-6 bg-white rounded-xl">
         <Form
           onFinish={handleSubmit(onFinish!)}
-          className="flex-auto flex flex-col"
+          className="flex-auto flex flex-col gap-5"
         >
-          <div className="flex-auto flex flex-col gap-3 max-w-max">
-            <FormFieldWrapper
-              id="workingHours"
-              label={translation(`Dashboard.section.about.workingHours`)}
-            >
-              <Form.Item
-                validateStatus={get(formErrors, aboutUsFieldNames.workingHours) && "error"}
-                help={get(formErrors, aboutUsFieldNames.workingHours)?.message as ReactNode}
+          <div className="flex-auto flex">
+            <div className="flex-auto flex flex-col gap-14">
+              <FormFieldWrapper
+                id="workingHours"
+                label={translation(`Dashboard.section.about.workingHours`)}
+                labelLg
               >
-                <Controller
-                  name="WorkingHours"
-                  control={control}
-                  rules={{ required: { value: true, message: translation('form.validation.required') } }}
-                  render={({ field }) => (
-                    <TimePicker.RangePicker
-                      id="workingHours"
-                      {...field}
-                      value={field.value}
-                    />
-                  )}
-                />
-              </Form.Item>
-            </FormFieldWrapper>
-
-            <Divider />
-
-            <FormFieldWrapper
-              id="address"
-              label={translation(`Dashboard.section.about.address`)}
-            >
-              {locales.map((locale) => (
                 <Form.Item
-                  key={locale}
-                  layout="vertical"
-                  label={translation(`common.locale.${locale}`)}
-                  validateStatus={(defaultLocale === locale && get(formErrors, [aboutUsFieldNames.address])) ? "error" : "success"}
-                  help={get(formErrors, aboutUsFieldNames.address)?.message as ReactNode}
+                  style={{ marginBottom: 0 }}
+                  validateStatus={get(formErrors, aboutUsFieldNames.workingHours) && "error"}
+                  help={get(formErrors, aboutUsFieldNames.workingHours)?.message as ReactNode}
                 >
                   <Controller
-                    name={`Address.${locale}`}
+                    name="WorkingHours"
                     control={control}
-                    rules={{ required: { value: locale === defaultLocale, message: translation('form.validation.required') } }}
-                    render={({ field }) => <Input id="address" {...field} />}
+                    rules={{ required: { value: true, message: translation('form.validation.required') } }}
+                    render={({ field }) => (
+                      <TimePicker.RangePicker
+                        id="workingHours"
+                        {...field}
+                        value={field.value}
+                      />
+                    )}
                   />
                 </Form.Item>
-              ))}
-            </FormFieldWrapper>
+              </FormFieldWrapper>
 
-            <Divider />
-
-            <FormFieldWrapper
-              id="instagram"
-              label={translation(`Dashboard.section.about.socialNetworks`)}
-            >
-              <Form.Item
-                layout="vertical"
-                label={translation(`Dashboard.section.about.instagram`)}
+              <FormFieldWrapper
+                id="address"
+                label={translation(`Dashboard.section.about.address`)}
+                labelLg
               >
-                <Controller
-                  name="Instagram"
-                  control={control}
-                  render={({ field }) => <Input id="instagram" {...field} />}
-                />
-              </Form.Item>
-            </FormFieldWrapper>
+                {locales.map((locale) => (
+                  <Form.Item
+                    key={locale}
+                    layout="vertical"
+                    label={<span className="font-semibold">{translation(`common.locale.${locale}`)}</span>}
+                    validateStatus={(defaultLocale === locale && get(formErrors, [aboutUsFieldNames.address])) ? "error" : "success"}
+                    help={get(formErrors, aboutUsFieldNames.address)?.message as ReactNode}
+                  >
+                    <Controller
+                      name={`Address.${locale}`}
+                      control={control}
+                      rules={{ required: { value: locale === defaultLocale, message: translation('form.validation.required') } }}
+                      render={({ field }) => <Input id="address" {...field} />}
+                    />
+                  </Form.Item>
+                ))}
+              </FormFieldWrapper>
+
+              <FormFieldWrapper
+                id="instagram"
+                label={translation(`Dashboard.section.about.socialNetworks`)}
+                labelLg
+              >
+                <Form.Item
+                  layout="vertical"
+                  label={<span className="font-semibold">{translation(`Dashboard.section.about.instagram`)}</span>}
+                >
+                  <Controller
+                    name="Instagram"
+                    control={control}
+                    render={({ field }) => <Input id="instagram" {...field} />}
+                  />
+                </Form.Item>
+              </FormFieldWrapper>
+            </div>
+            <div className={`h-full w-60`} />
           </div>
 
           <footer className="flex justify-end items-center">
-            <Form.Item>
               <Button
                 htmlType="reset"
                 className="mr-4"
@@ -171,7 +180,6 @@ export default function SectionAbout({ configs }: Props) {
               >
                 {translation('form.action.submit')}
               </Button>
-            </Form.Item>
           </footer>
         </Form>
       </div>

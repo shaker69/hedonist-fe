@@ -17,7 +17,7 @@ type Props = {
   params: { locale: string };
 };
 
-export default async function LocaleLayout({children, params: {locale}}: Props) {
+export default async function LocaleLayout({ children, params: { locale } }: Props) {
   const messages = await getMessages();
 
   return (
@@ -32,7 +32,6 @@ export default async function LocaleLayout({children, params: {locale}}: Props) 
             <ConfigProvider
               theme={{
                 token: {
-                  colorPrimary: "#191919",
                   colorInfo: "#191919",
                   colorError: "#ed7f7f",
                   colorWarning: "#f4cd6a",
@@ -40,6 +39,29 @@ export default async function LocaleLayout({children, params: {locale}}: Props) 
                   wireframe: true,
                   colorSuccess: "#dffa5a"
                 },
+                components: {
+                  Button: {
+                    colorPrimary: "#191919",
+                    // colorBgContainerDisabled: "rgb(148,148,148)",
+                    // colorTextDisabled: "rgb(245,245,245)",
+                    colorPrimaryHover: "#191919",
+                    colorPrimaryActive: "#191919",
+                    defaultHoverBg: "#f5f5f5",
+                    defaultHoverBorderColor: "#D1D1D1",
+                    defaultActiveBg: "#e6e6e6",
+                    defaultActiveBorderColor: "#bdbdbd",
+                    defaultActiveColor: "#191919",
+                    defaultShadow: '',
+                    primaryShadow: '',
+                  },
+                  Input: {
+                    activeBorderColor: "#1677ff",
+                    hoverBorderColor: "#4096ff"
+                  },
+                  DatePicker: {
+                    colorPrimary: "#1677ff"
+                  },
+                }
               }}
             >
               <ViewContextProvider>
