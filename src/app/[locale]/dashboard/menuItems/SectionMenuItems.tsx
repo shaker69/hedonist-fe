@@ -237,10 +237,10 @@ const SectionMenuItems: React.FC<Props> = ({
   ];
 
   return (
-    <>
-      <section className="flex flex-col gap-8 flex-auto">
-        <div className="mt-8 flex justify-between items-center">
-          <h1 className="text-semibold text-3xl">
+    <section className="flex-auto flex flex-col gap-5">
+      <section className="flex flex-col gap-5 flex-auto">
+        <div className="mt-6 flex justify-between items-center">
+          <h1 className="font-semibold text-3xl">
             {translation('Dashboard.section.menuItems.title')}
             <span className="pl-1 text-2xl">{`(${menuItems.length})`}</span>
           </h1>
@@ -251,6 +251,27 @@ const SectionMenuItems: React.FC<Props> = ({
           >
             {translation('common.entity.menuItem')}
           </Button>
+
+          {isCreateModalOpen && (
+            <MenuItemModal
+              open
+              onConfirm={onCreateMenuItem}
+              onCancel={onCloseMenuItemModal}
+              tags={tags}
+              categories={categories}
+            />
+          )}
+
+          {isEditModalOpen && (
+            <MenuItemModal
+              open
+              onConfirm={onEditMenuItem}
+              onCancel={onCloseMenuItemModal}
+              tags={tags}
+              itemToEdit={itemToEdit}
+              categories={categories}
+            />
+          )}
         </div>
 
         {
@@ -283,28 +304,7 @@ const SectionMenuItems: React.FC<Props> = ({
 
         }
       </section>
-
-      {isCreateModalOpen && (
-        <MenuItemModal
-          open
-          onConfirm={onCreateMenuItem}
-          onCancel={onCloseMenuItemModal}
-          tags={tags}
-          categories={categories}
-        />
-      )}
-
-      {isEditModalOpen && (
-        <MenuItemModal
-          open
-          onConfirm={onEditMenuItem}
-          onCancel={onCloseMenuItemModal}
-          tags={tags}
-          itemToEdit={itemToEdit}
-          categories={categories}
-        />
-      )}
-    </>
+    </section>
   );
 };
 

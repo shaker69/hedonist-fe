@@ -62,7 +62,10 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
   }
 
   return (
-    <Form form={form}>
+    <Form
+      form={form}
+      component={false}
+    >
       <Modal
         title={<span className="text-xl">{translation('Dashboard.section.categories.new')}</span>}
         open={open}

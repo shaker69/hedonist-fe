@@ -56,7 +56,10 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
   }
 
   return (
-    <Form form={form}>
+    <Form
+      form={form}
+      component={false}
+    >
       <Modal
         title={translation('Dashboard.section.tags.new')}
         open={open}

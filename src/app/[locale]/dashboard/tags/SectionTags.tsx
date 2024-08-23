@@ -261,9 +261,9 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
 
   return (
     <>
-      <section className="flex flex-col gap-8 flex-auto">
-        <div className="mt-8 flex justify-between items-center">
-          <h1 className="text-semibold text-3xl">
+      <section className="flex flex-col gap-5 flex-auto">
+        <div className="mt-6 flex justify-between items-center">
+          <h1 className="font-semibold text-3xl">
             {translation('Dashboard.section.tags.title')}
             <span className="pl-1 text-2xl">{`(${data.length})`}</span>
           </h1>
@@ -274,6 +274,12 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
           >
             {translation('common.entity.tag')}
           </Button>
+
+          <CreateTagModal
+            open={isCreateModalOpen}
+            onConfirm={onCreate}
+            onCancel={() => setCreateModalOpen(false)}
+          />
         </div>
 
         {
@@ -281,23 +287,23 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
             ? (
               <section className="flex-auto bg-white rounded-xl">
                 <Form form={form} component={false}>
-                <Table
-                  components={{
-                    body: {
-                      cell: EditableCell,
-                    },
-                  }}
-                  className="dashboard-table-w"
-                  rowKey="key"
-                  bordered
-                  virtual
-                  scroll={{ y: window.innerHeight - 254, x: true }}
-                  dataSource={data}
-                  columns={mergedColumns}
-                  rowClassName="editable-row"
-                  pagination={false}
-                />
-              </Form>
+                  <Table
+                    components={{
+                      body: {
+                        cell: EditableCell,
+                      },
+                    }}
+                    className="dashboard-table-w"
+                    rowKey="key"
+                    bordered
+                    virtual
+                    scroll={{ y: window.innerHeight - 254, x: true }}
+                    dataSource={data}
+                    columns={mergedColumns}
+                    rowClassName="editable-row"
+                    pagination={false}
+                  />
+                </Form>
               </section>
             )
             : (
@@ -307,12 +313,6 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
             )
         }
       </section>
-
-      <CreateTagModal
-        open={isCreateModalOpen}
-        onConfirm={onCreate}
-        onCancel={() => setCreateModalOpen(false)}
-      />
     </>
   );
 };

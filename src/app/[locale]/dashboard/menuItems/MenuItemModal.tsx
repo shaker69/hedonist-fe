@@ -96,6 +96,7 @@ const MenuItemModal: React.FC<Props> = ({
 
   return (
     <Form
+      component={false}
       {...formItemLayout}
       onFinish={handleSubmit(handleOk)}
     >

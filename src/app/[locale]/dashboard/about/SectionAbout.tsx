@@ -80,8 +80,8 @@ export default function SectionAbout({ configs }: Props) {
   }
 
   return (
-    <>
-      <h1 className="text-color-primary text-3xl font-semibold my-6">{translation(`Dashboard.section.about.title`)}</h1>
+    <section className="flex flex-col gap-5">
+      <h1 className="mt-6 text-color-primary text-3xl font-semibold">{translation(`Dashboard.section.about.title`)}</h1>
 
       <div className="flex-auto flex flex-col p-6 bg-white rounded-xl">
         <Form
@@ -158,7 +158,6 @@ export default function SectionAbout({ configs }: Props) {
           <footer className="flex justify-end items-center">
             <Form.Item>
               <Button
-                type="link"
                 htmlType="reset"
                 className="mr-4"
                 disabled={!isDirty}
@@ -176,6 +175,6 @@ export default function SectionAbout({ configs }: Props) {
           </footer>
         </Form>
       </div>
-    </>
+    </section>
   )
 }

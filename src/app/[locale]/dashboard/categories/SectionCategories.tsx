@@ -335,9 +335,9 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
 
   return (
     <>
-      <section className="flex flex-col gap-8 flex-auto">
-        <div className="mt-8 flex justify-between items-center">
-          <h1 className="text-semibold text-3xl">
+      <section className="flex flex-col gap-5 flex-auto">
+        <div className="mt-6 flex justify-between items-center">
+          <h1 className="font-semibold text-3xl">
             {translation('Dashboard.section.categories.title')}
             <span className="pl-1 text-2xl">{`(${data.length})`}</span>
           </h1>
@@ -348,6 +348,13 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
           >
             {translation('common.entity.category')}
           </Button>
+
+          <CreateCategoryModal
+            open={isCreateModalOpen}
+            onConfirm={onCreate}
+            onCancel={() => setCreateModalOpen(false)}
+            tags={tags}
+          />
         </div>
 
         {
@@ -381,13 +388,6 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
             )
         }
       </section>
-
-      <CreateCategoryModal
-        open={isCreateModalOpen}
-        onConfirm={onCreate}
-        onCancel={() => setCreateModalOpen(false)}
-        tags={tags}
-      />
     </>
   );
 };

@@ -44,7 +44,7 @@ export default function DashboardLayout({ children, params: { locale } }: Props)
   ), [pathname]);
 
   return (
-    <div className="p-5 min-h-svh flex bg-color-secondary gap-8">
+    <div className="p-5 min-h-svh flex bg-color-secondary gap-5">
       <aside className="w-[18rem] p-3 flex flex-col gap-3 justify-between bg-color-primary rounded-3xl">
         <div className="flex flex-col gap-5">
           <div className="mt-4 flex items-center">
@@ -77,7 +77,7 @@ export default function DashboardLayout({ children, params: { locale } }: Props)
         </div>
         <section className="flex flex-col gap-3 items-start">
           <Button onClick={() => signOut()}>
-            <span className="p-4 rounded-xl inline-flex gap-1 items-center hover:bg-white/30">
+            <span className="p-4 rounded-xl inline-flex gap-2 items-center hover:bg-white/30">
               <IconExit />
               <span className="text-sm">{translation('logout')}</span>
             </span>
@@ -85,7 +85,7 @@ export default function DashboardLayout({ children, params: { locale } }: Props)
         </section>
       </aside>
 
-      <section className="flex-auto flex flex-col gap-2 text-color-primary font-semibold">
+      <section className="flex-auto flex flex-col gap-1 text-color-primary">
         {children}
       </section>
     </div>

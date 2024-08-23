@@ -72,8 +72,8 @@ export default function SectionConfigs({ configs, tags }: Props) {
   }
 
   return (
-    <>
-      <h1 className="text-color-primary text-3xl font-semibold my-6">{translation(`Dashboard.section.configs.title`)}</h1>
+    <section className="flex-auto flex flex-col gap-5">
+      <h1 className="mt-6 text-color-primary text-3xl font-semibold">{translation(`Dashboard.section.configs.title`)}</h1>
 
       <div className="flex-auto flex flex-col p-6 bg-white rounded-xl">
         <Form
@@ -105,7 +105,6 @@ export default function SectionConfigs({ configs, tags }: Props) {
           <footer className="flex justify-end items-center">
             <Form.Item>
               <Button
-                type="link"
                 htmlType="reset"
                 className="mr-4"
                 disabled={!isDirty}
@@ -123,6 +122,6 @@ export default function SectionConfigs({ configs, tags }: Props) {
           </footer>
         </Form>
       </div>
-    </>
+    </section>
   )
 }
