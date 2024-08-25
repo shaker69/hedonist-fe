@@ -18,6 +18,8 @@
     "icon": "Иконка",
     "confirmation": "Вы уверены?",
     "description": "Описание",
+    "price": "Цена",
+    "weight": "Вес",
     "subtitle": "Подзаголовок",
     "button": {
       "save": "Сохранить",

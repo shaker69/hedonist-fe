@@ -19,6 +19,8 @@
     "confirmation": "Are you sure?",
     "description": "Description",
     "subtitle": "Subtitle",
+    "price": "Price",
+    "weight": "Weight",
     "button": {
       "save": "Save",
       "edit": "Edit",
@@ -93,8 +95,8 @@
         "image": "Image",
         "ingredients": "Ingredients",
         "isRecommended": "Recommended by Hedonist",
-        "weight": "Weight",
-        "price": "Price",
+        "weight": "Weight ({unit})",
+        "price": "Price ({unit})",
         "empty": "Looks like there aren't any items here yet.\nAdd an item to organize your menu navigation and content",
         "fieldDescription": {
           "image": "Load .jpeg files",

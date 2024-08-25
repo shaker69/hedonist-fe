@@ -167,14 +167,14 @@ const SectionMenuItems: React.FC<Props> = ({
       }))
     },
     {
-      title: translation('Dashboard.section.menuItems.price'),
+      title: translation('common.price'),
       dataIndex: 'Price',
       width: 110,
       editable: true,
       render: (val: string) => val ? `${val} ₾` : <NoValue />,
     },
     {
-      title: translation('Dashboard.section.menuItems.weight'),
+      title: translation('common.weight'),
       dataIndex: 'Weight',
       width: 110,
       editable: true,
