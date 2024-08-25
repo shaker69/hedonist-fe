@@ -84,6 +84,7 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
           header: "modal-header",
         }}
         width={800}
+        maskClosable={false}
       >
         <FormFieldWrapper
           label={translation('common.name')}
@@ -100,7 +101,12 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
               <Controller
                 name={`Name.${l}`}
                 control={control}
-                rules={{ required: { value: l === defaultLocale, message: translation('form.validation.required') } }}
+                rules={{
+                  required: {
+                    value: l === defaultLocale,
+                    message: translation('form.validation.required')
+                  },
+                }}
                 render={({ field }) => <Input id="name" {...field} />}
               />
             </Form.Item>

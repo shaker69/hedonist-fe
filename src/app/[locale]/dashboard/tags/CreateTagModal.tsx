@@ -77,6 +77,7 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
           header: "modal-header",
         }}
         width={800}
+        maskClosable={false}
       >
         <FormFieldWrapper
           id="name"

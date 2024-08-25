@@ -40,7 +40,8 @@ body {
   }
 }
 
-.ant-form-item {
+.ant-form-item,
+.ant-col.ant-form-item-control {
   max-width: 100%;
 }
 
