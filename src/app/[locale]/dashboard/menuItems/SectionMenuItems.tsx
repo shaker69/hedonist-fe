@@ -95,8 +95,6 @@ const SectionMenuItems: React.FC<Props> = ({
   };
 
   const onEditMenuItem = async (values: MenuItem & { imageBase64?: string }) => {
-    console.log(values);
-
     try {
       const result = await updateMenuItem(values, { revalidatePaths: ['/menu-items', '/tags'] });
 

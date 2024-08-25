@@ -48,7 +48,7 @@ declare global {
     Subtitle?: Translations;
     CategoryIds: string[];
     IngredientIds?: string[];
-    PictureURL: string;
+    PictureURL?: string;
     PictureObjectPosition?: [number | string, number | string];
     Price: number | string;
     Currency?: string;

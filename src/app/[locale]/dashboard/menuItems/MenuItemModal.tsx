@@ -69,6 +69,8 @@ const MenuItemModal: React.FC<Props> = ({
     }
   });
 
+  console.log('getValues', getValues())
+
   const formErrors = formState.errors;
   const isDirty = formState.isDirty;
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -90,6 +92,7 @@ const MenuItemModal: React.FC<Props> = ({
     const success = await onConfirm(omit({
       ...(itemToEdit || {}),
       ...values,
+      PictureURL: isDirty && !imageBase64 ? undefined : itemToEdit?.PictureURL,
       imageBase64,
     }, ['image']));
 

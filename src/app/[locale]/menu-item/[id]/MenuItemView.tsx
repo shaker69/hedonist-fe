@@ -13,6 +13,7 @@ import { useRouter } from '@app/navigation';
 import { formatCurrency } from '@app/utils';
 
 import ArrowBack from '@public/icon-arrow-left.svg';
+import imagePlaceholder from '@public/image-placeholder.svg?url';
 
 interface Props {
   menuItem?: MenuItem,
@@ -53,7 +54,7 @@ export default function MenuItemView({ menuItem }: Props) {
           <ContentHolder className="">
             <figure className="mb-4 relative h-60 w-full">
               <Image
-                src={menuItem.PictureURL}
+                src={menuItem.PictureURL || imagePlaceholder}
                 alt={menuItem.Name[locale]}
                 className="rounded-2xl"
                 fill={true}
