@@ -39,7 +39,8 @@
   },
   "form": {
     "validation": {
-      "required": "Please fill the field"
+      "required": "Please fill the field",
+      "priceWeightChars": "Only numeric, \"\/\", and \".\" allowed"
     },
     "action": {
       "submit": "Submit",

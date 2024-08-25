@@ -77,7 +77,7 @@ const MenuItemModal: React.FC<Props> = ({
 
     const success = await onConfirm(omit({
       ...(itemToEdit || {}),
-    ...values,
+      ...values,
       imageBase64,
     }, ['image']));
 
@@ -92,6 +92,17 @@ const MenuItemModal: React.FC<Props> = ({
     reset();
     onCancel();
   }
+
+  const validateNumericInput = (value?: string | number) => {
+    if (!value) return true;
+
+    const regex = /^[0-9./]*$/;
+
+    if (!regex.test(typeof value === 'string' ? value : value.toString())) {
+      return translation('form.validation.priceWeightChars');
+    }
+    return true;
+  };
 
   return (
     <Form
@@ -122,8 +133,8 @@ const MenuItemModal: React.FC<Props> = ({
           sub={translation('Dashboard.section.menuItems.fieldDescription.image')}
         >
           <Form.Item
-            // validateStatus={get(formErrors, 'image') && "error"}
-            // help={get(formErrors, 'image')?.message as ReactNode}
+          // validateStatus={get(formErrors, 'image') && "error"}
+          // help={get(formErrors, 'image')?.message as ReactNode}
           >
             <Controller
               name="image"
@@ -200,7 +211,8 @@ const MenuItemModal: React.FC<Props> = ({
                   required: {
                     value: Boolean(l === defaultLocale || itemToEdit?.MenuItemId),
                     message: translation('form.validation.required'),
-                  } }}
+                  }
+                }}
               />
             </Form.Item>
           ))}
@@ -267,42 +279,52 @@ const MenuItemModal: React.FC<Props> = ({
           id="weight"
           label={translation('Dashboard.section.menuItems.weight', { unit: translation('common.unit.gram.short') })}
         >
-          <Controller
-            name="Weight"
-            control={control}
-            render={({ field }) => (
-              <Input
-                id="weight"
-                className="ant-col-xs-24 ant-col-sm-18"
-                {...field}
-              />
-              // <InputNumber
-              //   id="weight"
-              //   {...field}
-              // />
-            )}
-          />
+          <Form.Item
+            validateStatus={formErrors.Weight ? 'error' : ''}
+            help={formErrors.Weight ? formErrors.Weight.message : null}
+          >
+            <Controller
+              name="Weight"
+              control={control}
+              rules={{ validate: validateNumericInput }}
+              render={({ field }) => (
+                <Input
+                  id="weight"
+                  {...field}
+                />
+                // <InputNumber
+                //   id="weight"
+                //   {...field}
+                // />
+              )}
+            />
+          </Form.Item>
         </FormFieldWrapper>
 
         <FormFieldWrapper
           id="price"
           label={translation('Dashboard.section.menuItems.price', { unit: '₾' })}
         >
-          <Controller
-            name="Price"
-            control={control}
-            render={({ field }) => (
-              <Input
-                id="price"
-                className="ant-col-xs-24 ant-col-sm-18"
-                {...field}
-              />
-              // <InputNumber
-              //   id="price"
-              //   {...field}
-              // />
-            )}
-          />
+          <Form.Item
+            validateStatus={formErrors.Price ? 'error' : ''}
+            help={formErrors.Price ? formErrors.Price.message : null}
+          >
+            <Controller
+              name="Price"
+              control={control}
+              rules={{ validate: validateNumericInput }}
+              render={({ field }) => (
+                <Input
+                  id="price"
+                  {...field}
+                />
+                // <InputNumber
+                //   id="price"
+                //   {...field}
+                // />
+              )}
+            />
+          </Form.Item>
         </FormFieldWrapper>
       </Modal>
     </Form>

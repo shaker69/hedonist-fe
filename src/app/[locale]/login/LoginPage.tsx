@@ -82,7 +82,7 @@ export default function LoginPage({}: Props) {
             name="password"
             rules={[{ required: true, message: t('validation.passwordRequred') }]}
           >
-            <Input />
+            <Input.Password />
           </Form.Item>
 
           {/* <Form.Item<FieldType>

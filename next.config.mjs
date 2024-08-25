@@ -1,6 +1,8 @@
 import createNextIntlPlugin from 'next-intl/plugin';
- 
+
 const withNextIntl = createNextIntlPlugin();
+
+const locales = ['en', 'ru', 'ka'];
  
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -18,14 +20,30 @@ const nextConfig = {
     },],
   },
   async redirects() {
-    return [
-      // Basic redirect
-      {
-        source: '/dashboard',
-        destination: '/dashboard/about',
-        permanent: true,
-      },
-    ]
+    const redirects = [];
+
+    locales.forEach((locale) => {
+      redirects.push(
+        {
+          source: `/${locale}/dashboard`,
+          destination: `/${locale}/dashboard/about`,
+          permanent: true,
+        },
+        {
+          source: `/dashboard`,
+          destination: `/${locale}/dashboard/about`,
+          permanent: true,
+        }
+      );
+    });
+
+    redirects.push({
+      source: '/dashboard',
+      destination: '/dashboard/about',
+      permanent: true,
+    });
+
+    return redirects;
   },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
