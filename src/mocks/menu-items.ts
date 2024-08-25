@@ -48,7 +48,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 24,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',
@@ -75,7 +75,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 24,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',
@@ -102,7 +102,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 20,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',
@@ -129,7 +129,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 20,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',
@@ -156,7 +156,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 20,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',
@@ -183,7 +183,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 20,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',
@@ -210,7 +210,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 16,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',
@@ -237,7 +237,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 16,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',
@@ -264,7 +264,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 15,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',
@@ -291,7 +291,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 15,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',
@@ -318,7 +318,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 11,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',
@@ -339,7 +339,7 @@ export const menuItems: MenuItem[] = [
     },
     Price: 6,
     Currency: 'GEL',
-    Weight: null,
+    Weight: undefined,
     Description: {
       en: '',
       ru: '',

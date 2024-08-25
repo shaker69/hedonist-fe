@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image';
-import { useFormatter, useLocale } from 'next-intl';
+import { useFormatter, useLocale, useTranslations } from 'next-intl';
 
 import {
   Button,
@@ -18,7 +18,9 @@ interface Props {
   menuItem?: MenuItem,
 };
 
-const formatWeight = (formatter: any, menuItem: MenuItem) => {
+const formatWeight = (formatter: any, menuItem: MenuItem, translation: any) => {
+  if (typeof menuItem.Weight === 'string') return `${menuItem.Weight}${translation('common.unit.gram.short')}`
+
   const weight = formatter
     .number(menuItem.Weight, { style: 'unit', unit: 'gram' })
     .replaceAll(' ', '');
@@ -30,6 +32,7 @@ export default function MenuItemView({ menuItem }: Props) {
   const router = useRouter();
   const locale = useLocale() as Locale;
   const formatter = useFormatter();
+  const translation = useTranslations();
 
   return (
     <PageLayout
@@ -59,7 +62,7 @@ export default function MenuItemView({ menuItem }: Props) {
             </figure>
             <div className="py-4 flex gap-2 items-end">
               <h1 className="text-xl font-semibold">{menuItem.Name[locale]}</h1>
-              {!!menuItem.Weight && <span className="text-sm/[0.75rem] leading-7 text-color-text-secondary">{formatWeight(formatter, menuItem)}</span>}
+              {!!menuItem.Weight && <span className="text-sm/[0.75rem] leading-7 text-color-text-secondary">{formatWeight(formatter, menuItem, translation)}</span>}
             </div>
             <p className="py-4">{menuItem.Description?.[locale]}</p>
             <p className="py-4">{menuItem.Subtitle?.[locale]}</p>
