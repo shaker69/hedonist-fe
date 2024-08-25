@@ -22,7 +22,7 @@ import IconPlus from '@public/icon-plus.svg';
 import { deleteCategory, updateCategory } from '@app/actions';
 import { omit } from 'lodash-es';
 import CreateCategoryModal from './CreateCategoryModal';
-import { EmptyContent } from '@app/components';
+import { EmptyContent, NoValue } from '@app/components';
 import { splitStringToLines } from '@app/utils';
 
 interface Item extends Category {
@@ -31,6 +31,7 @@ interface Item extends Category {
 
 interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
+  required?: boolean;
   dataIndex: string;
   title: any;
   inputType: 'number' | 'text';
@@ -40,6 +41,7 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
 
 const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
   editing,
+  required,
   dataIndex,
   title,
   inputType,
@@ -48,6 +50,7 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
   children,
   ...restProps
 }) => {
+  const translation = useTranslations();
   const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
 
   return (
@@ -56,17 +59,19 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
         <Form.Item
           name={dataIndex}
           style={{ margin: 0 }}
-        // rules={[
-        //   {
-        //     required: true,
-        //     message: `Please Input ${title}!`,
-        //   },
-        // ]}
+          rules={[
+            {
+              required,
+              message: translation('form.validation.required'),
+            },
+          ]}
         >
           {inputNode}
         </Form.Item>
       ) : (
-        children
+        Array.isArray(children)
+          ? children[1] ? children : <NoValue />
+          : children
       )}
     </td>
   );
@@ -181,6 +186,7 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
         editable: true,
         fixed: locale === defaultLocale,
         width: 200,
+        required: true,
       }))
     },
     {
@@ -199,14 +205,17 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
             >
               <Select
                 mode="tags"
-                // onChange={handleTagsChange}
                 options={tags.map(({ Name, TagId }) => ({ value: TagId, label: Name[currentLocale] }))}
               />
             </Form.Item>
           ) : (
-            tagIds
-              .map((tagId) => tags.find(({ TagId }) => TagId === tagId))
-              .map((tag) => tag && <Tag key={tag.TagId}>{tag.Name[currentLocale]}</Tag>)
+            tagIds.length
+              ? (
+                tagIds
+                  .map((tagId) => tags.find(({ TagId }) => TagId === tagId))
+                  .map((tag) => tag && <Tag key={tag.TagId}>{tag.Name[currentLocale]}</Tag>)
+              )
+              : <NoValue />
           )
         )
       }
@@ -219,6 +228,7 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
         dataIndex: ['Description', locale],
         editable: true,
         width: 350,
+        required: false,
       }))
     },
     {
@@ -327,6 +337,7 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
               dataIndex: child.dataIndex,
               title: child.title,
               editing: isEditing(record),
+              required: child.required,
             })
           };
       })

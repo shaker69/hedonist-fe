@@ -2,14 +2,23 @@
 
 import React, { useState } from 'react';
 import type { TableProps } from 'antd';
-import { Button, Form, Input, InputNumber, Popconfirm, Space, Table, message } from 'antd';
+import {
+  Button,
+  Form,
+  Input,
+  InputNumber,
+  Popconfirm,
+  Space,
+  Table,
+  message,
+} from 'antd';
 import { omit } from 'lodash-es';
 import { useTranslations } from 'next-intl';
 
 import { deleteTag, updateTag } from '@app/actions';
 import { defaultLocale, locales } from '@app/navigation';
 import IconPlus from '@public/icon-plus.svg';
-import { EmptyContent } from '@app/components';
+import { EmptyContent, NoValue } from '@app/components';
 import { splitStringToLines } from '@app/utils';
 
 import CreateTagModal from './CreateTagModal';
@@ -20,6 +29,7 @@ interface Item extends Tag {
 
 interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
+  required: boolean;
   dataIndex: string;
   title: any;
   inputType: 'number' | 'text';
@@ -29,6 +39,7 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
 
 const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
   editing,
+  required,
   dataIndex,
   title,
   inputType,
@@ -37,6 +48,7 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
   children,
   ...restProps
 }) => {
+  const translation = useTranslations();
   const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
 
   return (
@@ -47,15 +59,17 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
           style={{ margin: 0 }}
           rules={[
             {
-              required: true,
-              message: `Please Input ${title}!`,
+              required,
+              message: translation('form.validation.required'),
             },
           ]}
         >
           {inputNode}
         </Form.Item>
       ) : (
-        children
+        Array.isArray(children)
+          ? children[1] ? children : <NoValue />
+          : children
       )}
     </td>
   );
@@ -168,6 +182,7 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
         title: translation(`common.locale.${locale}`),
         dataIndex: ['Name', locale],
         editable: true,
+        required: true,
         fixed: locale === defaultLocale ? 'left' : false,
         width: 200,
       }))
@@ -180,6 +195,7 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
       fixed: 'right' as 'right',
       render: (_: any, record: Item) => {
         const editable = isEditing(record);
+
         return editable ? (
           <Space className="text-color-link">
             <Button
@@ -253,6 +269,7 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
               dataIndex: child.dataIndex,
               title: child.title,
               editing: isEditing(record),
+              required: child.required,
             })
           };
       })

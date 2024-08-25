@@ -109,6 +109,7 @@ export default function SectionConfigs({ configs, tags }: Props) {
               htmlType="reset"
               className="mr-4"
               disabled={!isDirty}
+              onClick={() =>reset()}
             >
               {translation('form.action.cancel')}
             </Button>

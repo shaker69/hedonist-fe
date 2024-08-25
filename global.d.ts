@@ -50,9 +50,9 @@ declare global {
     IngredientIds?: string[];
     PictureURL: string;
     PictureObjectPosition?: [number | string, number | string];
-    Price: number;
+    Price: number | string;
     Currency?: string;
-    Weight?: number | null;
+    Weight?: number | string;
     Rating?: number;
     isRecommended?: boolean;
     TagIds: string[];

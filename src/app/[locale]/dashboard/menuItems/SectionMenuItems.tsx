@@ -10,19 +10,20 @@ import {
   Table,
   Tag,
 } from 'antd';
+import { omit } from 'lodash-es';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
+import { createMenuItem, deleteMenuItem, getBase64ImageFromURL, updateMenuItem } from '@app/actions';
+import { EmptyContent, NoValue } from '@app/components';
 import { defaultLocale, locales } from '@app/navigation';
+import { getFileFromBase64, splitStringToLines } from '@app/utils';
 
 import MenuItemModal from './MenuItemModal';
 
 import IconPlus from '@public/icon-plus.svg';
-import { createMenuItem, deleteMenuItem, getBase64ImageFromURL, updateMenuItem } from '@app/actions';
-import { omit } from 'lodash-es';
-import { getFileFromBase64, splitStringToLines } from '@app/utils';
-import { EmptyContent } from '@app/components';
+import imagePlaceholder from '@public/image-placeholder.svg?url';
 
 interface Item extends MenuItem {
   key: string;
@@ -142,7 +143,7 @@ const SectionMenuItems: React.FC<Props> = ({
       width: 150,
       fixed: true,
       render: (text: string, record: Item) => {
-        const src = `${text}?v=${record._version || 1}`;
+        const src = text ? `${text}?v=${record._version || 1}` : imagePlaceholder;
 
         return (
           <Image
@@ -161,15 +162,31 @@ const SectionMenuItems: React.FC<Props> = ({
         title: translation(`common.locale.${locale}`),
         dataIndex: ['Name', locale],
         width: 200,
-        editable: true,
+        render: (val: string) => val || <NoValue />,
         // fixed: locale === defaultLocale,
       }))
+    },
+    {
+      title: translation('Dashboard.section.menuItems.price'),
+      dataIndex: 'Price',
+      width: 110,
+      editable: true,
+      render: (val: string) => val ? `${val} ₾` : <NoValue />,
+    },
+    {
+      title: translation('Dashboard.section.menuItems.weight'),
+      dataIndex: 'Weight',
+      width: 110,
+      editable: true,
+      render: (val?: string) => val ? `${val} ${translation('common.unit.gram.short')}` : <NoValue />,
     },
     {
       title: translation('Dashboard.section.categories.title'),
       dataIndex: 'CategoryIds',
       width: 150,
       render: (categoryIds: string[]) => {
+        if (!categoryIds.length) return <NoValue />;
+
         return categoryIds
           .map((categoryId) => categories.find(({ CategoryId }) => CategoryId === categoryId))
           .map((category) => category && <Tag key={category.CategoryId}>{category.Name[currentLocale]}</Tag>)
@@ -180,6 +197,8 @@ const SectionMenuItems: React.FC<Props> = ({
       dataIndex: 'TagIds',
       width: 150,
       render: (tagIds: string[]) => {
+        if (!tagIds.length) return <NoValue />;
+
         return tagIds
           .map((tagId) => tags.find(({ TagId }) => TagId === tagId))
           .map((tag) => tag && <Tag key={tag.TagId}>{tag.Name[currentLocale]}</Tag>)
@@ -198,6 +217,7 @@ const SectionMenuItems: React.FC<Props> = ({
         title: translation(`common.locale.${locale}`),
         dataIndex: ['Subtitle', locale],
         width: 250,
+        render: (val: string) => val || <NoValue />,
       }))
     },
     {
@@ -206,6 +226,7 @@ const SectionMenuItems: React.FC<Props> = ({
         title: translation(`common.locale.${locale}`),
         dataIndex: ['Description', locale],
         width: 500,
+        render: (val: string) => val || <NoValue />,
       }))
     },
     {

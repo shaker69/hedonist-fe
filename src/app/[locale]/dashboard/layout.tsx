@@ -57,7 +57,7 @@ export default function DashboardLayout({ children, params: { locale } }: Props)
               <span className="text-lg">{translation('appTitle')}</span>
             </Link>
 
-            <LocaleSwitcher />
+            <LocaleSwitcher className="z-[99]" />
           </div>
 
           <menu className="flex flex-col gap-3">

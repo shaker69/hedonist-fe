@@ -92,6 +92,7 @@ export default function SectionAbout({ configs }: Props) {
 
       <div className="flex-auto flex p-6 bg-white rounded-xl">
         <Form
+          id="about-form"
           onFinish={handleSubmit(onFinish!)}
           className="flex-auto flex flex-col gap-5"
         >
@@ -166,20 +167,22 @@ export default function SectionAbout({ configs }: Props) {
           </div>
 
           <footer className="flex justify-end items-center">
-              <Button
-                htmlType="reset"
-                className="mr-4"
-                disabled={!isDirty}
-              >
-                {translation('form.action.cancel')}
-              </Button>
-              <Button
-                type="primary"
-                htmlType="submit"
-                disabled={!isDirty}
-              >
-                {translation('form.action.submit')}
-              </Button>
+            <Button
+              htmlType="reset"
+              form="about-form"
+              className="mr-4"
+              disabled={!isDirty}
+              onClick={() =>reset()}
+            >
+              {translation('form.action.cancel')}
+            </Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              disabled={!isDirty}
+            >
+              {translation('form.action.submit')}
+            </Button>
           </footer>
         </Form>
       </div>

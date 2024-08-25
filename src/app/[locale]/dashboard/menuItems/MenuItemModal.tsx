@@ -1,6 +1,5 @@
 import React, { ReactNode, useState } from 'react';
 import {
-  Divider,
   Form,
   Input,
   InputNumber,
@@ -122,11 +121,14 @@ const MenuItemModal: React.FC<Props> = ({
           label={translation('Dashboard.section.menuItems.image')}
           sub={translation('Dashboard.section.menuItems.fieldDescription.image')}
         >
-          <Form.Item>
+          <Form.Item
+            // validateStatus={get(formErrors, 'image') && "error"}
+            // help={get(formErrors, 'image')?.message as ReactNode}
+          >
             <Controller
               name="image"
               control={control}
-              rules={{ required: { value: true, message: translation('form.validation.required') } }}
+              // rules={{ required: { value: true, message: translation('form.validation.required') } }}
               render={({ field }) => (
                 <MenuItemImage
                   id="image"
@@ -187,14 +189,18 @@ const MenuItemModal: React.FC<Props> = ({
               key={l}
               layout='vertical'
               label={<span className="font-semibold">{translation(`common.locale.${l}`)}</span>}
-              validateStatus={(defaultLocale === l && get(formErrors, 'Name')) ? "error" : "success"}
-              help={get(formErrors, 'Name')?.message as ReactNode}
+              validateStatus={(Boolean(l === defaultLocale || itemToEdit?.MenuItemId) && get(formErrors, ['Name', l])) ? "error" : "success"}
+              help={get(formErrors, ['Name', l])?.message as ReactNode}
             >
               <Controller
                 name={`Name.${l}`}
                 control={control}
                 render={({ field }) => <Input id="name" {...field} />}
-                rules={{ required: { value: l === defaultLocale, message: translation('form.validation.required') } }}
+                rules={{
+                  required: {
+                    value: Boolean(l === defaultLocale || itemToEdit?.MenuItemId),
+                    message: translation('form.validation.required'),
+                  } }}
               />
             </Form.Item>
           ))}
@@ -265,10 +271,15 @@ const MenuItemModal: React.FC<Props> = ({
             name="Weight"
             control={control}
             render={({ field }) => (
-              <InputNumber
+              <Input
                 id="weight"
+                className="ant-col-xs-24 ant-col-sm-18"
                 {...field}
               />
+              // <InputNumber
+              //   id="weight"
+              //   {...field}
+              // />
             )}
           />
         </FormFieldWrapper>
@@ -281,10 +292,15 @@ const MenuItemModal: React.FC<Props> = ({
             name="Price"
             control={control}
             render={({ field }) => (
-              <InputNumber
+              <Input
                 id="price"
+                className="ant-col-xs-24 ant-col-sm-18"
                 {...field}
               />
+              // <InputNumber
+              //   id="price"
+              //   {...field}
+              // />
             )}
           />
         </FormFieldWrapper>
