@@ -1,5 +1,6 @@
 {
   "common": {
+    "preview": "Предварительный просмотр",
     "redirectToLoginConfirmMessage": "Перейти на страницу авторизации?",
     "logoAlt": "Гедонист",
     "locale": {

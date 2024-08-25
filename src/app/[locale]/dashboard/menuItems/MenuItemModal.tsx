@@ -10,7 +10,7 @@ import {
 } from 'antd';
 import { get, omit } from 'lodash-es';
 import { useLocale, useTranslations } from 'next-intl';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, FormProvider } from 'react-hook-form';
 
 import { FormFieldWrapper } from '@app/components';
 import { formItemLayout } from '@app/constants';
@@ -54,7 +54,7 @@ const MenuItemModal: React.FC<Props> = ({
   const translation = useTranslations();
   const currentLocale = useLocale() as Locale;
 
-  const { handleSubmit, control, formState, reset, getFieldState, getValues } = useForm<FormValues>({
+  const formMethods = useForm<FormValues>({
     defaultValues: {
       image: itemToEdit?.image || [],
       Name: itemToEdit?.Name || defaultTranslationsFields,
@@ -69,7 +69,7 @@ const MenuItemModal: React.FC<Props> = ({
     }
   });
 
-  console.log('getValues', getValues())
+  const { handleSubmit, control, formState, reset, getFieldState, getValues } = formMethods;
 
   const formErrors = formState.errors;
   const isDirty = formState.isDirty;
@@ -122,7 +122,8 @@ const MenuItemModal: React.FC<Props> = ({
   const HintComponent = hintComponentDict[currentLocale];
 
   return (
-    <Form
+    <FormProvider {...formMethods}>
+      <Form
       component={false}
       {...formItemLayout}
       onFinish={handleSubmit(handleOk)}
@@ -352,6 +353,7 @@ const MenuItemModal: React.FC<Props> = ({
         </FormFieldWrapper>
       </Modal>
     </Form>
+    </FormProvider>
   );
 };
 

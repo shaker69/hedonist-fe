@@ -50,6 +50,13 @@ body {
   right: 22px !important;
 }
 
+.preview-content {
+  & .ant-modal-close {
+    top: 12px !important;
+    right: 12px !important;
+  }
+}
+
 .ant-modal-header.modal-header.modal-header {
   padding: 1.5rem;
   align-items: center;

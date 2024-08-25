@@ -1,5 +1,6 @@
 {
   "common": {
+    "preview": "Preview",
     "redirectToLoginConfirmMessage": "Redirect to the login page?",
     "logoAlt": "Hedonist",
     "locale": {
