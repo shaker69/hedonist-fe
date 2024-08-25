@@ -4,7 +4,7 @@ interface Props {
   id: string;
   label?: React.ReactNode;
   labelLg?: boolean;
-  sub?: string;
+  sub?: string | React.ReactNode;
 }
 
 export const FormFieldWrapper: React.FC<PropsWithChildren<Props>> = ({ id, children, label, labelLg, sub, ...rest }) => {

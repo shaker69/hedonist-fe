@@ -106,7 +106,8 @@
           "image": "Load .jpeg files",
           "description": "Description is optional. Displayed on the menu item page",
           "isRecommended": "Menu item will be marked with emoji"
-        }
+        },
+        "structure": "Structure"
       },
       "configs": {
         "title": "Configs",

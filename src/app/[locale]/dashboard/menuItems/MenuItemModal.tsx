@@ -8,15 +8,27 @@ import {
   Switch,
   UploadFile,
 } from 'antd';
+import { get, omit } from 'lodash-es';
 import { useLocale, useTranslations } from 'next-intl';
 import { useForm, Controller } from 'react-hook-form';
-import { defaultLocale, locales } from '@app/navigation';
-import { get, omit } from 'lodash-es';
-import MenuItemImage from './MenuItemImage';
-import { formItemLayout } from '@app/constants';
+
 import { FormFieldWrapper } from '@app/components';
+import { formItemLayout } from '@app/constants';
+import { defaultLocale, locales } from '@app/navigation';
+
+import MenuItemImage from './MenuItemImage';
+
+import HintRu from '@public/structure-hint/ru.svg';
+import HintEn from '@public/structure-hint/en.svg';
+import HintKa from '@public/structure-hint/ka.svg';
 
 const defaultTranslationsFields = locales.reduce((acc, l) => ({ ...acc, [l]: '' }), {});
+
+const hintComponentDict = {
+  ru: HintRu,
+  ka: HintKa,
+  en: HintEn,
+}
 
 interface Props {
   categories: Category[],
@@ -40,7 +52,7 @@ const MenuItemModal: React.FC<Props> = ({
   itemToEdit,
 }) => {
   const translation = useTranslations();
-  const currentLocale = useLocale();
+  const currentLocale = useLocale() as Locale;
 
   const { handleSubmit, control, formState, reset, getFieldState, getValues } = useForm<FormValues>({
     defaultValues: {
@@ -104,6 +116,8 @@ const MenuItemModal: React.FC<Props> = ({
     return true;
   };
 
+  const HintComponent = hintComponentDict[currentLocale];
+
   return (
     <Form
       component={false}
@@ -156,9 +170,13 @@ const MenuItemModal: React.FC<Props> = ({
 
         <FormFieldWrapper
           id="tags"
-          label={translation('Dashboard.section.tags.title')}
+          label={translation('Dashboard.section.menuItems.structure')}
+          sub={<HintComponent />}
         >
-          <Form.Item>
+          <Form.Item
+            layout="vertical"
+            label={<span className="font-semibold">{translation('Dashboard.section.tags.title')}</span>}
+          >
             <Controller
               name="TagIds"
               control={control}
@@ -172,13 +190,11 @@ const MenuItemModal: React.FC<Props> = ({
               )}
             />
           </Form.Item>
-        </FormFieldWrapper>
 
-        <FormFieldWrapper
-          id="categories"
-          label={translation('Dashboard.section.categories.title')}
-        >
-          <Form.Item>
+          <Form.Item
+            layout="vertical"
+            label={<span className="font-semibold">{translation('Dashboard.section.categories.title')}</span>}
+          >
             <Controller
               name="CategoryIds"
               control={control}
