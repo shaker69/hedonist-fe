@@ -248,6 +248,8 @@ const SectionMenuItems: React.FC<Props> = ({
             <Popconfirm
               title={translation('common.confirmation')}
               onConfirm={() => onDelete(record)}
+              okText={translation('common.button.ok')}
+              cancelText={translation('common.button.cancel')}
             >
               <Button type='link'>{translation('common.button.delete')}</Button>
             </Popconfirm>

@@ -131,7 +131,7 @@ const MenuItemModal: React.FC<Props> = ({
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
         cancelText={translation('common.button.cancel')}
-        okText={translation('common.button.ok')}
+        okText={translation('common.button.completed')}
         okButtonProps={{
           disabled: !isDirty
         }}
@@ -308,6 +308,7 @@ const MenuItemModal: React.FC<Props> = ({
               rules={{ validate: validateNumericInput }}
               render={({ field }) => (
                 <Input
+                  style={{ width: '120px' }}
                   id="weight"
                   {...field}
                 />
@@ -334,6 +335,7 @@ const MenuItemModal: React.FC<Props> = ({
               rules={{ validate: validateNumericInput }}
               render={({ field }) => (
                 <Input
+                  style={{ width: '120px' }}
                   id="price"
                   {...field}
                 />

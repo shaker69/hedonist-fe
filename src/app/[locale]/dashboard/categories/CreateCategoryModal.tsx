@@ -73,7 +73,7 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
         cancelText={translation('common.button.cancel')}
-        okText={translation('common.button.ok')}
+        okText={translation('common.button.completed')}
         okButtonProps={{
           disabled: !isDirty
         }}

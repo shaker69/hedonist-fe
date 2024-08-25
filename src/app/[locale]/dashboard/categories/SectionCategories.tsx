@@ -273,6 +273,8 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
             <Popconfirm
               title={translation('common.confirmation')}
               onConfirm={cancel}
+              okText={translation('common.button.ok')}
+              cancelText={translation('common.button.cancel')}
             >
               <Button
                 type='link'
@@ -294,6 +296,8 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
             <Popconfirm
               title={translation('common.confirmation')}
               onConfirm={() => onDelete(record)}
+              okText={translation('common.button.ok')}
+              cancelText={translation('common.button.cancel')}
             >
               <Button
                 type='link'

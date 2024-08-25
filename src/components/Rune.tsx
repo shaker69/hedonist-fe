@@ -51,7 +51,7 @@ interface Props {
 }
 
 const Rune = ({ index, anchor }: Props) => {
-  const src = runes[anchor][index];
+  const src = runes[anchor][index % 4];
 
   if (!src) return null;
 

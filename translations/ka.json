@@ -28,7 +28,8 @@
       "submit": "Submit",
       "cancel": "Cancel",
       "upload": "Upload",
-      "ok": "Ok"
+      "ok": "Ok",
+      "completed": "Ok"
     },
     "unit": {
       "gram": {

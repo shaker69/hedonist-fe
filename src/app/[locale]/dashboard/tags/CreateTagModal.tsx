@@ -67,7 +67,7 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
         cancelText={translation('common.button.cancel')}
-        okText={translation('common.button.ok')}
+        okText={translation('common.button.completed')}
         okButtonProps={{
           disabled: !isDirty
         }}

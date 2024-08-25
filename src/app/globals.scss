@@ -45,8 +45,14 @@ body {
   max-width: 100%;
 }
 
+.ant-modal-close {
+  top: 22px !important;
+  right: 22px !important;
+}
+
 .ant-modal-header.modal-header.modal-header {
   padding: 1.5rem;
+  align-items: center;
 }
 
 .ant-modal-body.modal-body {
@@ -59,9 +65,26 @@ body {
 
 .ant-modal-footer.modal-footer.modal-footer {
   padding: 1.125rem 1.5rem;
+
+  & > .ant-btn {
+    height: 2.25rem;
+    border-radius: 0.75rem;
+  }
 }
 
-.ant-modal-footer.modal-footer.modal-footer > .ant-btn {
-  height: 2.25rem;
-  border-radius: 0.75rem;
+.ant-popconfirm-buttons,
+.ant-picker-ok {
+  .ant-btn.ant-btn-primary {
+    &:not(:disabled):not(.ant-btn-disabled) {
+      background-color: #1677ff;
+
+      &:hover {
+        background-color: #4096ff;
+      }
+
+      :active {
+        background-color: #0958d9;
+      }
+    }
+  }
 }
