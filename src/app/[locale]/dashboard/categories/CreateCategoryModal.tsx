@@ -77,11 +77,13 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
         okButtonProps={{
           disabled: !isDirty
         }}
+        style={{ top: 50 }}
         classNames={{
-          body: 'flex flex-col gap-8',
-          content: "min-w-[480px]",
+          body: 'modal-body',
+          footer: "modal-footer",
+          header: "modal-header",
         }}
-        width="60%"
+        width={800}
       >
         <FormFieldWrapper
           label={translation('common.name')}
@@ -126,6 +128,7 @@ const CreateCategoryModal: React.FC<Props> = ({ open, onCancel, onConfirm, tags 
         <FormFieldWrapper
           id="description"
           label={translation('common.description')}
+          sub={translation('Dashboard.section.categories.fieldDescription.description')}
         >
           {locales.map((l) => (
             <Form.Item

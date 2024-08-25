@@ -72,9 +72,11 @@ const CreateTagModal: React.FC<Props> = ({ open, onCancel, onConfirm }) => {
           disabled: !isDirty
         }}
         classNames={{
-          content: "min-w-[480px]",
+          body: 'modal-body',
+          footer: "modal-footer",
+          header: "modal-header",
         }}
-        width="40%"
+        width={800}
       >
         <FormFieldWrapper
           id="name"

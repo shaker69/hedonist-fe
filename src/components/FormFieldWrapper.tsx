@@ -17,7 +17,7 @@ export const FormFieldWrapper: React.FC<PropsWithChildren<Props>> = ({ id, child
         </label>
       )}
 
-      <div className="flex-auto flex flex-col gap-3 min-w-[220px]">
+      <div className="flex-auto flex flex-col gap-[1.125rem] min-w-[220px]">
         {children}
       </div>
     </div>

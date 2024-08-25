@@ -121,10 +121,13 @@ const MenuItemModal: React.FC<Props> = ({
         okButtonProps={{
           disabled: !isDirty
         }}
+        style={{ top: 50 }}
         classNames={{
-          body: "flex flex-col gap-5"
+          body: "modal-body",
+          footer: "modal-footer",
+          header: "modal-header",
         }}
-        width="50%"
+        width={800}
         maskClosable={false}
       >
         <FormFieldWrapper

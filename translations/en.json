@@ -87,7 +87,10 @@
         "title": "Categories",
         "new": "New category",
         "allDay": "All day",
-        "empty": "Looks like there aren't any categories here yet.\nAdd a category to organize your menu navigation and content"
+        "empty": "Looks like there aren't any categories here yet.\nAdd a category to organize your menu navigation and content",
+        "fieldDescription": {
+          "description": "Description is optional"
+        }
       },
       "menuItems": {
         "title": "Menu positions",

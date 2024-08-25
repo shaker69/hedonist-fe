@@ -39,3 +39,28 @@ body {
     text-wrap: balance;
   }
 }
+
+.ant-form-item {
+  max-width: 100%;
+}
+
+.ant-modal-header.modal-header.modal-header {
+  padding: 1.5rem;
+}
+
+.ant-modal-body.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 244px);
+}
+
+.ant-modal-footer.modal-footer.modal-footer {
+  padding: 1.125rem 1.5rem;
+}
+
+.ant-modal-footer.modal-footer.modal-footer > .ant-btn {
+  height: 2.25rem;
+  border-radius: 0.75rem;
+}

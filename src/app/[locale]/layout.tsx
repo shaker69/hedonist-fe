@@ -59,7 +59,10 @@ export default async function LocaleLayout({ children, params: { locale } }: Pro
                     hoverBorderColor: "#4096ff"
                   },
                   DatePicker: {
-                    colorPrimary: "#1677ff"
+                    colorPrimary: "#1677ff",
+                  },
+                  Form: {
+                    itemMarginBottom: 0,
                   },
                 }
               }}
