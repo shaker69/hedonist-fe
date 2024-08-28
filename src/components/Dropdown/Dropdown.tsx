@@ -1,7 +1,15 @@
-import { ReactNode, useMemo, useState, useRef, useEffect } from 'react';
+import {
+  ReactNode,
+  useMemo,
+  useState,
+  useRef,
+  useEffect,
+} from 'react';
+
+import Button from '../Button';
+
 import ChevronUpIcon from '@public/icon-chevron-up.svg';
 import ChevronDownIcon from '@public/icon-chevron-down.svg';
-import Button from '../Button';
 
 interface DropdownOption {
   value: string;
@@ -66,10 +74,25 @@ export default function Dropdown({
   }, [isOpen]);
 
   return (
-    <div ref={dropdownRef} className={`relative inline-block text-left z-[9999] ${className}`}>
+    <div ref={dropdownRef} className={`transition-all relative inline-block text-left z-[9999] ${className}`}>
       <Button
         onClick={toggleDropdown}
-        className="inline-flex w-full leading-4 justify-between items-center px-4 py-2 text-sm font-medium text-color-primary bg-color-secondary rounded-xs shadow-sm hover:bg-gray-50 focus:outline-none"
+        className={`
+          inline-flex
+          w-full
+          leading-4
+          justify-between
+          items-center
+          px-4
+          py-2
+          text-sm
+          font-medium
+          text-color-primary
+          bg-color-secondary
+          rounded-xs
+          shadow-sm
+          focus:outline-none
+        `}
       >
         {selectedOptionLabel}
         {isOpen ? <ChevronUpIcon width="16" height="16" /> : <ChevronDownIcon width="16" height="16" />}
@@ -81,7 +104,7 @@ export default function Dropdown({
             direction === 'up' ? 'bottom-full mb-2' : 'top-full mt-2'
           }`}
         >
-          <div className="py-1">
+          <div className="shadow-[0_4px_22px_0px_rgba(0,0,0,0.15)] rounded-xs">
             {options.map((option) => formatOption(option, handleOptionClick))}
           </div>
         </div>

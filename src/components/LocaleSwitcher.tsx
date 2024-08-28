@@ -28,7 +28,20 @@ export default function LocaleSwitcher({ className }: Props) {
         key={option.value}
         href={`${pathname}?${searchParams.toString()}`}
         locale={option.value}
-        className="block w-[4.4rem] pl-4 py-2 text-sm text-color-primary"
+        className={`
+          block
+          w-[4.4rem]
+          pl-4
+          py-2
+          text-sm
+          text-color-primary
+          first:rounded-t-xs
+          first:pt-3
+          last:rounded-b-xs
+          last:pb-3
+          hover:bg-[#e6e6e6]
+          active:bg-[#d1d1d1]
+        `}
       >
         {labelsMap[option.value as Locale]}
       </Link>
