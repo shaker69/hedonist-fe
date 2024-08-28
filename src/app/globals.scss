@@ -58,7 +58,7 @@ body {
 }
 
 .ant-modal-header.modal-header.modal-header {
-  padding: 1.5rem;
+  padding: 1.125rem 1.5rem;
   align-items: center;
 }
 
@@ -91,6 +91,20 @@ body {
 
       :active {
         background-color: #0958d9;
+      }
+    }
+  }
+}
+
+.ant-row {
+  &.ant-form-item-row {
+    & .ant-col {
+      &.ant-form-item-label {
+        padding-bottom: 3px;
+      }
+
+      &.ant-form-item-control {
+        min-height: auto;
       }
     }
   }

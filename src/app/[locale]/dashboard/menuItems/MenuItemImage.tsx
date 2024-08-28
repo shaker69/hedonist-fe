@@ -46,7 +46,7 @@ const MenuItemImage: React.FC<Props> = ({ id, fileList, onChange, ...rest }) => 
        > */}
       <Upload
         id={id}
-        accept="image/*"
+        accept="image/jpeg"
         listType="picture-card"
         fileList={fileList}
         onPreview={onPreview}

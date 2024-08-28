@@ -63,7 +63,7 @@ export default function DashboardLayout({ children, params: { locale } }: Props)
           <menu className="flex flex-col gap-3">
             {[...Object.values(DashboardSections)].map((section) => (
               <Link
-                className={`block px-4 py-3 text-sm rounded-xl ${activeSection === section ? activeSegmentClass : 'hover:bg-white/30'}`}
+                className={`block px-4 py-3 text-sm rounded-xl ${activeSection === section ? activeSegmentClass : 'hover:bg-white/20'}`}
                 key={section}
                 href={`/dashboard/${section}`}
                 locale={locale as Locale}

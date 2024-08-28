@@ -51,8 +51,8 @@ export default async function LocaleLayout({ children, params: { locale } }: Pro
                     defaultActiveBg: "#e6e6e6",
                     defaultActiveBorderColor: "#bdbdbd",
                     defaultActiveColor: "#191919",
-                    defaultShadow: '',
-                    primaryShadow: '',
+                    defaultShadow: 'none',
+                    primaryShadow: 'none',
                   },
                   Input: {
                     activeBorderColor: "#1677ff",

@@ -21,8 +21,6 @@ export const MenuItemPreviewModal: React.FC<Props> = ({
   const currentLocale = useLocale();
   const translation = useTranslations();
 
-  console.log('getValues', getValues());
-
   const { Name, isRecommended, Price, image, Subtitle } = getValues();
 
   return (

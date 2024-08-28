@@ -130,7 +130,6 @@ export default function SectionAbout({ configs }: Props) {
               >
                 {locales.map((locale) => (
                   <Form.Item
-                    style={{ marginBottom: '24px' }}
                     key={locale}
                     layout="vertical"
                     label={<span className="font-semibold">{translation(`common.locale.${locale}`)}</span>}
