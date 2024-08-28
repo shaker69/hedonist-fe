@@ -23,15 +23,21 @@ export default async function IndexPage({
 }: Props) {
   const session = await getServerSession(auth);
   const menu = await getNormalizedMenu(locale as Locale, new URLSearchParams(queryString.stringify(searchParams)));
-  const appConfigs = await getConfigs().catch(() => ({}));
-  const filterTags = await getAllTags();
+  const appConfigs = await getConfigs();
+  const allTags = await getAllTags();
+
+  const filterTags = appConfigs.TagFilters?.reduce((acc: Tag[], tagId: string) => {
+    const tag = allTags.find((tag) => tag.TagId === tagId);
+
+    return tag ? [...acc, tag] : acc;
+  }, []);
 
   return (
     <Index
       session={session}
       menu={menu}
       appConfigs={appConfigs}
-      filterTags={filterTags}
+      filterTags={filterTags || []}
     />
   );
 }
