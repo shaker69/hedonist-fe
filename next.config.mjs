@@ -8,7 +8,7 @@ const locales = ['en', 'ru', 'ka'];
 const nextConfig = {
   experimental: {
     serverActions: {
-      bodySizeLimit: '5mb',
+      bodySizeLimit: '7mb',
     },
   },
   images: {
