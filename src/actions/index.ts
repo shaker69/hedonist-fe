@@ -4,3 +4,4 @@ export * from './menuItems';
 export * from './tags';
 export { getBase64ImageFromURL } from './getBase64ImageFromURL';
 export { getNormalizedMenu } from './getNormalizedMenu';
+export { getSignedUrl } from './getSignedUrl';

@@ -2,7 +2,6 @@ import React, { ReactNode, useState } from 'react';
 import {
   Form,
   Input,
-  InputNumber,
   Modal,
   Select,
   Switch,
@@ -31,6 +30,7 @@ const hintComponentDict = {
 }
 
 interface Props {
+  s3Url: string;
   categories: Category[],
   tags: Tag[],
   open: boolean;
@@ -43,6 +43,12 @@ type FormValues = MenuItem & {
   image: UploadFile[];
 };
 
+const getPictureUrl = (s3Url: string, itemToEdit: any, image: any) => {
+  if (!itemToEdit) return `https://${s3Url}/menu/${image?.[0]?.name?.replaceAll(' ', '+')}`;
+
+  return `https://${s3Url}/menu/${itemToEdit?.MenuItemId}.jpg`;
+}
+
 const MenuItemModal: React.FC<Props> = ({
   open,
   onCancel,
@@ -50,6 +56,7 @@ const MenuItemModal: React.FC<Props> = ({
   categories,
   tags,
   itemToEdit,
+  s3Url,
 }) => {
   const translation = useTranslations();
   const currentLocale = useLocale() as Locale;
@@ -80,20 +87,10 @@ const MenuItemModal: React.FC<Props> = ({
 
     const { isDirty } = getFieldState('image');
 
-    const imageBase64: string | undefined = isDirty ? await new Promise((res, rej) => {
-      if (!image[0]?.originFileObj) return res(undefined);
-
-      const reader = new FileReader();
-      reader.readAsDataURL(image[0].originFileObj);
-      reader.onloadend = () => res(reader.result?.toString().split(',')[1]);
-      reader.onerror = rej;
-    }) : undefined;
-
     const success = await onConfirm(omit({
       ...(itemToEdit || {}),
       ...values,
-      PictureURL: isDirty && !imageBase64 ? undefined : itemToEdit?.PictureURL,
-      imageBase64,
+      PictureURL: isDirty ? getPictureUrl(s3Url, itemToEdit, image) : itemToEdit?.PictureURL,
     }, ['image']));
 
     if (success) {
@@ -163,6 +160,7 @@ const MenuItemModal: React.FC<Props> = ({
               // rules={{ required: { value: true, message: translation('form.validation.required') } }}
               render={({ field }) => (
                 <MenuItemImage
+                  itemToEdit={itemToEdit}
                   id="image"
                   fileList={field.value}
                   onChange={({ fileList }) => { field.onChange(fileList) }}

@@ -33,12 +33,14 @@ interface Props {
   categories?: Category[];
   tags?: Tag[];
   menuItems?: MenuItem[];
+  s3Url: string;
 }
 
 const SectionMenuItems: React.FC<Props> = ({
   categories = [],
   tags = [],
   menuItems = [],
+  s3Url,
 }) => {
   const translation = useTranslations();
   const [form] = Form.useForm();
@@ -276,6 +278,7 @@ const SectionMenuItems: React.FC<Props> = ({
           {isCreateModalOpen && (
             <MenuItemModal
               open
+              s3Url={s3Url}
               onConfirm={onCreateMenuItem}
               onCancel={onCloseMenuItemModal}
               tags={tags}
@@ -286,6 +289,7 @@ const SectionMenuItems: React.FC<Props> = ({
           {isEditModalOpen && (
             <MenuItemModal
               open
+              s3Url={s3Url}
               onConfirm={onEditMenuItem}
               onCancel={onCloseMenuItemModal}
               tags={tags}
