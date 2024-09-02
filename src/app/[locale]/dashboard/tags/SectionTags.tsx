@@ -22,6 +22,7 @@ import { EmptyContent, NoValue } from '@app/components';
 import { splitStringToLines } from '@app/utils';
 
 import CreateTagModal from './CreateTagModal';
+import { TABLE_HEIGHT_OFFSET } from '@app/constants';
 
 interface Item extends Tag {
   key: string;
@@ -318,7 +319,7 @@ const SectionTags: React.FC<Props> = ({ tags = [] }) => {
                     rowKey="key"
                     bordered
                     virtual
-                    scroll={{ y: window.innerHeight - 254, x: true }}
+                    scroll={{ y: window.innerHeight - TABLE_HEIGHT_OFFSET, x: true }}
                     dataSource={data}
                     columns={mergedColumns}
                     rowClassName="editable-row"

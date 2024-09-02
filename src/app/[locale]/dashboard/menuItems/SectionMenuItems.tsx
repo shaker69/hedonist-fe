@@ -24,6 +24,7 @@ import MenuItemModal from './MenuItemModal';
 
 import IconPlus from '@public/icon-plus.svg';
 import imagePlaceholder from '@public/image-placeholder.svg?url';
+import { TABLE_HEIGHT_OFFSET } from '@app/constants';
 
 interface Item extends MenuItem {
   key: string;
@@ -309,7 +310,7 @@ const SectionMenuItems: React.FC<Props> = ({
                     rowKey="key"
                     bordered
                     virtual
-                    scroll={{ y: window.innerHeight - 254, x: true }}
+                    scroll={{ y: window.innerHeight - TABLE_HEIGHT_OFFSET, x: true }}
                     dataSource={menuItems.map((item) => ({
                       ...item,
                       key: item.MenuItemId,

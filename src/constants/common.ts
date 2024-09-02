@@ -25,3 +25,4 @@ export const formItemLayout = {
 
 export const TAG_FILTER_INDEX = 'tag';
 export const RECOMMENDED_TAG_FILTER_INDEX = 'isRecommended';
+export const TABLE_HEIGHT_OFFSET = 231;

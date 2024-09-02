@@ -24,6 +24,7 @@ import { omit } from 'lodash-es';
 import CreateCategoryModal from './CreateCategoryModal';
 import { EmptyContent, NoValue } from '@app/components';
 import { splitStringToLines } from '@app/utils';
+import { TABLE_HEIGHT_OFFSET } from '@app/constants';
 
 interface Item extends Category {
   key: string;
@@ -387,7 +388,7 @@ const SectionCategories: React.FC<Props> = ({ categories = [], tags = [] }) => {
                     rowKey="key"
                     bordered
                     virtual
-                    scroll={{ y: window.innerHeight - 254, x: true }}
+                    scroll={{ y: window.innerHeight - TABLE_HEIGHT_OFFSET, x: true }}
                     dataSource={data}
                     columns={mergedColumns}
                     rowClassName="editable-row"
