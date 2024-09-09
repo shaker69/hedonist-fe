@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useFormatter } from 'next-intl';
+import { useFormatter, useLocale } from 'next-intl';
 import { useCallback } from 'react';
 
 import { useRouter } from '@app/navigation';
@@ -16,6 +16,7 @@ interface Props extends Partial<MenuItem> {
 
 export default function MenuItem({
   className = '',
+  Description,
   name,
   MenuItemId,
   subTitle,
@@ -28,6 +29,7 @@ export default function MenuItem({
   // const ingredientsString = ingredients?.join(', ');
   const format = useFormatter();
   const router = useRouter();
+  const locale = useLocale();
 
   const objectPosisionClass = PictureObjectPosition
     ? `object-[${PictureObjectPosition[0]}px]`
@@ -70,7 +72,7 @@ export default function MenuItem({
           <h3 className="font-medium text-sm/[17px]">{name}</h3>
           {/* TODO: requirements says that ingredients stored in subtitle, but... just for future */}
           {/* {!!ingredientsString?.length && <p className="text-xxs/[0.75rem] text-color-text-secondary">{ingredientsString}</p>} */}
-          {!!subTitle?.length && <p className="text-xxs/[0.75rem] text-color-text-secondary">{subTitle}</p>}
+          {(!!subTitle?.length || !!Description) && <p className="text-xxs/[0.75rem] text-color-text-secondary line-clamp-3">{subTitle || Description?.[locale]}</p>}
           {!!Price && <p className="font-medium text-sm/[17px]">{formatCurrency(format, Price, Currency)}</p>}
         </section>
       </figcaption>

@@ -98,6 +98,7 @@ export default function Index({ appConfigs, session, menu, filterTags }: Props) 
                             subTitle={item.sub}
                             Price={item.Price}
                             Currency={item.Currency}
+                            Description={item.Description}
                           />
 
                           {itemIndx === arr.length - 1 && (
