@@ -1,7 +1,7 @@
 {
   "common": {
-    "preview": "Preview",
-    "redirectToLoginConfirmMessage": "Redirect to the login page? (Ka)",
+    "preview": "გადახედვა",
+    "redirectToLoginConfirmMessage": "გადამისამართება შესვლის გვერდზე? (Ka)",
     "logoAlt": "ჰედონისტი",
     "locale": {
       "en": "En",
@@ -9,44 +9,45 @@
       "ka": "Ge"
     },
     "entity": {
-      "category": "Category",
-      "tag": "Tag",
-      "menuItem": "Menu item",
-      "configs": "Configs"
+      "category": "კატეგორია",
+      "tag": "მონიშნეთ",
+      "menuItem": "მენიუს ელემენტი",
+      "configs": "კონფიგურაციები"
     },
-    "name": "Name",
-    "action": "Action",
-    "icon": "Icon",
-    "confirmation": "Are you sure?",
-    "description": "Description",
-    "subtitle": "Subtitle",
-    "price": "Price",
-    "weight": "Weight",
+    "name": "სახელი",
+    "action": "მოქმედება",
+    "icon": "ხატულა",
+    "confirmation": "დარწმუნებული ხარ?",
+    "description": "აღწერა",
+    "subtitle": "სუბტიტრები",
+    "price": "ფასი",
+    "weight": "წონა",
     "button": {
-      "save": "Save",
-      "edit": "Edit",
-      "delete": "Delete",
-      "submit": "Submit",
-      "cancel": "Cancel",
-      "upload": "Upload",
-      "ok": "Ok",
-      "completed": "Submit"
+      "save": "შენახვა",
+      "edit": "რედაქტირება",
+      "delete": "წაშლა",
+      "submit": "გაგზავნა",
+      "cancel": "გაუქმება",
+      "upload": "ატვირთვა",
+      "ok": "კარგი",
+      "completed": "გაგზავნა"
     },
     "unit": {
       "gram": {
-        "short": "г",
-        "long": "грамм"
+        "short": "გ",
+        "long": "გრამი"
       }
-    }
+    },
+    "ingredients": "ინგრედიენტები"
   },
   "form": {
     "validation": {
-      "required": "Please fill the field",
-      "priceWeightChars": "Only numeric, \"\/\", and \".\" allowed"
+      "required": "გთხოვთ შეავსოთ ველი",
+      "priceWeightChars": "დასაშვებია მხოლოდ რიცხვითი, \"\/\" და \".\"."
     },
     "action": {
-      "submit": "Submit",
-      "cancel": "Cancel"
+      "submit": "გაგზავნა",
+      "cancel": "გაუქმება"
     }
   },
   "Header": {
@@ -54,7 +55,7 @@
   },
   "Index": {
     "title": "სახლში",
-    "empty": "Items not found"
+    "empty": "ნივთები ვერ მოიძებნა"
   },
   "Login": {
     "title": "Შესვლა",
@@ -63,8 +64,8 @@
     "submit": "იარე",
     "error": "{error, select, CredentialsSignin {არასწორი სახელი ან პაროლი} other {Უცნობი შეცდომა}}",
     "validation": {
-      "usernameRequred": "Please input your username!",
-      "passwordRequred": "Please input your password!"
+      "usernameRequred": "გთხოვთ შეიყვანოთ თქვენი მომხმარებლის სახელი!",
+      "passwordRequred": "გთხოვთ შეიყვანოთ თქვენი პაროლი!"
     }
   },
   "LocaleSwitcher": {
@@ -74,63 +75,63 @@
     "appTitle": "Hedonist",
     "section": {
       "about": {
-        "title": "About us",
-        "workingHours": "Working hours",
-        "address": "Address",
-        "instagram": "Instagram",
-        "socialNetworks": "Social networks"
+        "title": "ჩვენს შესახებ",
+        "workingHours": "სამუშაო საათები",
+        "address": "მისამართი",
+        "instagram": "ინსტაგრამი",
+        "socialNetworks": "სოციალური ქსელები"
       },
       "tags": {
-        "title": "Tags",
-        "new": "New tag",
+        "title": "ტეგები",
+        "new": "ახალი ტეგი",
         "empty": "როგორც ჩანს, აქ ჯერ არ არის თეგი.\nდაამატეთ თეგი თქვენი მენიუს ნავიგაციისა და კონტენტის ორგანიზებისთვის"
       },
       "categories": {
-        "title": "Categories",
-        "new": "New category",
-        "allDay": "All day",
-        "empty": "Looks like there aren't any categories here yet.\nAdd a category to organize your menu navigation and content",
+        "title": "კატეგორიები",
+        "new": "ახალი კატეგორია",
+        "allDay": "მთელი დღე",
+        "empty": "როგორც ჩანს, აქ ჯერ არ არის კატეგორიები.\nდაამატეთ კატეგორია თქვენი მენიუს ნავიგაციისა და კონტენტის ორგანიზებისთვის",
         "fieldDescription": {
-          "description": "Description is optional"
+          "description": "აღწერა არჩევითია"
         }
       },
       "menuItems": {
-        "title": "Menu positions",
-        "new": "New menu position",
-        "edit": "Edit menu position",
-        "image": "Image",
-        "ingredients": "Ingredients",
-        "isRecommended": "Recommended by Hedonist",
-        "weight": "Weight ({unit})",
-        "price": "Price ({unit})",
-        "empty": "Looks like there aren't any items here yet.\nAdd an item to organize your menu navigation and content",
+        "title": "მენიუს პოზიციები",
+        "new": "მენიუს ახალი პოზიცია",
+        "edit": "მენიუს პოზიციის რედაქტირება",
+        "image": "გამოსახულება",
+        "ingredients": "ინგრედიენტები",
+        "isRecommended": "რეკომენდირებულია ჰედონისტის მიერ",
+        "weight": "წონა ({unit})",
+        "price": "ფასი ({unit})",
+        "empty": "როგორც ჩანს, აქ ჯერ არ არის რაიმე ელემენტი.\nდაამატეთ ერთეული თქვენი მენიუს ნავიგაციისა და კონტენტის ორგანიზებისთვის",
         "fieldDescription": {
-          "image": "Load .jpeg files",
-          "description": "Description is optional. Displayed on the menu item page",
-          "isRecommended": "Menu item will be marked with emoji"
+          "image": "ჩატვირთეთ .jpeg ფაილები",
+          "description": "აღწერა არჩევითია. ნაჩვენებია მენიუს ელემენტის გვერდზე",
+          "isRecommended": "მენიუს ელემენტი მოინიშნება emoji-ით"
         },
-        "structure": "Structure"
+        "structure": "სტრუქტურა"
       },
       "configs": {
-        "title": "Configs",
-        "tagsFilter": "Filtering tags"
+        "title": "კონფიგურაციები",
+        "tagsFilter": "ტეგების ფილტრაცია"
       },
       "message": {
         "create": {
-          "success": "{entity} was successfully created",
-          "error": "{entity} creation failed"
+          "success": "{entity} წარმატებით შეიქმნა",
+          "error": "{entity}-ის შექმნა ვერ მოხერხდა"
         },
         "update": {
-          "success": "{entity} was successfully updated",
-          "error": "{entity} update failed"
+          "success": "{entity} წარმატებით განახლდა",
+          "error": "{entity}-ის განახლება ვერ მოხერხდა"
         },
         "delete": {
-          "success": "{entity} was successfully deleted",
-          "error": "{entity} deletion failed"
+          "success": "{entity} წარმატებით წაიშალა",
+          "error": "{entity}-ის წაშლა ვერ მოხერხდა"
         }
       }
     },
-    "title": "Dashboard",
+    "title": "დაფა",
     "loggedIn": "შესული, როგორც {username}",
     "loggedOut": "თქვენ გასული ხართ.",
     "login": "Შესვლა",

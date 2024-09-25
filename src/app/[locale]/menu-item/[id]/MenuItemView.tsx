@@ -41,18 +41,18 @@ export default function MenuItemView({ menuItem }: Props) {
       className="min-h-svh bg-color-secondary text-color-primary"
     >
       <header>
-        <ContentHolder className="pt-5 pb-3 flex items-center justify-between">
+        <ContentHolder className="py-[15px] flex items-center justify-between">
           <Button onClick={() => router.back()}>
             <ArrowBack width="24" height="24" />
           </Button>
 
-          <LocaleSwitcher />
+          {/* <LocaleSwitcher /> */}
         </ContentHolder>
       </header>
       <main>
         {menuItem && (
-          <ContentHolder className="">
-            <figure className="mb-4 relative h-60 w-full">
+          <ContentHolder className="text-sm">
+            <figure className="my-[15px] relative h-60 w-full">
               <Image
                 src={menuItem.PictureURL || imagePlaceholder}
                 alt={menuItem.Name[locale]}
@@ -61,12 +61,11 @@ export default function MenuItemView({ menuItem }: Props) {
                 objectFit="cover"
               />
             </figure>
-            <div className="py-4 flex gap-2 items-end">
-              <h1 className="text-xl font-semibold">{menuItem.Name[locale]}</h1>
-              {!!menuItem.Weight && <span className="text-sm/[0.75rem] leading-7 text-color-text-secondary">{formatWeight(formatter, menuItem, translation)}</span>}
+            <div className="mt-6 mb-4 flex gap-2 items-end">
+              <h1 className="text-xl font-semibold">{menuItem.Name[locale]}{!!menuItem.Weight && <span className="pl-2.5 text-sm/[0.75rem] leading-7 text-color-text-secondary font-normal">{formatWeight(formatter, menuItem, translation)}</span>}</h1>
             </div>
-            <p className="py-4">{menuItem.Description?.[locale]}</p>
-            <p className="py-4">{menuItem.Subtitle?.[locale]}</p>
+            {menuItem.Description?.[locale] && <p className="my-4">{menuItem.Description[locale]}</p>}
+            {menuItem.Subtitle?.[locale] && <p className="my-4">{translation('common.ingredients')}: {menuItem.Subtitle?.[locale]}</p>}
             <h2 className="text-xl font-medium">{formatCurrency(formatter, menuItem.Price, menuItem.Currency)}</h2>
           </ContentHolder>
         )}

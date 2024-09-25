@@ -37,7 +37,8 @@
         "short": "г",
         "long": "грамм"
       }
-    }
+    },
+    "ingredients": "Ингредиенты"
   },
   "form": {
     "validation": {
