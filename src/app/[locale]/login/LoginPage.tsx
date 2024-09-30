@@ -68,6 +68,7 @@ export default function LoginPage({}: Props) {
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
+          className="flex flex-col gap-[15px]"
         >
           <Form.Item<FieldType>
             label={t('username')}
@@ -94,7 +95,11 @@ export default function LoginPage({}: Props) {
         </Form.Item> */}
 
           <Form.Item className="flex justify-center">
-            <Button type="primary" htmlType="submit">
+            <Button
+              className="mt-[15px]"
+              type="primary"
+              htmlType="submit"
+            >
               {t('submit')}
             </Button>
           </Form.Item>
