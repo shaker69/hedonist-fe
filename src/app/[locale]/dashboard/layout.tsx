@@ -76,8 +76,11 @@ export default function DashboardLayout({ children, params: { locale } }: Props)
           </menu>
         </div>
         <section className="flex flex-col gap-3 items-start">
-          <Button onClick={() => signOut()}>
-            <span className="p-4 rounded-xl inline-flex gap-2 items-center hover:bg-white/30">
+          <Button
+            className="w-full"
+            onClick={() => signOut()}
+          >
+            <span className="p-4 rounded-xl flex gap-2 items-center hover:bg-white/30">
               <IconExit />
               <span className="text-sm">{translation('logout')}</span>
             </span>
