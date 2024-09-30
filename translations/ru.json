@@ -1,26 +1,140 @@
 {
-  "Header": {
+  "common": {
+    "preview": "Предварительный просмотр",
+    "redirectToLoginConfirmMessage": "Перейти на страницу авторизации?",
     "logoAlt": "Гедонист",
+    "locale": {
+      "en": "En",
+      "ru": "Ru",
+      "ka": "Ge"
+    },
+    "entity": {
+      "category": "Категория",
+      "tag": "Тег",
+      "menuItem": "Позиция",
+      "configs": "Конфигурация"
+    },
+    "name": "Название",
+    "action": "Действие",
+    "icon": "Иконка",
+    "confirmation": "Вы уверены?",
+    "description": "Описание",
+    "price": "Цена",
+    "weight": "Вес",
+    "subtitle": "Подзаголовок",
+    "button": {
+      "save": "Сохранить",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "submit": "Подтвердить",
+      "cancel": "Отменить",
+      "upload": "Загрузить",
+      "ok": "Ок",
+      "completed": "Готово"
+    },
+    "unit": {
+      "gram": {
+        "short": "г",
+        "long": "грамм"
+      }
+    },
+    "ingredients": "Ингредиенты"
+  },
+  "form": {
+    "validation": {
+      "required": "Пожалуйста заполните обязательное поле",
+      "priceWeightChars": "Поле должно содержать только числа, \"\/\" или \".\""
+    },
+    "action": {
+      "submit": "Сохранить",
+      "cancel": "Отменить"
+    }
+  },
+  "Header": {
     "address": "Батуми, Вахтанга Горгасали 26"
   },
   "Index": {
     "title": "Главная",
-    "loggedIn": "Выполнен вход как {username}",
-    "loggedOut": "Неавторизирован.",
-    "login": "Войти",
-    "logout": "Выйти"
+    "empty": "Не удалось ничего найти"
   },
   "Login": {
     "title": "Авторизация",
     "username": "Имя пользователя",
-    "password": "Password",
+    "password": "Пароль",
     "submit": "Войти",
-    "error": "{error, select, CredentialsSignin {Неверное имя пользователя или пароль} other {Что-то пошло не так...}}"
+    "error": "{error, select, CredentialsSignin {Неверное имя пользователя или пароль} other {Что-то пошло не так...}}",
+    "validation": {
+      "usernameRequred": "Please input your username!",
+      "passwordRequred": "Please input your password!"
+    }
   },
   "LocaleSwitcher": {
     "switchLocale": "{locale, select, ka {ქართული} en {English} ru {Русский} other {Неизвестный}}"
   },
   "Dashboard": {
-    "title": "Dashboard"
+    "appTitle": "Hedonist",
+    "section": {
+      "about": {
+        "title": "О нас",
+        "workingHours": "Время работы",
+        "address": "Адрес",
+        "instagram": "Instagram",
+        "socialNetworks": "Социальные сети"
+      },
+      "tags": {
+        "title": "Теги",
+        "new": "Добавление Тега",
+        "empty": "Похоже, здесь еще нет тегов.\n Добавьте тег, чтобы организовать навигацию и контент в меню"
+      },
+      "categories": {
+        "title": "Категории",
+        "new": "Добавление Категории",
+        "allDay": "Весь день",
+        "empty": "Похоже, здесь еще нет категорий.\n Добавьте категорию, чтобы организовать навигацию и контент в меню",
+        "fieldDescription": {
+          "description": "Описание опционально"
+        }
+      },
+      "menuItems": {
+        "title": "Позиции",
+        "new": "Добавление Позиции",
+        "edit": "Редактирование Позиции",
+        "image": "Фото",
+        "ingredients": "Состав",
+        "isRecommended": "Рекомендация Hedonist",
+        "weight": "Вес ({unit})",
+        "price": "Стоимость ({unit})",
+        "empty": "Похоже, здесь еще нет позиций.\n Добавьте позицию, чтобы организовать навигацию и контент в меню",
+        "fieldDescription": {
+          "image": "Загрузите .jpeg файлы",
+          "description": "Описание опционально. Отображается на странице блюда",
+          "isRecommended": "Данная позиция будет отмечена эмоджи"
+        },
+        "structure": "Структура"
+      },
+      "configs": {
+        "title": "Настройки",
+        "tagsFilter": "Теги фильтрации"
+      },
+      "message": {
+        "create": {
+          "success": "{entity} успешно создан(а)",
+          "error": "{entity} не был создан"
+        },
+        "update": {
+          "success": "{entity} успешно обновлен(а)",
+          "error": "{entity} не был обновлён"
+        },
+        "delete": {
+          "success": "{entity} успешно удален(а)",
+          "error": "{entity} не был удалён"
+        }
+      }
+    },
+    "title": "Dashboard",
+    "loggedIn": "Выполнен вход как {username}",
+    "loggedOut": "Неавторизирован.",
+    "login": "Войти",
+    "logout": "Выход"
   }
 }

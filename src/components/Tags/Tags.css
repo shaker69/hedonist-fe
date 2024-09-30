@@ -1,0 +1,20 @@
+.tags-wrapper {
+  padding-bottom: 0.75rem;
+  transition: padding-top 0.2s;
+}
+
+.tags-wrapper.active {
+  padding-top: 0.75rem;
+}
+
+.tags-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.tags-container::-webkit-scrollbar {
+  display: none;
+}

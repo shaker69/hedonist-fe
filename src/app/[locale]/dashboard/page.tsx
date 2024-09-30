@@ -1,15 +1,13 @@
-'use client';
+import { getServerSession } from 'next-auth';
 
-import { useTranslations } from 'next-intl';
+import auth from '@app/auth';
 
-import { PageLayout } from '@app/components';
+import Dashboard from './Dashboard';
 
-export default function Dashboard() {
-  const t = useTranslations('Dashboard');
+export default async function DashboardPage() {
+  const session = await getServerSession(auth);
 
   return (
-    <PageLayout>
-      <h1>{t('title')}</h1>
-    </PageLayout>
-  );
+    <Dashboard session={session} />
+  )
 }

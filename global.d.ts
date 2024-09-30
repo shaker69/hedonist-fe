@@ -1,24 +1,37 @@
+import { ReactNode } from 'react';
+
 import en from './translations/en.json';
 
 type Messages = typeof en;
 
 declare global {
+  declare module '*.svg' {
+    import { FC, SVGProps } from 'react'
+    const content: FC<SVGProps<SVGElement>>
+    export default content
+  }
+  
+  declare module '*.svg?url' {
+    const content: any
+    export default content
+  }
+
   // Use type safe message keys with `next-intl`
   interface IntlMessages extends Messages {}
 
   type Locale = 'en' | 'ru' | 'ka';
 
   interface Translations {
-    en: string;
-    ru: string;
-    ka: string;
+    [l: string]: string;
   }
 
   interface Category {
-    id: string;
-    name: Translations;
-    description?: Translations;
+    CategoryId: string;
+    Name: Translations;
+    Description?: Translations;
     isAllDay?: boolean;
+    Icon?: any;
+    TagIds: string[];
   }
 
   interface Ingredient {
@@ -28,19 +41,21 @@ declare global {
   }
 
   interface MenuItem {
-    id: string;
-    name: Translations;
-    description?: Translations,
-    sub?: Translations;
-    categoryIds: string[];
-    ingredientIds: string[];
-    pictureURL: string;
-    objectPosition?: [number, number];
-    price: number;
-    currency?: string;
-    weight?: number | null;
-    rating?: number;
-    hit?: boolean;
+    _version?: number;
+    MenuItemId: string;
+    Name: Translations;
+    Description?: Translations,
+    Subtitle?: Translations;
+    CategoryIds: string[];
+    IngredientIds?: string[];
+    PictureURL?: string;
+    PictureObjectPosition?: [number | string, number | string];
+    Price: number | string;
+    Currency?: string;
+    Weight?: number | string;
+    Rating?: number;
+    isRecommended?: boolean;
+    TagIds: string[];
   }
 
   interface Menu extends Category {
@@ -52,5 +67,27 @@ declare global {
       sub?: string,
       ingredients: (string | undefined)[],
     }[]
+  }
+
+  interface Tag {
+    TagId: string;
+    Name: Translations;
+  }
+
+  interface DropdownOption<T = any> {
+    label: string;
+    value: T;
+  }
+
+  interface ActionOptions {
+    revalidatePaths?: string[];
+  }
+
+  interface AppConfigs {
+    ConfigId?: string;
+    WorkingHours?: string;
+    Address?: Translations;
+    Instagram?: string;
+    TagFilters?: string[];
   }
 }

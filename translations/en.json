@@ -1,26 +1,140 @@
 {
-  "Header": {
+  "common": {
+    "preview": "Preview",
+    "redirectToLoginConfirmMessage": "Redirect to the login page?",
     "logoAlt": "Hedonist",
+    "locale": {
+      "en": "En",
+      "ru": "Ru",
+      "ka": "Ge"
+    },
+    "entity": {
+      "category": "Category",
+      "tag": "Tag",
+      "menuItem": "Menu item",
+      "configs": "Configs"
+    },
+    "name": "Name",
+    "action": "Action",
+    "icon": "Icon",
+    "confirmation": "Are you sure?",
+    "description": "Description",
+    "subtitle": "Subtitle",
+    "price": "Price",
+    "weight": "Weight",
+    "button": {
+      "save": "Save",
+      "edit": "Edit",
+      "delete": "Delete",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "upload": "Upload",
+      "ok": "Ok",
+      "completed": "Submit"
+    },
+    "unit": {
+      "gram": {
+        "short": "g",
+        "long": "gram"
+      }
+    },
+    "ingredients": "Ingredients"
+  },
+  "form": {
+    "validation": {
+      "required": "Please fill the field",
+      "priceWeightChars": "Only numeric, \"\/\", and \".\" allowed"
+    },
+    "action": {
+      "submit": "Submit",
+      "cancel": "Cancel"
+    }
+  },
+  "Header": {
     "address": "Batumi, Vakhtang Gorgasali 26"
   },
   "Index": {
     "title": "Home",
-    "loggedIn": "Logged in as {username}",
-    "loggedOut": "You are logged out.",
-    "login": "Login",
-    "logout": "Logout"
+    "empty": "Items not found"
   },
   "Login": {
     "title": "Login",
     "username": "Username",
     "password": "Password",
     "submit": "Login",
-    "error": "{error, select, CredentialsSignin {Invalid username or password} other {Unknown error}}"
+    "error": "{error, select, CredentialsSignin {Invalid username or password} other {Unknown error}}",
+    "validation": {
+      "usernameRequred": "Please input your username!",
+      "passwordRequred": "Please input your password!"
+    }
   },
   "LocaleSwitcher": {
     "switchLocale": "Switch to {locale, select, ka {ქართული} en {English} ru {Русский} other {Неизвестный}}"
   },
   "Dashboard": {
-    "title": "Dashboard"
+    "appTitle": "Hedonist",
+    "section": {
+      "about": {
+        "title": "About us",
+        "workingHours": "Working hours",
+        "address": "Address",
+        "instagram": "Instagram",
+        "socialNetworks": "Social networks"
+      },
+      "tags": {
+        "title": "Tags",
+        "new": "New tag",
+        "empty": "Looks like there aren't any tags here yet.\nAdd a tag to organize your menu navigation and content"
+      },
+      "categories": {
+        "title": "Categories",
+        "new": "New category",
+        "allDay": "All day",
+        "empty": "Looks like there aren't any categories here yet.\nAdd a category to organize your menu navigation and content",
+        "fieldDescription": {
+          "description": "Description is optional"
+        }
+      },
+      "menuItems": {
+        "title": "Menu positions",
+        "new": "New menu position",
+        "edit": "Edit menu position",
+        "image": "Image",
+        "ingredients": "Ingredients",
+        "isRecommended": "Recommended by Hedonist",
+        "weight": "Weight ({unit})",
+        "price": "Price ({unit})",
+        "empty": "Looks like there aren't any items here yet.\nAdd an item to organize your menu navigation and content",
+        "fieldDescription": {
+          "image": "Load .jpeg files",
+          "description": "Description is optional. Displayed on the menu item page",
+          "isRecommended": "Menu item will be marked with emoji"
+        },
+        "structure": "Structure"
+      },
+      "configs": {
+        "title": "Configs",
+        "tagsFilter": "Filtering tags"
+      },
+      "message": {
+        "create": {
+          "success": "{entity} was successfully created",
+          "error": "{entity} creation failed"
+        },
+        "update": {
+          "success": "{entity} was successfully updated",
+          "error": "{entity} update failed"
+        },
+        "delete": {
+          "success": "{entity} was successfully deleted",
+          "error": "{entity} deletion failed"
+        }
+      }
+    },
+    "title": "Dashboard",
+    "loggedIn": "Logged in as {username}",
+    "loggedOut": "You are logged out.",
+    "login": "Login",
+    "logout": "Logout"
   }
 }

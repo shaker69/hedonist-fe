@@ -6,7 +6,8 @@ import { defaultLocale, locales } from './navigation';
 
 const publicPages = [
   '/',
-  '/login'
+  '/login',
+  '/menu-item/.*',
   // (/secret requires auth)
 ];
 
@@ -33,9 +34,11 @@ const authMiddleware = withAuth(
 
 export default function middleware(req: NextRequest) {
   const publicPathnameRegex = RegExp(
-    `^(/(${locales.join('|')}))?(${publicPages
+    `^(/(${locales.join('|')}))?(${
+      publicPages
       .flatMap((p) => (p === '/' ? ['', '/'] : p))
-      .join('|')})/?$`,
+      .join('|')
+    })/?$`,
     'i'
   );
   const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);

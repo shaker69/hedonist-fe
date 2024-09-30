@@ -1,283 +1,352 @@
-const BASE_URL = `https://${process.env.S3_URL}/menu`;
+import { tags } from "./tags";
+
+const BASE_URL = `https://${process.env.S3_URL || 'hedonist-media.s3.eu-west-1.amazonaws.com'}/menu`;
 
 export const menuItems: MenuItem[] = [
   {
-    id: 'item-1',
-    categoryIds: ['cat-1'],
-    ingredientIds: ['ing-1', 'ing-2', 'ing-3', 'ing-4'],
-    pictureURL: `${BASE_URL}/Full_english.jpg`,
-    objectPosition: [100, 100],
-    name: {
+    MenuItemId: 'item-1',
+    CategoryIds: ['cat-1'],
+    IngredientIds: ['ing-1', 'ing-2', 'ing-3', 'ing-4'],
+    PictureURL: `${BASE_URL}/Full_english.jpg`,
+    PictureObjectPosition: [100, 100],
+    Name: {
       en: 'Full english',
       ru: 'Full english',
       ka: 'Full english',
     },
-    price: 24,
-    currency: 'GEL',
-    weight: null,
-    description: {
-      en: '',
-      ru: '',
-      ka: '',
+    Subtitle: {
+      en: 'sausage, mushrooms, bacon, eggs',
+      ru: 'sausage, mushrooms, bacon, eggs',
+      ka: 'sausage, mushrooms, bacon, eggs',
     },
-    rating: 0,
-    hit: false,
+    Price: 24,
+    Currency: 'GEL',
+    Weight: 330,
+    Description: {
+      en: 'It is a traditional feast for the senses that has warmed hearts and homes for generations. A plate featuring crispy bacon, premium sausages, perfectly fried eggs, golden hashbrowns, and tenderly sautéed mushrooms.',
+      ru: 'Это традиционный праздник чувств, который согревал сердца и дома на протяжении нескольких поколений. Тарелка с хрустящим беконом, колбасками премиум-класса, идеальной яичницей, золотистыми оладьями и нежно обжаренными грибами.',
+      ka: 'ეს არის გრძნობების ტრადიციული დღესასწაული, რომელიც თაობების განმავლობაში ათბობს გულებსა და სახლებს. თეფშზე გამოსახულია ხრაშუნა ბეკონი, პრემიუმ ძეხვეული, იდეალურად შემწვარი კვერცხი, ოქროსფერი ჰეშბრაუნი და ნაზად შემწვარი სოკო.',
+    },
+    Rating: 0,
+    isRecommended: false,
+    TagIds: [tags[2].TagId],
   },
   {
-    id: 'item-2',
-    categoryIds: ['cat-1'],
-    ingredientIds: ['ing-5', 'ing-6', 'ing-7', 'ing-8'],
-    pictureURL: `${BASE_URL}/Nordic.jpg`,
-    name: {
+    MenuItemId: 'item-2',
+    CategoryIds: ['cat-1'],
+    IngredientIds: ['ing-5', 'ing-6', 'ing-7', 'ing-8'],
+    PictureURL: `${BASE_URL}/Nordic.jpg`,
+    Name: {
       en: 'Nordic',
       ru: 'Nordic',
       ka: 'Nordic',
     },
-    price: 24,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Subtitle: {
+      en: 'salmon, salads, shrimp spread, scramble',
+      ru: 'salmon, salads, shrimp spread, scramble',
+      ka: 'salmon, salads, shrimp spread, scramble',
+    },
+    Price: 24,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: false,
+    Rating: 0,
+    isRecommended: false,
+    TagIds: []
   },
   {
-    id: 'item-3',
-    categoryIds: ['cat-1'],
-    ingredientIds: ['ing-9', 'ing-10', 'ing-11'],
-    pictureURL: `${BASE_URL}/Kartuli.jpg`,
-    name: {
+    MenuItemId: 'item-3',
+    CategoryIds: ['cat-1'],
+    IngredientIds: ['ing-9', 'ing-10', 'ing-11'],
+    PictureURL: `${BASE_URL}/Kartuli.jpg`,
+    Name: {
       en: 'Kartuli',
       ru: 'Kartuli',
       ka: 'Kartuli',
     },
-    price: 24,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Subtitle: {
+      en: 'layered khachapuri, bazhe, imeruli omelette',
+      ru: 'layered khachapuri, bazhe, imeruli omelette',
+      ka: 'layered khachapuri, bazhe, imeruli omelette',
+    },
+    Price: 24,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: true,
+    Rating: 0,
+    isRecommended: true,
+    TagIds: []
   },
   {
-    id: 'item-4',
-    categoryIds: ['cat-2'],
-    ingredientIds: ['ing-12', 'ing-13', 'ing-14'],
-    pictureURL: `${BASE_URL}/Cheddar_mustard_beef.jpg`,
-    name: {
+    MenuItemId: 'item-4',
+    CategoryIds: ['cat-2'],
+    IngredientIds: ['ing-12', 'ing-13', 'ing-14'],
+    PictureURL: `${BASE_URL}/Cheddar_mustard_beef.jpg`,
+    Name: {
       en: 'Cheddar mustard beef',
       ru: 'Cheddar mustard beef',
       ka: 'Cheddar mustard beef',
     },
-    price: 20,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Subtitle: {
+      en: 'sunny-dried-up egg, minced beef, tomato sauce',
+      ru: 'sunny-dried-up egg, minced beef, tomato sauce',
+      ka: 'sunny-dried-up egg, minced beef, tomato sauce',
+    },
+    Price: 20,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: true,
+    Rating: 0,
+    isRecommended: true,
+    TagIds: []
   },
   {
-    id: 'item-5',
-    categoryIds: ['cat-2'],
-    ingredientIds: ['ing-14', 'ing-12', 'ing-15'],
-    pictureURL: `${BASE_URL}/Ramiro_imeruli_cheese.jpg`,
-    name: {
+    MenuItemId: 'item-5',
+    CategoryIds: ['cat-2'],
+    IngredientIds: ['ing-14', 'ing-12', 'ing-15'],
+    PictureURL: `${BASE_URL}/Ramiro_imeruli_cheese.jpg`,
+    Name: {
       en: 'Ramiro imeruli cheese',
       ru: 'Ramiro imeruli cheese',
       ka: 'Ramiro imeruli cheese',
     },
-    price: 20,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Subtitle: {
+      en: 'tomato sauce, sunny-dried-up egg, spinach',
+      ru: 'tomato sauce, sunny-dried-up egg, spinach',
+      ka: 'tomato sauce, sunny-dried-up egg, spinach',
+    },
+    Price: 20,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: false,
+    Rating: 0,
+    isRecommended: false,
+    TagIds: []
   },
   {
-    id: 'item-6',
-    categoryIds: ['cat-2'],
-    ingredientIds: ['ing-16', 'ing-17', 'ing-18'],
-    pictureURL: `${BASE_URL}/Salmon_whiiped_labne.jpg`,
-    name: {
+    MenuItemId: 'item-6',
+    CategoryIds: ['cat-2'],
+    IngredientIds: ['ing-16', 'ing-17', 'ing-18'],
+    PictureURL: `${BASE_URL}/Salmon_whiiped_labne.jpg`,
+    Name: {
       en: 'Salmon whipped labne',
       ru: 'Salmon whipped labne',
       ka: 'Salmon whipped labne',
     },
-    price: 20,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Subtitle: {
+      en: 'guacamole, whipped labne, poached eggs',
+      ru: 'guacamole, whipped labne, poached eggs',
+      ka: 'guacamole, whipped labne, poached eggs',
+    },
+    Price: 20,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: false,
+    Rating: 0,
+    isRecommended: false,
+    TagIds: []
   },
   {
-    id: 'item-7',
-    categoryIds: ['cat-2'],
-    ingredientIds: ['ing-16', 'ing-19', 'ing-18'],
-    pictureURL: `${BASE_URL}/Shrimp_mayo_shriracha.jpg`,
-    name: {
+    MenuItemId: 'item-7',
+    CategoryIds: ['cat-2'],
+    IngredientIds: ['ing-16', 'ing-19', 'ing-18'],
+    PictureURL: `${BASE_URL}/Shrimp_mayo_shriracha.jpg`,
+    Name: {
       en: 'Shrimp mayo-shriracha',
       ru: 'Shrimp mayo-shriracha',
       ka: 'Shrimp mayo-shriracha',
     },
-    price: 20,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Subtitle: {
+      en: 'guacamole, dried tomatoes, poached eggs',
+      ru: 'guacamole, dried tomatoes, poached eggs',
+      ka: 'guacamole, dried tomatoes, poached eggs',
+    },
+    Price: 20,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: false,
+    Rating: 0,
+    isRecommended: false,
+    TagIds: []
   },
   {
-    id: 'item-8',
-    categoryIds: ['cat-3'],
-    ingredientIds: ['ing-3', 'ing-20', 'ing-21', 'ing-22'],
-    pictureURL: `${BASE_URL}/BLT.jpg`,
-    name: {
+    MenuItemId: 'item-8',
+    CategoryIds: ['cat-3'],
+    IngredientIds: ['ing-3', 'ing-20', 'ing-21', 'ing-22'],
+    PictureURL: `${BASE_URL}/BLT.jpg`,
+    Name: {
       en: 'BLT',
       ru: 'BLT',
       ka: 'BLT',
     },
-    price: 16,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Subtitle: {
+      en: 'bacon, lettuce, tomato, special sauce',
+      ru: 'bacon, lettuce, tomato, special sauce',
+      ka: 'bacon, lettuce, tomato, special sauce',
+    },
+    Price: 16,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: false,
+    Rating: 0,
+    isRecommended: false,
+    TagIds: []
   },
   {
-    id: 'item-9',
-    categoryIds: ['cat-3'],
-    ingredientIds: ['ing-23', 'ing-24', 'ing-25'],
-    pictureURL: `${BASE_URL}/Chiken.jpg`,
-    name: {
+    MenuItemId: 'item-9',
+    CategoryIds: ['cat-3'],
+    IngredientIds: ['ing-23', 'ing-24', 'ing-25'],
+    PictureURL: `${BASE_URL}/Chiken.jpg`,
+    Name: {
       en: 'Chicken',
       ru: 'Chicken',
       ka: 'Chicken',
     },
-    price: 16,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Subtitle: {
+      en: 'pulled chicken, coleslaw, pickled flowers',
+      ru: 'pulled chicken, coleslaw, pickled flowers',
+      ka: 'pulled chicken, coleslaw, pickled flowers',
+    },
+    Price: 16,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: false,
+    Rating: 0,
+    isRecommended: false,
+    TagIds: []
   },
   {
-    id: 'item-10',
-    categoryIds: ['cat-3'],
-    ingredientIds: ['ing-2', 'ing-26', 'ing-27', 'ing-28', ],
-    pictureURL: `${BASE_URL}/Truffle.jpg`,
-    name: {
+    MenuItemId: 'item-10',
+    CategoryIds: ['cat-3'],
+    IngredientIds: ['ing-2', 'ing-26', 'ing-27', 'ing-28',],
+    PictureURL: `${BASE_URL}/Truffle.jpg`,
+    Name: {
       en: 'Truffle',
       ru: 'Truffle',
       ka: 'Truffle',
     },
-    price: 15,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Subtitle: {
+      en: 'mushrooms, grilled spinach, cheddar, truffle sauce',
+      ru: 'mushrooms, grilled spinach, cheddar, truffle sauce',
+      ka: 'mushrooms, grilled spinach, cheddar, truffle sauce',
+    },
+    Price: 15,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: false,
+    Rating: 0,
+    isRecommended: false,
+    TagIds: []
   },
   {
-    id: 'item-11',
-    categoryIds: ['cat-3'],
-    ingredientIds: ['ing-29', 'ing-30', 'ing-31', 'ing-10', 'ing-32'],
-    pictureURL: `${BASE_URL}/Veg_cheese.jpg`,
-    name: {
+    MenuItemId: 'item-11',
+    CategoryIds: ['cat-3'],
+    IngredientIds: ['ing-29', 'ing-30', 'ing-31', 'ing-10', 'ing-32'],
+    PictureURL: `${BASE_URL}/Veg_cheese.jpg`,
+    Name: {
       en: 'Veg cheese',
       ru: 'Veg cheese',
       ka: 'Veg cheese',
     },
-    price: 15,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Subtitle: {
+      en: 'eggplant, salads mix, labne, bazhe, tomato slices',
+      ru: 'eggplant, salads mix, labne, bazhe, tomato slices',
+      ka: 'eggplant, salads mix, labne, bazhe, tomato slices',
+    },
+    Price: 15,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: false,
+    Rating: 0,
+    isRecommended: false,
+    TagIds: []
   },
   {
-    id: 'item-12',
-    categoryIds: ['cat-4'],
-    ingredientIds: [],
-    pictureURL: `${BASE_URL}/Rustic_cheese_cake.jpg`,
-    name: {
+    MenuItemId: 'item-12',
+    CategoryIds: ['cat-4'],
+    IngredientIds: [],
+    PictureURL: `${BASE_URL}/Rustic_cheese_cake.jpg`,
+    Name: {
       en: 'Rustic cheese cake',
       ru: 'Rustic cheese cake',
       ka: 'Rustic cheese cake',
     },
-    sub: {
-      en: 'goes with berry jam / sour cream / salty caramel', // нужно уточнить тут
-      ru: 'goes with berry jam / sour cream / salty caramel', // нужно уточнить тут
-      ka: 'goes with berry jam / sour cream / salty caramel', // нужно уточнить тут
+    Subtitle: {
+      en: 'goes with berry jam / sour cream / salty caramel',
+      ru: 'goes with berry jam / sour cream / salty caramel',
+      ka: 'goes with berry jam / sour cream / salty caramel',
     },
-    price: 11,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Price: 11,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: true,
+    Rating: 0,
+    isRecommended: true,
+    TagIds: []
   },
   {
-    id: 'item-13',
-    categoryIds: ['cat-4'],
-    ingredientIds: [],
-    pictureURL: `${BASE_URL}/Croissant.jpg`,
-    name: {
+    MenuItemId: 'item-13',
+    CategoryIds: ['cat-4'],
+    PictureURL: `${BASE_URL}/Croissant.jpg`,
+    Name: {
       en: 'Croissant',
       ru: 'Croissant',
       ka: 'Croissant',
     },
-    price: 6,
-    currency: 'GEL',
-    weight: null,
-    description: {
+    Price: 6,
+    Currency: 'GEL',
+    Weight: undefined,
+    Description: {
       en: '',
       ru: '',
       ka: '',
     },
-    rating: 0,
-    hit: true,
+    Rating: 0,
+    isRecommended: true,
+    TagIds: []
   },
 ]

@@ -1,24 +1,59 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { useCallback, useRef } from 'react';
 
-import logo from '../../public/logo.svg';
+import { useRouter } from '@app/navigation';
+import Button from './Button';
 import ContentHolder from './ContentHolder';
+import { LayoutSwitcher } from './LayoutSwitcher';
+import LocaleSwitcher from './LocaleSwitcher';
 
-export default function Header() {
-  const translation = useTranslations('Header');
+import logo from '@public/logo.svg?url';
+
+interface Props {
+  withLayoutSwitcher?: boolean;
+}
+
+export default function Header({ withLayoutSwitcher = false }: Props) {
+  const router = useRouter();
+  const translation = useTranslations('common');
+
+  const holdTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const startHold = useCallback(() => {
+    holdTimeout.current = setTimeout(() => {
+      const shouldRedirect = confirm(translation('redirectToLoginConfirmMessage'));
+      
+      shouldRedirect && router.push('/login');
+    }, 2000);
+  }, [router, translation]);
+
+  const endHold = useCallback(() => {
+    if (holdTimeout.current) {
+      clearTimeout(holdTimeout.current);
+      holdTimeout.current = null;
+    }
+  }, []);
 
   return (
-    <header className="p-4 flex justify-center items-center">
+    <header className="py-4 flex justify-center items-center">
       <ContentHolder className="flex justify-between items-center">
-        <Image
-          priority
-          src={logo}
-          alt={translation('logoAlt')}
-        />
+        <Button
+          onMouseDown={startHold}
+          onMouseUp={endHold}
+          onMouseLeave={endHold}
+        >
+          <Image
+            priority
+            src={logo}
+            alt={translation('logoAlt')}
+            draggable="false"
+          />
+        </Button>
 
-        <section className="flex flex-col items-end text-xs gap-2">
-          <span>9:00 - 21:00</span>
-          <span>{translation('address')}</span>
+        <section className="flex gap-2 items-center">
+          {withLayoutSwitcher && <LayoutSwitcher />}
+          <LocaleSwitcher />
         </section>
       </ContentHolder>
     </header>

@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+
+  --color-primary-rgb: 26, 26, 26;
+  --color-secondary-rgb: 245, 245, 245;
+  ;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.dashboard-table-w {
+  width: calc(100vw - 21.5rem);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.ant-form-item,
+.ant-col.ant-form-item-control {
+  max-width: 100%;
+}
+
+.ant-modal-close {
+  top: 22px !important;
+  right: 22px !important;
+}
+
+.preview-content {
+  & .ant-modal-close {
+    top: 12px !important;
+    right: 12px !important;
+  }
+}
+
+.ant-modal-header.modal-header.modal-header {
+  padding: 1.125rem 1.5rem;
+  align-items: center;
+}
+
+.ant-modal-body.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 244px);
+}
+
+.ant-modal-footer.modal-footer.modal-footer {
+  padding: 1.125rem 1.5rem;
+
+  & > .ant-btn {
+    height: 2.25rem;
+    border-radius: 0.75rem;
+  }
+}
+
+.ant-popconfirm-buttons,
+.ant-picker-ok {
+  .ant-btn.ant-btn-primary {
+    &:not(:disabled):not(.ant-btn-disabled) {
+      background-color: #1677ff;
+
+      &:hover {
+        background-color: #4096ff;
+      }
+
+      :active {
+        background-color: #0958d9;
+      }
+    }
+  }
+}
+
+.ant-row {
+  &.ant-form-item-row {
+    & .ant-col {
+      &.ant-form-item-label {
+        padding-bottom: 3px;
+      }
+
+      &.ant-form-item-control {
+        min-height: auto;
+      }
+    }
+  }
+}
